@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Managers">
+      <UniqueIdentifier>{08706d7f-2fd8-4792-8871-313e9824b8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Managers">
+      <UniqueIdentifier>{c371e85b-5e6d-4b79-acd1-d8d80d1048a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Client">
+      <UniqueIdentifier>{46aad605-999f-481f-80bc-b18aa9dabb69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Client">
+      <UniqueIdentifier>{54f20126-014e-4434-8851-18c3405db0bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Client\Scenes">
+      <UniqueIdentifier>{c4861987-c875-46e0-b249-f43cc2d7cc6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Client\Scenes">
+      <UniqueIdentifier>{ff7b3234-3156-420f-af9e-cced3f29772a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Utilitys">
+      <UniqueIdentifier>{c582776e-48d7-4404-87a2-e9ded299917a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utilitys">
+      <UniqueIdentifier>{15a04d68-7f5e-4762-bc85-2f5a4ea7ed1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Client\Objects">
+      <UniqueIdentifier>{6bcafa1f-983a-4ea8-a106-96d32a152b4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Client\Objects">
+      <UniqueIdentifier>{17c91487-0e72-4725-85d8-465ce1f6bd88}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Index.Cxx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleManager.Cxx">
+      <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.Cxx">
+      <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleScene.Cxx">
+      <Filter>소스 파일\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWindow.Cxx">
+      <Filter>소스 파일\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleObject.Cxx">
+      <Filter>소스 파일\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.Cxx">
+      <Filter>소스 파일\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicArray.Cxx">
+      <Filter>소스 파일\Utilitys</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConsoleManager.Hxx">
+      <Filter>헤더 파일\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.Hxx">
+      <Filter>헤더 파일\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleScene.Hxx">
+      <Filter>헤더 파일\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleWindow.Hxx">
+      <Filter>헤더 파일\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyScene.Hxx">
+      <Filter>헤더 파일\Client\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.Hxx">
+      <Filter>헤더 파일\Client\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleObject.Hxx">
+      <Filter>헤더 파일\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.Hxx">
+      <Filter>헤더 파일\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicArray.Hxx">
+      <Filter>헤더 파일\Utilitys</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
