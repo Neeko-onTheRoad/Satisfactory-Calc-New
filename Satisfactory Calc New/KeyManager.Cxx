@@ -18,6 +18,7 @@ int KeySettings::Get(Keys key) {
 		CASE(BACK)
 		CASE(FIND)
 		CASE(ESCAPE)
+		default: return 0;
 	}
 }
 

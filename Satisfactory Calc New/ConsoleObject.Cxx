@@ -1,8 +1,5 @@
 #include "ConsoleObject.Hxx"
 
-char**    Object;
-__int16** ForeGroundColor;
-__int16** BackGroundColor;
 
 void ConsoleObject::InitializeBase() {
 	this->Object          = MakeDynamicArray(GetSizeY(), MakeDynamicArray(GetSizeX(), '\0'));

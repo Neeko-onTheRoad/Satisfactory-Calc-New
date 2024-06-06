@@ -34,14 +34,14 @@
     <Filter Include="헤더 파일\Utilitys">
       <UniqueIdentifier>{c582776e-48d7-4404-87a2-e9ded299917a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utilitys">
-      <UniqueIdentifier>{15a04d68-7f5e-4762-bc85-2f5a4ea7ed1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="헤더 파일\Client\Objects">
       <UniqueIdentifier>{6bcafa1f-983a-4ea8-a106-96d32a152b4d}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Client\Objects">
       <UniqueIdentifier>{17c91487-0e72-4725-85d8-465ce1f6bd88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Client\Objects\Interfaces">
+      <UniqueIdentifier>{71d58c25-fff5-443c-9ed3-d4e62fca2b25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +65,6 @@
     </ClCompile>
     <ClCompile Include="Color.Cxx">
       <Filter>소스 파일\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicArray.Cxx">
-      <Filter>소스 파일\Utilitys</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="DynamicArray.Hxx">
       <Filter>헤더 파일\Utilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.Hxx">
+      <Filter>헤더 파일\Client\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
