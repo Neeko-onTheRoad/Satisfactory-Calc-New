@@ -16,5 +16,7 @@ void ConsoleScene::UpdateBase() {
 
 	for (auto i : objects) {
 		i->UpdateBaes();
+
+
 	}
 }

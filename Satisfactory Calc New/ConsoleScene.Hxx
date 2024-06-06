@@ -25,6 +25,8 @@ protected:
 	virtual void Update()     = 0;
 
 public:
+
+	bool NeedUpdate = true;
 	void InitializeBase();
 	void UpdateBase();
 
