@@ -4,8 +4,10 @@ void ConsoleScene::InitializeBase() {
 
 	Initialize();
 	
-	for (auto i : objects) {
-		i->InitializeBase();
+	for (auto& layer : Objects) {
+		for (auto& object : layer.second) {
+			object->InitializeBase();
+		}
 	}
 
 }
@@ -14,7 +16,17 @@ void ConsoleScene::UpdateBase() {
 
 	Update();
 
-	for (auto i : objects) {
-		i->UpdateBaes();
+	for (auto& layer : Objects) {
+		for (auto& object : layer.second) {
+			object->UpdateBaes();
+			
+			if (object->NeedUpdate) {
+				NeedUpdate = true;000
+			}
+		}
 	}
+}
+
+void ConsoleScene::Rerender()
+{
 }

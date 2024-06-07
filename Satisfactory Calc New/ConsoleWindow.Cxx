@@ -1,16 +1,37 @@
-#include "ConsoleWindow.Hxx"
 #include <iostream>
-#include <sstream>
-#include <chrono>
+#include "ConsoleWindow.Hxx"
 
 void ConsoleWindow::Rerender() {
-	
+	for (auto& layer : nowScene->Objects) {
+		for (auto& object : layer.second) {
+
+			for (int y = 0; y < object->GetSizeY(); y++) {
+				for (int x = 0; x < object->GetSizeX(); x++) {
+					
+					int renderY = y + object->GetPositionY();
+					int renderX = x + object->GetPositionX();
+
+					if (
+						renderY >= 0 &&
+						renderX >= 0 &&
+						renderY < MAX_CONSOLE_HEIGHT &&
+						renderX < MAX_CONSOLE_WIDTH
+					) {
+						int renderPositionY = renderY + object->GetPositionY();
+						int renderPositionX = renderX + object->GetPositionX();
+
+						renderBuffer[renderPositionY][renderPositionX] = object->Object[renderY][renderX];
+					}
+
+				}
+			}
+		}
+	}
 }
 
 void ConsoleWindow::ChangeScene(ConsoleScene* scene) {
 	nowScene = scene;
 	nowScene->InitializeBase();
-	needUpdate = true;
 }
 
 void ConsoleWindow::Initialize(ConsoleScene* startScene) {
@@ -57,10 +78,10 @@ void ConsoleWindow::Run() {
 
 	while (true) {
 		nowScene->UpdateBase();
-
-		if (needUpdate) {
+		
+		if (nowScene->NeedUpdate) {
 			Rerender();
-			needUpdate;
+			nowScene->NeedUpdate = false;
 		}
 	}
 }

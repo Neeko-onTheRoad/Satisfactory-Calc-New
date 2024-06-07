@@ -9,24 +9,29 @@
 #define TITLE_BAR_HEIGHT 3
 #define BOTTOM_BAR_HEIGHT 3
 
+#include <map>
 #include <vector>
 
 #include "ConsoleObject.Hxx"
 
 class ConsoleScene {
 private: 
-	
-	std::vector<ConsoleObject*> objects;
 
 	char sceneRenderBuffer[MAX_CONSOLE_HEIGHT - TITLE_BAR_HEIGHT - BOTTOM_BAR_HEIGHT][MAX_CONSOLE_WIDTH];
 
 protected:
+
 	virtual void Initialize() = 0;
 	virtual void Update()     = 0;
 
 public:
+	
+	bool NeedUpdate = true;
+	std::map<int, std::vector<ConsoleObject*>> Objects;
+
 	void InitializeBase();
 	void UpdateBase();
+	virtual void Rerender();
 
 };
 

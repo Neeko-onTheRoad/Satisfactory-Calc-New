@@ -25,8 +25,6 @@ private:
 
 public:
 
-	bool needUpdate = true;
-
 	void ChangeScene(ConsoleScene* scene);
 	void Initialize(ConsoleScene* startScene);
 	void Run();
