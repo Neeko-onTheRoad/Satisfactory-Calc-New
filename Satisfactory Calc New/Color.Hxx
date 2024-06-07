@@ -8,11 +8,11 @@
 class Color {
 public:
 
-	static std::string Foreground(__int8 color);
-	static std::string Background(__int8 color);
+	static std::string Foreground(unsigned __int8 color);
+	static std::string Background(unsigned __int8 color);
 
-	static const __int16 DefaultBackgroundColor = 236;
-	static const __int16 DefaultForegroundColor = 253;
+	static const unsigned __int8 DefaultBackgroundColor = 236;
+	static const unsigned __int8 DefaultForegroundColor = 253;
 
 };
 

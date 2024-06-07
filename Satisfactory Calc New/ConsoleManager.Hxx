@@ -14,8 +14,8 @@ public:
 	static void Clear();
 	static void UseANSIEscapeCode();
 	static void DisableResize();
-	static void SetSize(int w, int h);
-	static void SetPosition(int x, int y);
+	static void SetSize(unsigned w, unsigned h);
+	static void SetPosition(unsigned x, unsigned y);
 	static void DisableUserSelection();
 	static void SetCursorBlinking(bool status);
 	static void DisableScrollBar();
@@ -23,7 +23,7 @@ public:
 	static void SetMinimizeButton(bool status);
 	static void SetVisible(bool status);
 	static void SetTitle(std::string title);
-	static void SetFont(std::string fontName, int fontSize);
+	static void SetFont(std::string fontName, unsigned fontSize);
 };
 
 

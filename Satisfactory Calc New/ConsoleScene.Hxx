@@ -3,11 +3,13 @@
 #ifndef _CONSOLE_SCENE_HXX_
 #define _CONSOLE_SCENE_HXX_
 
-#define MAX_CONSOLE_HEIGHT 31
-#define MAX_CONSOLE_WIDTH 104
+#define CONSOLE_HEIGHT 31u
+#define CONSOLE_WIDTH 104u
 
-#define TITLE_BAR_HEIGHT 3
-#define BOTTOM_BAR_HEIGHT 3
+#define TITLE_BAR_HEIGHT 3u
+#define BOTTOM_BAR_HEIGHT 3u
+#define SCENE_HEIGHT CONSOLE_HEIGHT - TITLE_BAR_HEIGHT - BOTTOM_BAR_HEIGHT
+
 
 #include <map>
 #include <vector>
@@ -15,9 +17,6 @@
 #include "ConsoleObject.Hxx"
 
 class ConsoleScene {
-private: 
-
-	char sceneRenderBuffer[MAX_CONSOLE_HEIGHT - TITLE_BAR_HEIGHT - BOTTOM_BAR_HEIGHT][MAX_CONSOLE_WIDTH];
 
 protected:
 
@@ -28,10 +27,11 @@ public:
 	
 	bool NeedUpdate = true;
 	std::map<int, std::vector<ConsoleObject*>> Objects;
+	char SceneRenderBuffer[SCENE_HEIGHT][CONSOLE_WIDTH];
 
 	void InitializeBase();
 	void UpdateBase();
-	virtual void Rerender();
+	void Rerender();
 
 };
 

@@ -22,7 +22,7 @@ void ConsoleManager::DisableResize() {
 	return;
 }
 
-void ConsoleManager::SetSize(int w, int h) {
+void ConsoleManager::SetSize(unsigned w, unsigned h) {
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r);
@@ -31,7 +31,7 @@ void ConsoleManager::SetSize(int w, int h) {
 	return;
 }
 
-void ConsoleManager::SetPosition(int x, int y) {
+void ConsoleManager::SetPosition(unsigned x, unsigned y) {
 	HWND console = GetConsoleWindow();
 	SetWindowPos(console, 0, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
@@ -114,7 +114,7 @@ void ConsoleManager::SetTitle(std::string _title) {
 	return;
 }
 
-void ConsoleManager::SetFont(std::string fontName, int fontSize) {
+void ConsoleManager::SetFont(std::string fontName, unsigned fontSize) {
 	CONSOLE_FONT_INFOEX consoleFont;
 	consoleFont.cbSize       = sizeof(consoleFont);
 	consoleFont.nFont        = 0;

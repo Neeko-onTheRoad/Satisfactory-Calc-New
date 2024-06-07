@@ -66,6 +66,9 @@
     <ClCompile Include="Color.Cxx">
       <Filter>소스 파일\Client</Filter>
     </ClCompile>
+    <ClCompile Include="TextObject.Cxx">
+      <Filter>소스 파일\Client\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleManager.Hxx">

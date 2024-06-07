@@ -7,9 +7,12 @@ void ConsoleObject::InitializeBase() {
 	this->BackGroundColor = MakeDynamicArray(GetSizeY(), MakeDynamicArray(GetSizeX(), Color::DefaultBackgroundColor));
 
 	Initialize();
-	Rerender();
 }
 
 void ConsoleObject::UpdateBaes() {
 	Update();
+}
+
+ConsoleObject::ConsoleObject() {
+	Initialize();
 }

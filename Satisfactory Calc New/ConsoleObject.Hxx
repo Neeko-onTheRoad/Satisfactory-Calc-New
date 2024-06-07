@@ -12,15 +12,15 @@ protected:
 	virtual void Initialize() = 0;
 	virtual void Update() = 0;
 
-	virtual void Rerender() = 0;
-
 public:
-	
+
+	ConsoleObject();
+
 	bool NeedUpdate = true;
 
-	char**    Object          = new char*[0];
-	__int16** ForeGroundColor = new __int16*[0];
-	__int16** BackGroundColor = new __int16*[0];
+	char**            Object          = new char*[0];
+	unsigned __int8** ForeGroundColor = new unsigned __int8*[0];
+	unsigned __int8** BackGroundColor = new unsigned __int8*[0];
 
 	virtual unsigned GetSizeX() const = 0;
 	virtual unsigned GetSizeY() const = 0;

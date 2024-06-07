@@ -135,6 +135,7 @@
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
     <ClCompile Include="ConsoleManager.Cxx" />
+    <ClCompile Include="TextObject.Cxx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.Hxx" />

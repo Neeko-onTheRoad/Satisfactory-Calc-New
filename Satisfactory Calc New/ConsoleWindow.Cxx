@@ -2,31 +2,18 @@
 #include "ConsoleWindow.Hxx"
 
 void ConsoleWindow::Rerender() {
-	for (auto& layer : nowScene->Objects) {
-		for (auto& object : layer.second) {
 
-			for (int y = 0; y < object->GetSizeY(); y++) {
-				for (int x = 0; x < object->GetSizeX(); x++) {
-					
-					int renderY = y + object->GetPositionY();
-					int renderX = x + object->GetPositionX();
+	nowScene->Rerender();
 
-					if (
-						renderY >= 0 &&
-						renderX >= 0 &&
-						renderY < MAX_CONSOLE_HEIGHT &&
-						renderX < MAX_CONSOLE_WIDTH
-					) {
-						int renderPositionY = renderY + object->GetPositionY();
-						int renderPositionX = renderX + object->GetPositionX();
+	for (unsigned y = 0; y < SCENE_HEIGHT; y++) {
+		for (unsigned x = 0; x < CONSOLE_WIDTH; x++) {
 
-						renderBuffer[renderPositionY][renderPositionX] = object->Object[renderY][renderX];
-					}
+			renderBuffer[y + TITLE_BAR_HEIGHT][x] = nowScene->SceneRenderBuffer[y][x];
 
-				}
-			}
 		}
 	}
+
+
 }
 
 void ConsoleWindow::ChangeScene(ConsoleScene* scene) {
@@ -51,20 +38,8 @@ void ConsoleWindow::Initialize(ConsoleScene* startScene) {
 	ConsoleManager::SetCloseButton(false);
 	ConsoleManager::SetMinimizeButton(false);
 
-	for (int y = 0; y < TITLE_BAR_HEIGHT; y++) {
-		for (int x = 0; x < MAX_CONSOLE_WIDTH; x++) {
-			titleBar[y][x] = ' ';
-		}
-	}
-
-	for (int y = 0; y < BOTTOM_BAR_HEIGHT; y++) {
-		for (int x = 0; x < MAX_CONSOLE_WIDTH; x++) {
-			bottomBar[y][x] = ' ';
-		}
-	}
-
-	for (int y = 0; y < MAX_CONSOLE_HEIGHT; y++) {
-		for (int x = 0; x < MAX_CONSOLE_WIDTH; x++) {
+	for (unsigned y = 0; y < CONSOLE_HEIGHT; y++) {
+		for (unsigned x = 0; x < CONSOLE_WIDTH; x++) {
 			renderBuffer   [y][x] = ' ';
 			backgroundColor[y][x] = Color::DefaultBackgroundColor;
 			foregroundColor[y][x] = Color::DefaultForegroundColor;

@@ -8,20 +8,29 @@
 
 class TextObject : public ConsoleObject {
 
+private:
+	
+	unsigned positionX;
+	unsigned positionY;
+
+	unsigned sizeX;
+	unsigned sizeY;
+
+
 protected:
 	void Initialize();
 	void Update();
 
-	void Rerender();
-
 
 public:
-	
-	int GetSizeX();
-	int GetSizeY();
 
-	int GetPositionX();
-	int GetPositionY();
+	TextObject(unsigned posX, unsigned posY, unsigned sizeX, unsigned sizeY);
+
+	unsigned GetSizeX() const;
+	unsigned GetSizeY() const;
+
+	unsigned GetPositionX() const;
+	unsigned GetPositionY() const;
 
 };
 

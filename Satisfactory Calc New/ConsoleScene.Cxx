@@ -21,12 +21,37 @@ void ConsoleScene::UpdateBase() {
 			object->UpdateBaes();
 			
 			if (object->NeedUpdate) {
-				NeedUpdate = true;000
+				NeedUpdate = true;
+				object->NeedUpdate = false;
 			}
 		}
 	}
 }
 
-void ConsoleScene::Rerender()
-{
+void ConsoleScene::Rerender() {
+
+	for (auto& layer : Objects) {
+		for (auto& object : layer.second) {
+
+			for (unsigned y = 0; y < object->GetSizeY(); y++) {
+				for (unsigned x = 0; x < object->GetSizeX(); x++) {
+
+					unsigned renderY = y + object->GetPositionY();
+					unsigned renderX = x + object->GetPositionX();
+
+					if (
+						renderY >= 0 &&
+						renderX >= 0 &&
+						renderY < CONSOLE_HEIGHT &&
+						renderX < CONSOLE_WIDTH
+					) {
+						unsigned renderPositionY = renderY + object->GetPositionY();
+						unsigned renderPositionX = renderX + object->GetPositionX();
+
+						SceneRenderBuffer[renderPositionY][renderPositionX] = object->Object[renderY][renderX];
+					}
+				}
+			}
+		}
+	}
 }
