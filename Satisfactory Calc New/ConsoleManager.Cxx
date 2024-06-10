@@ -1,5 +1,6 @@
 #include "ConsoleManager.Hxx"
 
+#undef _WIN32_WINNT
 #define _WIN32_WINNT 0x0500
 
 void ConsoleManager::Clear() {
@@ -24,9 +25,9 @@ void ConsoleManager::DisableResize() {
 
 void ConsoleManager::SetSize(unsigned w, unsigned h) {
 	HWND console = GetConsoleWindow();
-	RECT r;
-	GetWindowRect(console, &r);
-	MoveWindow(console, r.left, r.top, w, h, TRUE);
+	RECT rect;
+	GetWindowRect(console, &rect);
+	MoveWindow(console, rect.left, rect.top, w, h, TRUE);
 
 	return;
 }

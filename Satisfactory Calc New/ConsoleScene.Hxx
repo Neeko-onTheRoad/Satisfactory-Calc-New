@@ -10,7 +10,6 @@
 #define BOTTOM_BAR_HEIGHT 3u
 #define SCENE_HEIGHT CONSOLE_HEIGHT - TITLE_BAR_HEIGHT - BOTTOM_BAR_HEIGHT
 
-
 #include <map>
 #include <vector>
 
