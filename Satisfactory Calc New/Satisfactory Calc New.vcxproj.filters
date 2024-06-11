@@ -67,7 +67,7 @@
       <Filter>소스 파일\Client</Filter>
     </ClCompile>
     <ClCompile Include="TextObject.Cxx">
-      <Filter>소스 파일\Client\Objects</Filter>
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

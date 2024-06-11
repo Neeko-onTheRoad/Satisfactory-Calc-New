@@ -14,8 +14,6 @@ protected:
 
 public:
 
-	ConsoleObject();
-
 	bool NeedUpdate = true;
 
 	char**            Object          = new char*[0];
@@ -24,10 +22,15 @@ public:
 
 	virtual unsigned GetSizeX() const = 0;
 	virtual unsigned GetSizeY() const = 0;
-	virtual void SetPosition(unsigned x, unsigned y) = 0;
+	virtual void SetSizeX(unsigned x) = 0;
+	virtual void SetSizeY(unsigned y) = 0;
+	void SetSize(unsigned x, unsigned y);
 
 	virtual unsigned GetPositionX() const = 0;
 	virtual unsigned GetPositionY() const = 0;
+	virtual void SetPositionX(unsigned x) = 0;
+	virtual void SetPositionY(unsigned y) = 0;
+	void SetPosition(unsigned x, unsigned y);
 
 	void InitializeBase();
 	void UpdateBaes();
