@@ -102,8 +102,11 @@
     <ClCompile Include="BottomBar.Cxx">
       <Filter>소스 파일\Client\ConsoleWindow</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceManager.Cxx">
+      <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
     <ClCompile Include="MainScreeen.Cxx">
-      <Filter>소스 파일\Client\Objects</Filter>
+      <Filter>소스 파일\Client\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,10 +158,18 @@
     <ClInclude Include="IBorder.Hxx">
       <Filter>헤더 파일\Client\Objects\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.Hxx">
+      <Filter>헤더 파일\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Recipe.Hxx">
       <Filter>헤더 파일\Satisfactory</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ConsoleTitle.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>

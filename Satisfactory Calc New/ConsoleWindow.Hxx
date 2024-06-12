@@ -12,6 +12,7 @@
 #include "KeyManager.Hxx"
 #include "ConsoleScene.Hxx"
 #include "ConsoleManager.Hxx"
+#include "ResourceManager.Hxx"
 
 #include "Wiki.Hxx"
 #include "MainScreen.Hxx"

@@ -148,6 +148,7 @@
     <ClCompile Include="MainScreeen.Cxx" />
     <ClCompile Include="Recipe.Cxx" />
     <ClCompile Include="Render.Cxx" />
+    <ClCompile Include="ResourceManager.Cxx" />
     <ClCompile Include="TextBoxObject.Cxx" />
     <ClCompile Include="TitleBar.Cxx" />
     <ClCompile Include="Wiki.Cxx" />
@@ -167,11 +168,18 @@
     <ClInclude Include="ConsoleManager.Hxx" />
     <ClInclude Include="MainScreen.Hxx" />
     <ClInclude Include="IReplaceable.Hxx" />
+    <ClInclude Include="ResourceManager.Hxx" />
     <ClInclude Include="TextBoxObject.Hxx" />
     <ClInclude Include="Wiki.Hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Recipe.Hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ConsoleTitle.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

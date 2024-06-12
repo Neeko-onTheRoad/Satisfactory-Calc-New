@@ -31,9 +31,9 @@ void ConsoleWindow::Rerender() {
 
 	RenderDefault();
 
-	nowScene->Rerender();
 	RerenderTitleBar();
 	RerenderBottomBar();
+	nowScene->Rerender();
 
 
 	for (unsigned y = 0; y < TITLE_BAR_HEIGHT; y++) {
@@ -72,6 +72,7 @@ void ConsoleWindow::Display() {
 			displayBuffer += Color::Background(backgroundColor[y][x]);
 			displayBuffer += renderBuffer[y][x] == '\0' ? ' ' : renderBuffer[y][x];
 		}
+		displayBuffer += Color::Background(Color::FullBlack);
 		displayBuffer += "\r\n";
 	}
 

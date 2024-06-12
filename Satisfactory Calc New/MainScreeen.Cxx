@@ -1,6 +1,10 @@
 #include "MainScreen.Hxx"
 
 void MainScreen::Initialize() {
+
+	TextBoxObject* title = new TextBoxObject;
+	title->Make(0, 0, Resources::ConsoleTitle);
+	AddObject(title, 0);
 	
 }
 

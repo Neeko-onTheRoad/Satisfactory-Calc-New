@@ -4,6 +4,8 @@
 #define _MAIN_SCREEN_HXX_
 
 #include "ConsoleScene.Hxx"
+#include "TextBoxObject.Hxx"
+#include "ResourceManager.Hxx"
 
 class MainScreen : public ConsoleScene {
 

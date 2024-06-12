@@ -1,4 +1,5 @@
-#include "TextBoxObject.Hxx"
+#include "TextBoxObject.Hxx"	
+#include <iostream>
 
 void TextBoxObject::Initialize() {
 }
@@ -23,7 +24,6 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element) {
 	std::vector<std::string> splited;
 	std::string token = "";
 
-	while (_element.back() != '\n') _element.pop_back();
 
 	for (auto& ch : _element) {
 		if (ch == '\n') {
@@ -43,11 +43,23 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element) {
 	Object = MakeDynamicArray(sizeY, MakeDynamicArray(sizeX, ' '));
 
 	for (unsigned y = 0; y < splited.size(); y++) {
-		
 		for (unsigned x = 0; x < splited[y].size(); x++) {
 			Object[y][x] = splited[y][x];
 		}
+	}
 
+	for (unsigned y = 0; y < sizeY; y++) {
+		for (unsigned x = 0; x < splited[y].size(); x++) {
+			std::cout << splited[y][x];
+		}
+		std::cout << "\n";
+	}
+
+	for (unsigned y = 0; y < sizeY; y++) {
+		for (unsigned x = 0; x < sizeX; x++) {
+			std::cout << Object[y][x];
+		}
+		std::cout << "\n";
 	}
 
 }

@@ -12,11 +12,11 @@ class TextBoxObject : public ConsoleObject, public IReplaceable {
 
 private:
 
-	unsigned sizeX;
-	unsigned sizeY;
+	unsigned sizeX = 0;
+	unsigned sizeY = 0;
 
-	unsigned positionX;
-	unsigned positionY;
+	unsigned positionX = 0;
+	unsigned positionY = 0;
 
 
 protected:

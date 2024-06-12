@@ -8,7 +8,7 @@
 class EmptyScene : public ConsoleScene {
 protected:
 	void ConsoleScene::Initialize() {};
-	void ConsoleScene::Update() {};
+	void ConsoleScene::Update() {}
 
 public:
 	std::string ConsoleScene::GetTitle() const;

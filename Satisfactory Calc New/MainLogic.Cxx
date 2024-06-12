@@ -10,6 +10,8 @@ void ConsoleWindow::ChangeScene(unsigned index) {
 
 void ConsoleWindow::Initialize() {
 
+	Resources::Initialize();
+
 	std::ios_base::sync_with_stdio(0);
 	std::cout.tie(0);
 	std::cin.tie(0);
@@ -19,9 +21,9 @@ void ConsoleWindow::Initialize() {
 
 	ConsoleManager::SetFont(L"D2Coding", 24);
 	ConsoleManager::SetSize(1290, 785);
-	ConsoleManager::DisableResize();
-	ConsoleManager::DisableUserSelection();
-	ConsoleManager::DisableScrollBar();
+	//ConsoleManager::DisableResize();
+	//ConsoleManager::DisableUserSelection();
+	//ConsoleManager::DisableScrollBar();
 	ConsoleManager::SetCursorBlinking(false);
 	ConsoleManager::SetTitle("Satisfactory Calculator V 0.01");
 	ConsoleManager::SetCloseButton(false);
@@ -49,16 +51,16 @@ void ConsoleWindow::Run() {
 					ChangeScene(++nowSceneIndex);
 				}
 			}
-
-			nowScene->UpdateBase();
 		}
 	};
 
 	std::function<void()> outputLoop = [&]() {
-		if (nowScene->NeedUpdate) {
-			Rerender();
-			Display();
-			nowScene->NeedUpdate = false;
+		while (true) {
+			if (nowScene->NeedUpdate) {
+				Rerender();
+				Display();
+				nowScene->NeedUpdate = false;
+			}
 		}
 	};
 

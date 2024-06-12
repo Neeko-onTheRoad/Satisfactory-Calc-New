@@ -23,6 +23,8 @@ protected:
 	virtual void Initialize() = 0;
 	virtual void Update()     = 0;
 
+	void AddObject(ConsoleObject* _object, int layer = 0);
+
 public:
 	
 	bool NeedUpdate = true;
