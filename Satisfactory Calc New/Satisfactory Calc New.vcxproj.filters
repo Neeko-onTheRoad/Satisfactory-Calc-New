@@ -43,6 +43,15 @@
     <Filter Include="헤더 파일\Client\Objects\Interfaces">
       <UniqueIdentifier>{71d58c25-fff5-443c-9ed3-d4e62fca2b25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Satisfactory">
+      <UniqueIdentifier>{92293909-7936-48ca-a3e7-fe7b8cbba61b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Satisfactory">
+      <UniqueIdentifier>{7a55f266-2a97-4931-93a3-7c19042ad581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Client\ConsoleWindow">
+      <UniqueIdentifier>{eefbf996-dce0-414a-8ecb-07b57345dc6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Index.Cxx">
@@ -57,17 +66,44 @@
     <ClCompile Include="ConsoleScene.Cxx">
       <Filter>소스 파일\Client</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleWindow.Cxx">
-      <Filter>소스 파일\Client</Filter>
-    </ClCompile>
     <ClCompile Include="ConsoleObject.Cxx">
       <Filter>소스 파일\Client</Filter>
     </ClCompile>
     <ClCompile Include="Color.Cxx">
       <Filter>소스 파일\Client</Filter>
     </ClCompile>
-    <ClCompile Include="TextObject.Cxx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="EmptyScene.Cxx">
+      <Filter>소스 파일\Client\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBoxObject.Cxx">
+      <Filter>소스 파일\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Wiki.Cxx">
+      <Filter>소스 파일\Client\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.Cxx">
+      <Filter>소스 파일\Satisfactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.Cxx">
+      <Filter>소스 파일\Satisfactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Recipe.Cxx">
+      <Filter>소스 파일\Satisfactory</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBar.Cxx">
+      <Filter>소스 파일\Client\ConsoleWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLogic.Cxx">
+      <Filter>소스 파일\Client\ConsoleWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.Cxx">
+      <Filter>소스 파일\Client\ConsoleWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="BottomBar.Cxx">
+      <Filter>소스 파일\Client\ConsoleWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScreeen.Cxx">
+      <Filter>소스 파일\Client\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +122,6 @@
     <ClInclude Include="EmptyScene.Hxx">
       <Filter>헤더 파일\Client\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="MainScene.Hxx">
-      <Filter>헤더 파일\Client\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="ConsoleObject.Hxx">
       <Filter>헤더 파일\Client</Filter>
     </ClInclude>
@@ -98,8 +131,34 @@
     <ClInclude Include="DynamicArray.Hxx">
       <Filter>헤더 파일\Utilitys</Filter>
     </ClInclude>
-    <ClInclude Include="TextObject.Hxx">
+    <ClInclude Include="TextBoxObject.Hxx">
       <Filter>헤더 파일\Client\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Wiki.Hxx">
+      <Filter>헤더 파일\Client\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.Hxx">
+      <Filter>헤더 파일\Satisfactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.Hxx">
+      <Filter>헤더 파일\Satisfactory</Filter>
+    </ClInclude>
+    <ClInclude Include="AsciiMap.Hxx">
+      <Filter>헤더 파일\Utilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScreen.Hxx">
+      <Filter>헤더 파일\Client\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="IReplaceable.Hxx">
+      <Filter>헤더 파일\Client\Objects\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IBorder.Hxx">
+      <Filter>헤더 파일\Client\Objects\Interfaces</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Recipe.Hxx">
+      <Filter>헤더 파일\Satisfactory</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -105,10 +105,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>Z:\Librarys\boost_1_85_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Z:\Librarys\boost_1_85_0\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -119,35 +122,56 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>Z:\Librarys\boost_1_85_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Z:\Librarys\boost_1_85_0\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BottomBar.Cxx" />
+    <ClCompile Include="Building.Cxx" />
     <ClCompile Include="Color.Cxx" />
     <ClCompile Include="ConsoleObject.Cxx" />
     <ClCompile Include="ConsoleScene.Cxx" />
-    <ClCompile Include="ConsoleWindow.Cxx" />
+    <ClCompile Include="EmptyScene.Cxx" />
+    <ClCompile Include="Item.Cxx" />
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
     <ClCompile Include="ConsoleManager.Cxx" />
-    <ClCompile Include="TextObject.Cxx" />
+    <ClCompile Include="MainLogic.Cxx" />
+    <ClCompile Include="MainScreeen.Cxx" />
+    <ClCompile Include="Recipe.Cxx" />
+    <ClCompile Include="Render.Cxx" />
+    <ClCompile Include="TextBoxObject.Cxx" />
+    <ClCompile Include="TitleBar.Cxx" />
+    <ClCompile Include="Wiki.Cxx" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AsciiMap.Hxx" />
+    <ClInclude Include="Building.Hxx" />
     <ClInclude Include="Color.Hxx" />
     <ClInclude Include="ConsoleObject.Hxx" />
     <ClInclude Include="ConsoleScene.Hxx" />
     <ClInclude Include="ConsoleWindow.Hxx" />
     <ClInclude Include="DynamicArray.Hxx" />
     <ClInclude Include="EmptyScene.Hxx" />
+    <ClInclude Include="IBorder.Hxx" />
+    <ClInclude Include="Item.Hxx" />
     <ClInclude Include="KeyManager.Hxx" />
     <ClInclude Include="ConsoleManager.Hxx" />
-    <ClInclude Include="MainScene.Hxx" />
-    <ClInclude Include="TextObject.Hxx" />
+    <ClInclude Include="MainScreen.Hxx" />
+    <ClInclude Include="IReplaceable.Hxx" />
+    <ClInclude Include="TextBoxObject.Hxx" />
+    <ClInclude Include="Wiki.Hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Recipe.Hxx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

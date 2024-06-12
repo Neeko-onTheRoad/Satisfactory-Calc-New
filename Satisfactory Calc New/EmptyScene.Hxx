@@ -10,6 +10,9 @@ protected:
 	void ConsoleScene::Initialize() {};
 	void ConsoleScene::Update() {};
 
+public:
+	std::string ConsoleScene::GetTitle() const;
+
 };
 
 

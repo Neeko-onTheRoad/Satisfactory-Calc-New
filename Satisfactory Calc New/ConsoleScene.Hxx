@@ -4,7 +4,7 @@
 #define _CONSOLE_SCENE_HXX_
 
 #define CONSOLE_HEIGHT 31u
-#define CONSOLE_WIDTH 105u
+#define CONSOLE_WIDTH 122u
 
 #define TITLE_BAR_HEIGHT 3u
 #define BOTTOM_BAR_HEIGHT 4u
@@ -28,6 +28,8 @@ public:
 	bool NeedUpdate = true;
 	std::map<int, std::vector<ConsoleObject*>> Objects;
 	char SceneRenderBuffer[SCENE_HEIGHT][CONSOLE_WIDTH];
+
+	virtual std::string GetTitle() const = 0;
 
 	void InitializeBase();
 	void UpdateBase();

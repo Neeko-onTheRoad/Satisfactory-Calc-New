@@ -11,7 +11,7 @@
 
 class ConsoleManager {
 public: 
-	static void Clear();
+	static void ResetCursor();
 	static void UseANSIEscapeCode();
 	static void DisableResize();
 	static void SetSize(unsigned w, unsigned h);
@@ -23,7 +23,7 @@ public:
 	static void SetMinimizeButton(bool status);
 	static void SetVisible(bool status);
 	static void SetTitle(std::string title);
-	static void SetFont(std::string fontName, unsigned fontSize);
+	static void SetFont(std::wstring fontName, unsigned fontSize);
 };
 
 

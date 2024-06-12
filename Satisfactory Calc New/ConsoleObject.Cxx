@@ -12,13 +12,3 @@ void ConsoleObject::InitializeBase() {
 void ConsoleObject::UpdateBaes() {
 	Update();
 }
-
-void ConsoleObject::SetSize(unsigned x, unsigned y) {
-	SetSizeX(x);
-	SetSizeY(y);
-}
-
-void ConsoleObject::SetPosition(unsigned x, unsigned y) {
-	SetPositionX(x);
-	SetPositionY(y);
-}

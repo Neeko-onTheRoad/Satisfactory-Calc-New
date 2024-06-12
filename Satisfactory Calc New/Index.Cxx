@@ -6,9 +6,10 @@
 #include "ConsoleWindow.Hxx"
 
 int main(void) {
-	
+
 	ConsoleWindow window = ConsoleWindow();
-	window.Initialize(new EmptyScene());
+
+	window.Initialize();
 	window.Run();
 
-}
+}	

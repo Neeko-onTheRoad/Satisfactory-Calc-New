@@ -18,6 +18,8 @@ int KeySettings::Get(Keys key) {
 		CASE(BACK)
 		CASE(FIND)
 		CASE(ESCAPE)
+		CASE(LEFTTAB)
+		CASE(RIGHTTAB)
 		default: return 0;
 	}
 }
@@ -33,6 +35,8 @@ void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 	_action(Keys::BACK);
 	_action(Keys::FIND);
 	_action(Keys::ESCAPE);
+	_action(Keys::LEFTTAB);
+	_action(Keys::RIGHTTAB);
 }
 
 
@@ -56,9 +60,10 @@ void KeyManager::Update() {
 
 		if (PressingTemp) {
 			
+			Released[key] = false;
 			if (PressingPrev[key] == false) {
-				Pressing[key] = true;
 				Pressed [key] = true;
+				Pressing[key] = true;
 			}
 			else {
 				Pressed[key] = false;
@@ -67,9 +72,10 @@ void KeyManager::Update() {
 		}
 		else {
 			
+			Pressed[key] = false;
 			if (PressingPrev[key] == true) {
-				Pressing[key] = false;
 				Released[key] = true;
+				Pressing[key] = false;
 			}
 			else {
 				Released[key] = false;

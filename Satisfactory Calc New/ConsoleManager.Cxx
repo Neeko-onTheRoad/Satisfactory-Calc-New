@@ -3,17 +3,23 @@
 #undef _WIN32_WINNT
 #define _WIN32_WINNT 0x0500
 
-void ConsoleManager::Clear() {
-	#if _WIN32
-		system("cls");
-	#else
-		system("clear");
-	#endif
+void ConsoleManager::ResetCursor() {
+	HANDLE hOut;
+	COORD position;
+
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	position.X = 0;
+	position.Y = 0;
+	SetConsoleCursorPosition(hOut, position);
 }
 
 void ConsoleManager::UseANSIEscapeCode() {
-	HWND console = GetConsoleWindow();
-	SetConsoleMode(console, ENABLE_VIRTUAL_TERMINAL_INPUT);
+	DWORD consoleMode;
+	HANDLE outputHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (GetConsoleMode(outputHandle, &consoleMode)) {
+		SetConsoleMode(outputHandle, consoleMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+	}
 }
 
 void ConsoleManager::DisableResize() {
@@ -115,7 +121,7 @@ void ConsoleManager::SetTitle(std::string _title) {
 	return;
 }
 
-void ConsoleManager::SetFont(std::string fontName, unsigned fontSize) {
+void ConsoleManager::SetFont(std::wstring fontName, unsigned fontSize) {
 	CONSOLE_FONT_INFOEX consoleFont;
 	consoleFont.cbSize       = sizeof(consoleFont);
 	consoleFont.nFont        = 0;
@@ -124,10 +130,7 @@ void ConsoleManager::SetFont(std::string fontName, unsigned fontSize) {
 	consoleFont.FontFamily   = FF_DONTCARE;
 	consoleFont.FontWeight   = FW_NORMAL;
 
-	std::wstring fontNameW = L"";
-	fontName.assign(fontName.begin(), fontName.end());
-
-	wcscpy_s(consoleFont.FaceName, fontNameW.c_str());
+	wcscpy_s(consoleFont.FaceName, fontName.c_str());
 	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &consoleFont);
 	return;
 }

@@ -10,8 +10,8 @@
 #define KEY_PRESSING 0x8000
 #define KEY_TOGGLE   0x1
 
-enum Keys {
-	UP, DOWN, LEFT, RIGHT, SELECT, BACK, FIND, ESCAPE
+enum class Keys {
+	UP, DOWN, LEFT, RIGHT, SELECT, BACK, FIND, ESCAPE, LEFTTAB, RIGHTTAB
 };
 
 class KeySettings {
@@ -21,6 +21,9 @@ public:
 	static constexpr int DOWN  = VK_DOWN;
 	static constexpr int LEFT  = VK_LEFT;
 	static constexpr int RIGHT = VK_RIGHT;
+
+	static constexpr int LEFTTAB  = VK_LSHIFT;
+	static constexpr int RIGHTTAB = VK_RSHIFT;
 
 	static constexpr int SELECT = VK_RETURN;
 	static constexpr int BACK   = VK_BACK;
