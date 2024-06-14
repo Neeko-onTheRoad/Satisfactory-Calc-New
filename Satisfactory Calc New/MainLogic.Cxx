@@ -4,8 +4,7 @@ void ConsoleWindow::ChangeScene(unsigned index) {
 	nowSceneIndex = index;
 	nowScene = scenes[index];
 	nowScene->InitializeBase();
-	Rerender();
-	Display();
+	nowScene->NeedUpdate = true;
 }
 
 void ConsoleWindow::Initialize() {
@@ -20,10 +19,10 @@ void ConsoleWindow::Initialize() {
 	scenes.push_back(new Wiki);
 
 	ConsoleManager::SetFont(L"D2Coding", 24);
-	ConsoleManager::SetSize(1290, 785);
-	//ConsoleManager::DisableResize();
-	//ConsoleManager::DisableUserSelection();
-	//ConsoleManager::DisableScrollBar();
+	ConsoleManager::SetSize(1300, 785);
+	ConsoleManager::DisableResize();
+	ConsoleManager::DisableUserSelection();
+	ConsoleManager::DisableScrollBar();
 	ConsoleManager::SetCursorBlinking(false);
 	ConsoleManager::SetTitle("Satisfactory Calculator V 0.01");
 	ConsoleManager::SetCloseButton(false);
@@ -44,13 +43,17 @@ void ConsoleWindow::Run() {
 				if (nowSceneIndex > 0) {
 					ChangeScene(--nowSceneIndex);
 				}
+				else ChangeScene(static_cast<int>(scenes.size()) - 1);
 			}
 
 			else if (KeyManager::GetKeyPressed(Keys::RIGHTTAB)) {
 				if (nowSceneIndex < scenes.size() - 1) {
 					ChangeScene(++nowSceneIndex);
 				}
+				else ChangeScene(0);
 			}
+
+			nowScene->UpdateBase();
 		}
 	};
 

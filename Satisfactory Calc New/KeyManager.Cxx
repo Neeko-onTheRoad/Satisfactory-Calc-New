@@ -1,5 +1,4 @@
 #include "KeyManager.Hxx"
-#include <iostream>
 
 std::unordered_map<Keys, bool> KeyManager::Pressing;
 std::unordered_map<Keys, bool> KeyManager::PressingPrev;
@@ -56,7 +55,15 @@ void KeyManager::Initialize() {
 void KeyManager::Update() {
 	KeySettings::ForeachKeys([&](Keys key) {
 
-		bool PressingTemp = GetKeyState(KeySettings::Get(key)) < 0;
+		if (!ConsoleManager::GetConsoleSelected()) {
+			Pressing[key] = false;
+			Pressed [key] = false;
+			Released[key] = false;
+			
+			return;
+		}
+
+		bool PressingTemp = GetAsyncKeyState(KeySettings::Get(key)) < 0;
 
 		if (PressingTemp) {
 			

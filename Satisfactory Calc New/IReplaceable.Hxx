@@ -3,17 +3,15 @@
 #ifndef _I_REPLACEABLE_HXX_
 #define _H_REPLACEABLE_HXX_
 
+#include "IPosition.Hxx"
 
-class IReplaceable {
+class IReplaceable : public IPosition {
 
 public:
-	virtual void SetPositionX(unsigned _x) = 0;
-	virtual void SetPositionY(unsigned _y) = 0;
+	void SetPositionX(int _x);
+	void SetPositionY(int _y);
 
-	void SetPosition(unsigned _x, unsigned _y) {
-		SetPositionX(_x);
-		SetPositionY(_y);
-	}
+	void SetPosition(int _x, int _y);
 
 };
 

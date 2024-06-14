@@ -1,21 +1,10 @@
 #include "TextBoxObject.Hxx"	
 #include <iostream>
 
-void TextBoxObject::Initialize() {
-}
+void TextBoxObject::Initialize() { }
+void TextBoxObject::Update() { }
 
-void TextBoxObject::Update() {
-}
-
-void TextBoxObject::SetPositionX(unsigned _x) {
-	positionX = _x;
-}
-
-void TextBoxObject::SetPositionY(unsigned _y) {
-	positionY = _y;
-}
-
-void TextBoxObject::Make(int _posX, int _posY, std::string _element) {
+void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottomMargin) {
 	
 	positionX = _posX;
 	positionY = _posY;
@@ -38,9 +27,11 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element) {
 		}
 	}
 
-	sizeY = static_cast<int>(splited.size());
+	sizeY = static_cast<int>(splited.size()) + _bottomMargin;
 
-	Object = MakeDynamicArray(sizeY, MakeDynamicArray(sizeX, ' '));
+	Object          = Make2DimDynamicArray(sizeY, sizeX, ' ');
+	ForegroundColor = Make2DimDynamicArray(sizeY, sizeX, Color::DefaultForegroundColor);
+	BackgroundColor = Make2DimDynamicArray(sizeY, sizeX, Color::DefaultBackgroundColor);
 
 	for (unsigned y = 0; y < splited.size(); y++) {
 		for (unsigned x = 0; x < splited[y].size(); x++) {
@@ -48,34 +39,6 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element) {
 		}
 	}
 
-	for (unsigned y = 0; y < sizeY; y++) {
-		for (unsigned x = 0; x < splited[y].size(); x++) {
-			std::cout << splited[y][x];
-		}
-		std::cout << "\n";
-	}
+	NeedUpdate = true;
 
-	for (unsigned y = 0; y < sizeY; y++) {
-		for (unsigned x = 0; x < sizeX; x++) {
-			std::cout << Object[y][x];
-		}
-		std::cout << "\n";
-	}
-
-}
-
-unsigned TextBoxObject::GetSizeX() const {
-	return sizeX;
-}
-
-unsigned TextBoxObject::GetSizeY() const {
-	return sizeY;
-}
-
-unsigned TextBoxObject::GetPositionX() const {
-	return positionX;
-}
-
-unsigned TextBoxObject::GetPositionY() const {
-	return positionY;
 }

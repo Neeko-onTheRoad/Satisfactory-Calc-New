@@ -4,12 +4,26 @@
 #define _DYNAMIC_ARRAY_HXX_
 
 template <class T>
+T* MakeDynamicArray(size_t _size, T _allocator) {
+	T* result = new T[_size];
 
-T* MakeDynamicArray(size_t size, T allocator) {
-	T* result = new T[size];
+	for (int i = 0; i < _size; i++) {
+		result[i] = _allocator;
+	}
 
-	for (size_t i = 0; i < size; i++) {
-		result[i] = allocator;
+	return result;
+}
+
+template <class T>
+T** Make2DimDynamicArray(size_t _sizeY, size_t _sizeX, T _allocator) {
+	T** result = new T*[_sizeY];
+
+	for (int i = 0; i < _sizeY; i++) {
+		result[i] = new T[_sizeX];
+
+		for (int j = 0; j < _sizeX; j++) {
+			result[i][j] = _allocator;
+		}
 	}
 
 	return result;

@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <functional>
 #include <unordered_map>
+#include "ConsoleManager.Hxx"
 
 #define KEY_PRESSING 0x8000
 #define KEY_TOGGLE   0x1

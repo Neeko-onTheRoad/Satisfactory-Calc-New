@@ -3,6 +3,7 @@
 #ifndef _CONSOLE_OBJECT_HXX_
 #define _CONSOLE_OBJECT_HXX_
 
+#include <stdexcept>
 #include "Color.Hxx"
 #include "DynamicArray.Hxx"
 
@@ -16,15 +17,21 @@ public:
 
 	bool NeedUpdate = true;
 
-	char**            Object          = new char*[0];
-	unsigned __int8** ForeGroundColor = new unsigned __int8*[0];
-	unsigned __int8** BackGroundColor = new unsigned __int8*[0];
+	char**      Object          = new char*[0];
+	ColorCode** ForegroundColor = new ColorCode*[0];
+	ColorCode** BackgroundColor = new ColorCode*[0];
 
 	virtual unsigned GetSizeX() const = 0;
 	virtual unsigned GetSizeY() const = 0;
 
-	virtual unsigned GetPositionX() const = 0;
-	virtual unsigned GetPositionY() const = 0;
+	virtual int GetPositionX() const = 0;
+	virtual int GetPositionY() const = 0;
+
+	void SetForegroundColor(ColorCode _color);
+	void SetBackgroundColor(ColorCode _color);
+
+	void SetForegroundColor(ColorCode _color, unsigned _x, unsigned _y);
+	void SetBackgroundColor(ColorCode _color, unsigned _x, unsigned _y);
 
 	void InitializeBase();
 	void UpdateBaes();

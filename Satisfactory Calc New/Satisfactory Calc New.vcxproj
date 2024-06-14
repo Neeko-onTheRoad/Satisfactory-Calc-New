@@ -140,6 +140,9 @@
     <ClCompile Include="ConsoleObject.Cxx" />
     <ClCompile Include="ConsoleScene.Cxx" />
     <ClCompile Include="EmptyScene.Cxx" />
+    <ClCompile Include="IPosition.Cxx" />
+    <ClCompile Include="IReplaceable.Cxx" />
+    <ClCompile Include="ISelectable.Cxx" />
     <ClCompile Include="Item.Cxx" />
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
@@ -150,6 +153,7 @@
     <ClCompile Include="Render.Cxx" />
     <ClCompile Include="ResourceManager.Cxx" />
     <ClCompile Include="TextBoxObject.Cxx" />
+    <ClCompile Include="TextButton.Cxx" />
     <ClCompile Include="TitleBar.Cxx" />
     <ClCompile Include="Wiki.Cxx" />
   </ItemGroup>
@@ -162,7 +166,8 @@
     <ClInclude Include="ConsoleWindow.Hxx" />
     <ClInclude Include="DynamicArray.Hxx" />
     <ClInclude Include="EmptyScene.Hxx" />
-    <ClInclude Include="IBorder.Hxx" />
+    <ClInclude Include="IPosition.Hxx" />
+    <ClInclude Include="ISelectable.Hxx" />
     <ClInclude Include="Item.Hxx" />
     <ClInclude Include="KeyManager.Hxx" />
     <ClInclude Include="ConsoleManager.Hxx" />
@@ -174,12 +179,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Recipe.Hxx" />
+    <None Include="TextButton.Hxx" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ConsoleTitle.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="IconOriginal.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

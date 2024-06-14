@@ -6,17 +6,19 @@
 #include <string>
 #include <sstream>
 
+typedef unsigned __int8 ColorCode;
+
 class Color {
 public:
 
-	static std::string Foreground(unsigned __int8 color);
-	static std::string Background(unsigned __int8 color);
+	static std::string Foreground(ColorCode color);
+	static std::string Background(ColorCode color);
 
-	static const unsigned __int8 FullBlack                =   0;
-	static const unsigned __int8 HilightedForegroundColor = 214;
-	static const unsigned __int8 HilightedBackgroundColor = 235;
-	static const unsigned __int8 DefaultBackgroundColor   = 236;
-	static const unsigned __int8 DefaultForegroundColor   = 253;
+	static const ColorCode NoColor                  =   0;
+	static const ColorCode HilightedForegroundColor = 214;
+	static const ColorCode HilightedBackgroundColor = 235;
+	static const ColorCode DefaultBackgroundColor   = 236;
+	static const ColorCode DefaultForegroundColor   = 253;
 
 };
 

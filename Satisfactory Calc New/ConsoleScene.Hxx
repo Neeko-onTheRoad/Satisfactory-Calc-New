@@ -29,7 +29,10 @@ public:
 	
 	bool NeedUpdate = true;
 	std::map<int, std::vector<ConsoleObject*>> Objects;
-	char SceneRenderBuffer[SCENE_HEIGHT][CONSOLE_WIDTH];
+
+	char      SceneRenderBuffer   [SCENE_HEIGHT][CONSOLE_WIDTH];
+	ColorCode SceneForegroundColor[SCENE_HEIGHT][CONSOLE_WIDTH];
+	ColorCode SceneBackgroundColor[SCENE_HEIGHT][CONSOLE_WIDTH];
 
 	virtual std::string GetTitle() const = 0;
 

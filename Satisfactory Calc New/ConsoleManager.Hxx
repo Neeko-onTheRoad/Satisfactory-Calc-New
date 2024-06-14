@@ -24,6 +24,7 @@ public:
 	static void SetVisible(bool status);
 	static void SetTitle(std::string title);
 	static void SetFont(std::wstring fontName, unsigned fontSize);
+	static bool GetConsoleSelected();
 };
 
 

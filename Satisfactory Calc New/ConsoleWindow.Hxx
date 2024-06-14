@@ -25,18 +25,18 @@ private:
 	ConsoleScene* nowScene;
 	std::vector<ConsoleScene*> scenes;
 
-	char            titleBar               [TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
-	unsigned __int8 titleBarForegroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
-	unsigned __int8 titleBarBackgroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
+	char      titleBar               [TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
+	ColorCode titleBarForegroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
+	ColorCode titleBarBackgroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
 
-	char            bottomBar               [BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
-	unsigned __int8 bottomBarForegroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
-	unsigned __int8 bottomBarBackgroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
+	char      bottomBar               [BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
+	ColorCode bottomBarForegroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
+	ColorCode bottomBarBackgroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
 
-	std::string     displayBuffer;
-	char            renderBuffer   [CONSOLE_HEIGHT][CONSOLE_WIDTH];
-	unsigned __int8 foregroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH];
-	unsigned __int8 backgroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH];
+	std::string displayBuffer;
+	char        renderBuffer   [CONSOLE_HEIGHT][CONSOLE_WIDTH];
+	ColorCode   foregroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH];
+	ColorCode   backgroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH];
 
 	void RenderDefault();
 

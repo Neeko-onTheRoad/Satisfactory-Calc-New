@@ -134,3 +134,7 @@ void ConsoleManager::SetFont(std::wstring fontName, unsigned fontSize) {
 	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &consoleFont);
 	return;
 }
+
+bool ConsoleManager::GetConsoleSelected() {
+	return GetConsoleWindow() == GetForegroundWindow();
+}

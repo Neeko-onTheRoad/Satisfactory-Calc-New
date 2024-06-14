@@ -2,13 +2,43 @@
 
 
 void ConsoleObject::InitializeBase() {
-	this->Object          = MakeDynamicArray(GetSizeY(), MakeDynamicArray(GetSizeX(), '\0'));
-	this->ForeGroundColor = MakeDynamicArray(GetSizeY(), MakeDynamicArray(GetSizeX(), Color::DefaultForegroundColor));
-	this->BackGroundColor = MakeDynamicArray(GetSizeY(), MakeDynamicArray(GetSizeX(), Color::DefaultBackgroundColor));
-
 	Initialize();
 }
 
 void ConsoleObject::UpdateBaes() {
-	Update();
+	Update(); 
+}
+
+void ConsoleObject::SetForegroundColor(ColorCode _color) {
+	for (unsigned y = 0; y < GetSizeY(); y++) {
+		for (unsigned x = 0; x < GetSizeX(); x++) {
+			ForegroundColor[y][x] = _color;
+		}
+	}
+}
+
+void ConsoleObject::SetBackgroundColor(ColorCode _color) {
+	for (unsigned y = 0; y < GetSizeY(); y++) {
+		for (unsigned x = 0; x < GetSizeX(); x++) {
+			BackgroundColor[y][x] = _color;
+		}
+	}
+}
+
+void ConsoleObject::SetForegroundColor(ColorCode _color, unsigned _x, unsigned _y) {
+
+	if (_x >= GetSizeX() || _y >= GetSizeY()) {
+		throw std::out_of_range("ConsoleObject::SetForegroundColor()");
+	}
+
+	ForegroundColor[_y][_x] = _color;
+
+}
+
+void ConsoleObject::SetBackgroundColor(ColorCode _color, unsigned _x, unsigned _y) {
+	if (_x >= GetSizeX() || _y >= GetSizeY()) {
+		throw std::out_of_range("ConsoleObject::SetBackroundColor()");
+	}
+
+	BackgroundColor[_y][_x] = _color;
 }

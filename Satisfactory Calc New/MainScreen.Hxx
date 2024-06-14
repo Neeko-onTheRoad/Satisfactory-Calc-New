@@ -15,6 +15,7 @@ protected:
 	void Update();
 
 public:
+
 	std::string GetTitle() const;
 
 };

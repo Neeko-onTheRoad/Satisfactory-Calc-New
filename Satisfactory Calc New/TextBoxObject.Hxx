@@ -8,15 +8,16 @@
 
 #include "IReplaceable.Hxx"
 
-class TextBoxObject : public ConsoleObject, public IReplaceable {
+class TextBoxObject :
+	public ConsoleObject, public IReplaceable {
 
 private:
 
 	unsigned sizeX = 0;
 	unsigned sizeY = 0;
 
-	unsigned positionX = 0;
-	unsigned positionY = 0;
+	int positionX = 0;
+	int positionY = 0;
 
 
 protected:
@@ -27,16 +28,7 @@ protected:
 
 public:
 
-	void Make(int _posX, int _posY, std::string _element);
-
-	void IReplaceable::SetPositionX(unsigned _x);
-	void IReplaceable::SetPositionY(unsigned _y);
-	
-	unsigned ConsoleObject::GetSizeX() const;
-	unsigned ConsoleObject::GetSizeY() const;
-
-	unsigned ConsoleObject::GetPositionX() const;
-	unsigned ConsoleObject::GetPositionY() const;
+	void Make(int _posX, int _posY, std::string _element, int _bottomMargin = 0);;
 
 };
 

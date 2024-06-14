@@ -45,9 +45,11 @@ void ConsoleWindow::Rerender() {
 	}
 
 
-	for (unsigned y = 0; y < SCENE_HEIGHT; y++) {
+	for (unsigned y = TITLE_BAR_HEIGHT; y < SCENE_HEIGHT; y++) {
 		for (unsigned x = 0; x < CONSOLE_WIDTH; x++) {
-			renderBuffer[y + TITLE_BAR_HEIGHT][x] = nowScene->SceneRenderBuffer[y][x];
+			renderBuffer[y][x]    = nowScene->SceneRenderBuffer   [y - TITLE_BAR_HEIGHT][x];
+			backgroundColor[y][x] = nowScene->SceneBackgroundColor[y - TITLE_BAR_HEIGHT][x];
+			foregroundColor[y][x] = nowScene->SceneForegroundColor[y - TITLE_BAR_HEIGHT][x];
 		}
 	}
 
@@ -72,7 +74,7 @@ void ConsoleWindow::Display() {
 			displayBuffer += Color::Background(backgroundColor[y][x]);
 			displayBuffer += renderBuffer[y][x] == '\0' ? ' ' : renderBuffer[y][x];
 		}
-		displayBuffer += Color::Background(Color::FullBlack);
+		displayBuffer += Color::Background(Color::NoColor);
 		displayBuffer += "\r\n";
 	}
 
