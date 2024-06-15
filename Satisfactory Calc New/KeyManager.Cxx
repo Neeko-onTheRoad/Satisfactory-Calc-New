@@ -1,9 +1,8 @@
 #include "KeyManager.Hxx"
 
-std::unordered_map<Keys, bool> KeyManager::Pressing;
-std::unordered_map<Keys, bool> KeyManager::PressingPrev;
-std::unordered_map<Keys, bool> KeyManager::Pressed;
-std::unordered_map<Keys, bool> KeyManager::Released;
+std::unordered_map<Keys, bool>    KeyManager::Pressing;
+std::unordered_map<Keys, bool>    KeyManager::PressingPrev;
+std::unordered_map<Keys, bool>    KeyManager::PressedFlag;
 
 #define CASE(key) case Keys::##key: { return KeySettings::##key; }
 
@@ -44,8 +43,7 @@ void KeyManager::Initialize() {
 	KeySettings::ForeachKeys([&](Keys key) {
 		Pressing    [key] = false;
 		PressingPrev[key] = false;
-		Pressed     [key] = false;
-		Released    [key] = false;
+		PressedFlag [key] = false;
 	});
 
 }
@@ -56,39 +54,19 @@ void KeyManager::Update() {
 	KeySettings::ForeachKeys([&](Keys key) {
 
 		if (!ConsoleManager::GetConsoleSelected()) {
-			Pressing[key] = false;
-			Pressed [key] = false;
-			Released[key] = false;
-			
+			Pressing    [key] = false;
+			PressingPrev[key] = false;
+			PressedFlag [key] = false;
+
 			return;
 		}
 
 		bool PressingTemp = GetAsyncKeyState(KeySettings::Get(key)) < 0;
 
-		if (PressingTemp) {
-			
-			Released[key] = false;
-			if (PressingPrev[key] == false) {
-				Pressed [key] = true;
-				Pressing[key] = true;
-			}
-			else {
-				Pressed[key] = false;
-			}
+		Pressing[key] = PressingTemp;
+		Pressed [key] = PressingTemp ^ PressingPrev[key];
 
-		}
-		else {
-			
-			Pressed[key] = false;
-			if (PressingPrev[key] == true) {
-				Released[key] = true;
-				Pressing[key] = false;
-			}
-			else {
-				Released[key] = false;
-			}
-
-		}
+		
 
 		PressingPrev[key] = PressingTemp;
 

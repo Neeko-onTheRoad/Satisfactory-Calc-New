@@ -42,3 +42,27 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 	NeedUpdate = true;
 
 }
+
+void TextBoxObject::SetPositionX(int _x) {
+	positionX = _x;
+}
+
+void TextBoxObject::SetPositionY(int _y) {
+	positionY = _y;
+}
+
+unsigned TextBoxObject::GetSizeX() const {
+	return sizeX;
+}
+
+unsigned TextBoxObject::GetSizeY() const {
+	return sizeY;
+}
+
+int TextBoxObject::GetPositionX() const {
+	return positionX;
+}
+
+int TextBoxObject::GetPositionY() const {
+	return positionY;
+}

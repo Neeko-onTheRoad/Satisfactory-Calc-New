@@ -30,6 +30,15 @@ public:
 
 	void Make(int _posX, int _posY, std::string _element, int _bottomMargin = 0);;
 
+	void IReplaceable::SetPositionX(int _x);
+	void IReplaceable::SetPositionY(int _y);
+
+	unsigned ConsoleObject::GetSizeX() const;
+	unsigned ConsoleObject::GetSizeY() const;
+
+	int ConsoleObject::GetPositionX() const;
+	int ConsoleObject::GetPositionY() const;
+
 };
 
 

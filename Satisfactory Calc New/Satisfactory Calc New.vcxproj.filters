@@ -52,9 +52,6 @@
     <Filter Include="소스 파일\Client\ConsoleWindow">
       <UniqueIdentifier>{eefbf996-dce0-414a-8ecb-07b57345dc6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Client\Objects\Interfaces">
-      <UniqueIdentifier>{85b7bf9e-ff94-4205-b2df-941faef586dd}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Index.Cxx">
@@ -114,15 +111,6 @@
     <ClCompile Include="TextButton.Cxx">
       <Filter>소스 파일\Client\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ISelectable.Cxx">
-      <Filter>소스 파일\Client\Objects\Interfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="IPosition.Cxx">
-      <Filter>소스 파일\Client\Objects\Interfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="IReplaceable.Cxx">
-      <Filter>소스 파일\Client\Objects\Interfaces</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleManager.Hxx">
@@ -174,9 +162,6 @@
       <Filter>헤더 파일\Managers</Filter>
     </ClInclude>
     <ClInclude Include="ISelectable.Hxx">
-      <Filter>헤더 파일\Client\Objects\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="IPosition.Hxx">
       <Filter>헤더 파일\Client\Objects\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

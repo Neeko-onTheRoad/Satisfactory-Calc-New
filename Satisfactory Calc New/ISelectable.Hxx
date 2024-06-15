@@ -14,12 +14,10 @@ public:
 	virtual void Selected() = 0;
 	virtual void UnSelected() = 0;
 
-	void LinkUpper(ISelectable* _upper);
-	void LinkLower(ISelectable* _lower);
-	void LinkLeft (ISelectable* _left);
-	void LinkRight(ISelectable* _right);
-
-	void Link();
+	virtual void LinkUpper(ISelectable* _upper) = 0;
+	virtual void LinkLower(ISelectable* _lower) = 0;
+	virtual void LinkLeft (ISelectable* _left)  = 0;
+	virtual void LinkRight(ISelectable* _right) = 0;
 
 };
 

@@ -140,9 +140,6 @@
     <ClCompile Include="ConsoleObject.Cxx" />
     <ClCompile Include="ConsoleScene.Cxx" />
     <ClCompile Include="EmptyScene.Cxx" />
-    <ClCompile Include="IPosition.Cxx" />
-    <ClCompile Include="IReplaceable.Cxx" />
-    <ClCompile Include="ISelectable.Cxx" />
     <ClCompile Include="Item.Cxx" />
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
@@ -166,7 +163,6 @@
     <ClInclude Include="ConsoleWindow.Hxx" />
     <ClInclude Include="DynamicArray.Hxx" />
     <ClInclude Include="EmptyScene.Hxx" />
-    <ClInclude Include="IPosition.Hxx" />
     <ClInclude Include="ISelectable.Hxx" />
     <ClInclude Include="Item.Hxx" />
     <ClInclude Include="KeyManager.Hxx" />

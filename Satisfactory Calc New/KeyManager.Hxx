@@ -3,7 +3,7 @@
 #ifndef _KEY_MANAGER_HXX_
 #define _KEY_MANAGER_HXX_
 
-#include <Windows.h>
+#include <ctime>
 #include <functional>
 #include <unordered_map>
 #include "ConsoleManager.Hxx"
@@ -41,10 +41,9 @@ class KeyManager {
 
 private:
 
-	static std::unordered_map<Keys, bool> Pressing;
-	static std::unordered_map<Keys, bool> PressingPrev;
-	static std::unordered_map<Keys, bool> Pressed;
-	static std::unordered_map<Keys, bool> Released;
+	static std::unordered_map<Keys, bool>    Pressing;
+	static std::unordered_map<Keys, bool>    PressingPrev;
+	static std::unordered_map<Keys, bool>    PressedFlag;
 
 
 public:

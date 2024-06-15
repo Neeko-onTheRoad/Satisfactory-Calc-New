@@ -5,7 +5,7 @@ void MainScreen::Initialize() {
 	
 	{ // Title
 
-		TextBoxObject* title = new aTextBoxObject;
+		TextBoxObject* title = new TextBoxObject;
 		title->Make(4, 2, Resources::ConsoleTitle, 1);
 		title->SetForegroundColor(Color::HilightedForegroundColor);
 		title->SetBackgroundColor(Color::HilightedBackgroundColor);
