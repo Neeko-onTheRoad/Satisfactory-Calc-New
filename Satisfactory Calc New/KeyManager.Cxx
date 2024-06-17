@@ -1,24 +1,28 @@
 #include "KeyManager.Hxx"
 
-std::unordered_map<Keys, bool>    KeyManager::Pressing;
-std::unordered_map<Keys, bool>    KeyManager::Pressed;
-std::unordered_map<Keys, bool>    KeyManager::Released;
-std::unordered_map<Keys, bool>    KeyManager::PressingPrev;
+std::unordered_map<Keys, bool>     KeyManager::Pressing;
+std::unordered_map<Keys, bool>     KeyManager::Pressed;
+std::unordered_map<Keys, bool>     KeyManager::Released;
+std::unordered_map<Keys, bool>     KeyManager::PressingPrev;
+std::unordered_map<Keys, KeyState> KeyManager::PRLatch;
+std::unordered_map<Keys, clock_t>  KeyManager::PressingStart;
+std::unordered_map<Keys, KeyState> KeyManager::AutoPressLatch;
+std::unordered_map<Keys, int>      KeyManager::AutoPressCount;
 
-#define CASE(key) case Keys::##key: { return KeySettings::##key; }
+#define AUTO_CASE(key) case Keys::##key: { return KeySettings::##key; }
 
 int KeySettings::Get(Keys key) {
 	switch (key) {
-		CASE(UP)
-		CASE(DOWN)
-		CASE(LEFT)
-		CASE(RIGHT)
-		CASE(SELECT)
-		CASE(BACK)
-		CASE(FIND)
-		CASE(ESCAPE)
-		CASE(LEFTTAB)
-		CASE(RIGHTTAB)
+		AUTO_CASE(UP)
+		AUTO_CASE(DOWN)
+		AUTO_CASE(LEFT)
+		AUTO_CASE(RIGHT)
+		AUTO_CASE(SELECT)
+		AUTO_CASE(BACK)
+		AUTO_CASE(FIND)
+		AUTO_CASE(HOME)
+		AUTO_CASE(LEFTTAB)
+		AUTO_CASE(RIGHTTAB)
 		default: return 0;
 	}
 }
@@ -33,7 +37,7 @@ void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 	_action(Keys::SELECT);
 	_action(Keys::BACK);
 	_action(Keys::FIND);
-	_action(Keys::ESCAPE);
+	_action(Keys::HOME);
 	_action(Keys::LEFTTAB);
 	_action(Keys::RIGHTTAB);
 }
@@ -42,10 +46,14 @@ void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 
 void KeyManager::Initialize() {
 	KeySettings::ForeachKeys([&](Keys key) {
-		Pressing    [key] = false;
-		Pressed     [key] = false;
-		Released    [key] = false;
-		PressingPrev[key] = false;
+		Pressing      [key] = false;
+		Pressed       [key] = false;
+		Released      [key] = false;
+		PressingPrev  [key] = false;
+		PRLatch       [key] = KeyState::Pressed;
+		PressingStart [key] = 0ull;
+		AutoPressCount[key] = 0;
+		AutoPressLatch[key] = KeyState::Pressed;
 	});
 
 }
@@ -54,7 +62,8 @@ void KeyManager::Initialize() {
 
 void KeyManager::Update() {
 	if (!ConsoleManager::GetConsoleSelected()) {
-
+		KeyManager::Initialize();
+		return;
 	}
 
 	KeySettings::ForeachKeys([&](Keys key) {
@@ -62,9 +71,52 @@ void KeyManager::Update() {
 		bool PressingTemp = GetAsyncKeyState(KeySettings::Get(key)) < 0;
 
 		Pressing[key] = PressingTemp;
-		Pressed [key] = PressingTemp ^ PressingPrev[key];
-
 		
+		if (PressingTemp ^ PressingPrev[key]) {
+			if (PRLatch[key] == KeyState::Released) {
+
+				Pressed      [key] = false;
+				Released     [key] = true;
+				PRLatch      [key] = KeyState::Pressed;
+				PressingStart[key] = 0;
+			}
+			else {
+
+				Pressed       [key] = true;
+				Released      [key] = false;
+				PRLatch       [key] = KeyState::Released;
+				PressingStart [key] = clock();
+				AutoPressCount[key] = 0;
+				AutoPressLatch[key] = KeyState::Released;
+			}
+
+		}
+		else {
+			Pressed [key] = false;
+			Released[key] = false;
+		}
+
+		if (PressingStart[key] != 0) {
+
+			if (clock() - PressingStart[key] - (AUTO_PRESSING_GAP * AutoPressCount[key]) > AUTO_PRESSING_DELAY) {
+				
+				PRLatch[key] = KeyState::Released;
+
+				if (AutoPressLatch[key] == KeyState::Released) {
+					AutoPressLatch[key] = KeyState::Pressed;
+					Pressed       [key] = true;
+					Released      [key] = false;
+				}
+				else {
+					AutoPressLatch[key] = KeyState::Released;
+					Pressed       [key] = false;
+					Released      [key] = true;
+					AutoPressCount[key]++;
+				}
+
+			}
+		}
+
 
 		PressingPrev[key] = PressingTemp;
 

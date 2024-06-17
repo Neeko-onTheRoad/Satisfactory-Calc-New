@@ -11,8 +11,15 @@
 #define KEY_PRESSING 0x8000
 #define KEY_TOGGLE   0x1
 
+#define AUTO_PRESSING_DELAY 380ull
+#define AUTO_PRESSING_GAP    45ull
+
 enum class Keys {
-	UP, DOWN, LEFT, RIGHT, SELECT, BACK, FIND, ESCAPE, LEFTTAB, RIGHTTAB
+	UP, DOWN, LEFT, RIGHT, SELECT, BACK, FIND, HOME, LEFTTAB, RIGHTTAB
+};
+
+enum class KeyState {
+	Pressed, Released
 };
 
 class KeySettings {
@@ -28,7 +35,7 @@ public:
 
 	static constexpr int SELECT = VK_RETURN;
 	static constexpr int BACK   = VK_BACK;
-	static constexpr int ESCAPE = VK_ESCAPE;
+	static constexpr int HOME   = VK_ESCAPE;
 	static constexpr int FIND   = (int)'F';
 
 	static int  Get(Keys key);
@@ -41,10 +48,14 @@ class KeyManager {
 
 private:
 
-	static std::unordered_map<Keys, bool>    Pressing;
-	static std::unordered_map<Keys, bool>    Pressed;
-	static std::unordered_map<Keys, bool>    Released;
-	static std::unordered_map<Keys, bool>    PressingPrev;
+	static std::unordered_map<Keys, bool>     Pressing;
+	static std::unordered_map<Keys, bool>     Pressed;
+	static std::unordered_map<Keys, bool>     Released;
+	static std::unordered_map<Keys, bool>     PressingPrev;
+	static std::unordered_map<Keys, KeyState> PRLatch;
+	static std::unordered_map<Keys, clock_t>  PressingStart;
+	static std::unordered_map<Keys, KeyState> AutoPressLatch;
+	static std::unordered_map<Keys, int>      AutoPressCount;
 
 
 public:

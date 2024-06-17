@@ -9,12 +9,14 @@
 #include "IReplaceable.Hxx"
 
 class TextBoxObject :
-	public ConsoleObject, public IReplaceable {
+	public ConsoleObject,
+	public IReplaceable
+{
 
 private:
 
-	unsigned sizeX = 0;
-	unsigned sizeY = 0;
+	unsigned sizeX = 0u;
+	unsigned sizeY = 0u;
 
 	int positionX = 0;
 	int positionY = 0;

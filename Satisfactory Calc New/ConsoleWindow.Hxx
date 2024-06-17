@@ -17,26 +17,30 @@
 #include "Wiki.Hxx"
 #include "MainScreen.Hxx"
 
+#define TARGET_FPS 144u
+
 class ConsoleWindow {
 
 private:
 
-	unsigned nowSceneIndex = 0;
+	unsigned nowSceneIndex = 0u;
 	ConsoleScene* nowScene;
 	std::vector<ConsoleScene*> scenes;
 
-	char      titleBar               [TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
-	ColorCode titleBarForegroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
-	ColorCode titleBarBackgroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH];
+	ISelectable* selecting;
 
-	char      bottomBar               [BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
-	ColorCode bottomBarForegroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
-	ColorCode bottomBarBackgroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH];
+	char      titleBar               [TITLE_BAR_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode titleBarForegroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode titleBarBackgroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH] = {};
+
+	char      bottomBar               [BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode bottomBarForegroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode bottomBarBackgroundColor[BOTTOM_BAR_HEIGHT][CONSOLE_WIDTH] = {};
 
 	std::string displayBuffer;
-	char        renderBuffer   [CONSOLE_HEIGHT][CONSOLE_WIDTH];
-	ColorCode   foregroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH];
-	ColorCode   backgroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH];
+	char        renderBuffer   [CONSOLE_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode   foregroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode   backgroundColor[CONSOLE_HEIGHT][CONSOLE_WIDTH] = {};
 
 	void RenderDefault();
 

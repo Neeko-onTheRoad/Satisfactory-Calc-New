@@ -6,14 +6,15 @@
 #define CONSOLE_HEIGHT 31u
 #define CONSOLE_WIDTH 122u
 
-#define TITLE_BAR_HEIGHT 3u
+#define TITLE_BAR_HEIGHT  3u
 #define BOTTOM_BAR_HEIGHT 4u
-#define SCENE_HEIGHT CONSOLE_HEIGHT - TITLE_BAR_HEIGHT - BOTTOM_BAR_HEIGHT
-#define BOTTOM_BAR_OFFSET TITLE_BAR_HEIGHT + SCENE_HEIGHT
+#define SCENE_HEIGHT (CONSOLE_HEIGHT - TITLE_BAR_HEIGHT - BOTTOM_BAR_HEIGHT)
+#define BOTTOM_BAR_OFFSET (TITLE_BAR_HEIGHT + SCENE_HEIGHT)
 
 #include <map>
 #include <vector>
 
+#include "ISelectable.Hxx"
 #include "ConsoleObject.Hxx"
 
 class ConsoleScene {
@@ -29,10 +30,11 @@ public:
 	
 	bool NeedUpdate = true;
 	std::map<int, std::vector<ConsoleObject*>> Objects;
+	ISelectable* Selecting = nullptr;
 
-	char      SceneRenderBuffer   [SCENE_HEIGHT][CONSOLE_WIDTH];
-	ColorCode SceneForegroundColor[SCENE_HEIGHT][CONSOLE_WIDTH];
-	ColorCode SceneBackgroundColor[SCENE_HEIGHT][CONSOLE_WIDTH];
+	char      SceneRenderBuffer   [SCENE_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode SceneForegroundColor[SCENE_HEIGHT][CONSOLE_WIDTH] = {};
+	ColorCode SceneBackgroundColor[SCENE_HEIGHT][CONSOLE_WIDTH] = {};
 
 	virtual std::string GetTitle() const = 0;
 

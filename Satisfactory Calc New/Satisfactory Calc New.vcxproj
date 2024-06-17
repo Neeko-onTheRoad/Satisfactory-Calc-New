@@ -178,13 +178,12 @@
     <None Include="TextButton.Hxx" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ConsoleTitle.txt">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </Text>
+    <Text Include="res\ConsoleTitle.txt" />
+    <Text Include="res\Credit.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="IconOriginal.png" />
+    <Image Include="res\Icon.ico" />
+    <Image Include="res\IconOriginal.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

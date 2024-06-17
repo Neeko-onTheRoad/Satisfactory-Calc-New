@@ -13,6 +13,10 @@ void ConsoleScene::InitializeBase() {
 			object->InitializeBase();
 		}
 	}
+
+	if (Selecting != nullptr) {
+		Selecting->Select();
+	}
 }
 
 void ConsoleScene::UpdateBase() {
@@ -34,8 +38,8 @@ void ConsoleScene::UpdateBase() {
 
 void ConsoleScene::Rerender() {
 
-	for (unsigned y = 0; y < SCENE_HEIGHT; y++) {
-		for (unsigned x = 0; x < CONSOLE_WIDTH; x++) {
+	for (unsigned y = 0u; y < SCENE_HEIGHT; y++) {
+		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			SceneRenderBuffer[y][x] = ' ';
 			SceneBackgroundColor[y][x] = Color::DefaultBackgroundColor;
 			SceneForegroundColor[y][x] = Color::HilightedForegroundColor;
@@ -46,8 +50,10 @@ void ConsoleScene::Rerender() {
 	for (auto& layer : Objects) {
 		for (auto& object : layer.second) {
 
-			for (unsigned y = 0; y < object->GetSizeY(); y++) {
-				for (unsigned x = 0; x < object->GetSizeX(); x++) {
+			if (!object->Render) continue;
+
+			for (unsigned y = 0u; y < object->GetSizeY(); y++) {
+				for (unsigned x = 0u; x < object->GetSizeX(); x++) {
 
 					int renderY = y + object->GetPositionY();
 					int renderX = x + object->GetPositionX();
@@ -58,7 +64,7 @@ void ConsoleScene::Rerender() {
 						renderY < SCENE_HEIGHT &&
 						renderX < CONSOLE_WIDTH
 					) {
-						SceneRenderBuffer   [renderY][renderX] = object->Object[y][x];
+						SceneRenderBuffer   [renderY][renderX] = object->Object         [y][x];
 						SceneForegroundColor[renderY][renderX] = object->ForegroundColor[y][x];
 						SceneBackgroundColor[renderY][renderX] = object->BackgroundColor[y][x];
 					}

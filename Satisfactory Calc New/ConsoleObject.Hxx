@@ -3,6 +3,7 @@
 #ifndef _CONSOLE_OBJECT_HXX_
 #define _CONSOLE_OBJECT_HXX_
 
+#include <iostream>
 #include <stdexcept>
 #include "Color.Hxx"
 #include "DynamicArray.Hxx"
@@ -15,6 +16,7 @@ protected:
 
 public:
 
+	bool Render     = true;
 	bool NeedUpdate = true;
 
 	char**      Object          = new char*[0];

@@ -12,6 +12,7 @@ public:
 	static void Initialize();
 
 	static std::string ConsoleTitle;
+	static std::string Credit;
 
 };
 

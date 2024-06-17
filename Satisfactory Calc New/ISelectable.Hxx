@@ -6,13 +6,14 @@
 
 class ISelectable {
 
-protected:
-	
-
-
 public:
-	virtual void Selected() = 0;
-	virtual void UnSelected() = 0;
+	virtual void Select() = 0;
+	virtual void UnSelect() = 0;
+
+	virtual ISelectable* GetUpper() const = 0;
+	virtual ISelectable* GetLower() const = 0;
+	virtual ISelectable* GetLeft () const = 0;
+	virtual ISelectable* GetRight() const = 0;
 
 	virtual void LinkUpper(ISelectable* _upper) = 0;
 	virtual void LinkLower(ISelectable* _lower) = 0;

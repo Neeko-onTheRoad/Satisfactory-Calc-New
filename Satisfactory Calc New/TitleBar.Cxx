@@ -2,7 +2,7 @@
 
 void ConsoleWindow::RerenderTitleBar() {
 
-	for (unsigned x = 0; x < CONSOLE_WIDTH; x++) {
+	for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 		titleBar[0][x] = ASCII_HZ_BAR;
 		titleBar[2][x] = ASCII_HZ_BAR;
 		titleBarForegroundColor[0][x] = Color::HilightedForegroundColor;
@@ -15,7 +15,7 @@ void ConsoleWindow::RerenderTitleBar() {
 
 	sceneStatusBar += ASCII_VT_BAR;
 
-	for (unsigned index = 0; index < scenes.size(); index++) {
+	for (unsigned index = 0u; index < scenes.size(); index++) {
 		if (index == nowSceneIndex) {
 			selectingStart = sceneStatusBar.size();
 			sceneStatusBar += "  " + scenes[index]->GetTitle() + "  ";
@@ -28,7 +28,7 @@ void ConsoleWindow::RerenderTitleBar() {
 		}
 	}
 
-	for (int index = 0; index < sceneStatusBar.size(); index++) {
+	for (int index = 0u; index < sceneStatusBar.size(); index++) {
 		titleBar[1][index] = sceneStatusBar[index];
 
 		if (selectingStart <= index && index <= selectingEnd) {

@@ -1,9 +1,9 @@
 #include "ConsoleWindow.Hxx"
 
 void ConsoleWindow::ChangeScene(unsigned index) {
-	nowSceneIndex = index;
-	nowScene = scenes[index];
-	nowScene->InitializeBase();
+	nowSceneIndex        = index;
+	nowScene             = scenes[index];
+	selecting            = nowScene->Selecting;
 	nowScene->NeedUpdate = true;
 }
 
@@ -18,10 +18,14 @@ void ConsoleWindow::Initialize() {
 	scenes.push_back(new MainScreen);
 	scenes.push_back(new Wiki);
 
+	for (auto& scene : scenes) {
+		scene->InitializeBase();
+	}
+
 	ConsoleManager::SetFont(L"D2Coding", 24);
 	ConsoleManager::SetSize(1300, 785);
 	ConsoleManager::DisableResize();
-	ConsoleManager::DisableUserSelection();
+	//ConsoleManager::DisableUserSelection();
 	ConsoleManager::DisableScrollBar();
 	ConsoleManager::SetCursorBlinking(false);
 	ConsoleManager::SetTitle("Satisfactory Calculator V 0.01");
@@ -34,7 +38,14 @@ void ConsoleWindow::Initialize() {
 
 void ConsoleWindow::Run() {
 
+	float timeUntilUpdate      = (1.f / TARGET_FPS);
+	float totalTimeBeforUpdate = 0.f;
+	float previousTimeElapsed  = 0.f;
+	float deltaTime            = 0.f;
+	float totalTimeElapsed     = 0.f;
+
 	std::function<void()> mainLoop = [&]() {
+
 		while (true) {
 
 			KeyManager::Update();
@@ -51,6 +62,10 @@ void ConsoleWindow::Run() {
 					ChangeScene(++nowSceneIndex);
 				}
 				else ChangeScene(0);
+			}
+
+			else if (KeyManager::GetKeyPressed(Keys::HOME)) {
+				ChangeScene(0);
 			}
 
 			nowScene->UpdateBase();

@@ -174,12 +174,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ConsoleTitle.txt">
+    <Text Include="res\ConsoleTitle.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
+    <Text Include="res\Credit.txt">
       <Filter>리소스 파일</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="IconOriginal.png">
+    <Image Include="res\Icon.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IconOriginal.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

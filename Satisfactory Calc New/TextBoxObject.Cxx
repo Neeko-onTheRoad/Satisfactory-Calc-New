@@ -1,8 +1,8 @@
 #include "TextBoxObject.Hxx"	
 #include <iostream>
 
-void TextBoxObject::Initialize() { }
-void TextBoxObject::Update() { }
+void TextBoxObject::Initialize() {}
+void TextBoxObject::Update() {}
 
 void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottomMargin) {
 	
@@ -13,8 +13,7 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 	std::vector<std::string> splited;
 	std::string token = "";
 
-
-	for (auto& ch : _element) {
+	for (const auto& ch : _element) {
 		if (ch == '\n') {
 			if (static_cast<int>(token.size()) > sizeX) sizeX = static_cast<int>(token.size());
 
@@ -33,8 +32,8 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 	ForegroundColor = Make2DimDynamicArray(sizeY, sizeX, Color::DefaultForegroundColor);
 	BackgroundColor = Make2DimDynamicArray(sizeY, sizeX, Color::DefaultBackgroundColor);
 
-	for (unsigned y = 0; y < splited.size(); y++) {
-		for (unsigned x = 0; x < splited[y].size(); x++) {
+	for (unsigned y = 0u; y < splited.size(); y++) {
+		for (unsigned x = 0u; x < splited[y].size(); x++) {
 			Object[y][x] = splited[y][x];
 		}
 	}
