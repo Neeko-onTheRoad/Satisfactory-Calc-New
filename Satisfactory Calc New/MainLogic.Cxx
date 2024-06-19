@@ -16,7 +16,7 @@ void ConsoleWindow::Initialize() {
 	std::cin.tie(0);
 
 	scenes.push_back(new MainScreen);
-	scenes.push_back(new Wiki);
+	scenes.push_back(new ItemWiki);
 
 	for (auto& scene : scenes) {
 		scene->InitializeBase();
@@ -25,7 +25,7 @@ void ConsoleWindow::Initialize() {
 	ConsoleManager::SetFont(L"D2Coding", 24);
 	ConsoleManager::SetSize(1300, 785);
 	ConsoleManager::DisableResize();
-	//ConsoleManager::DisableUserSelection();
+	ConsoleManager::DisableUserSelection();
 	ConsoleManager::DisableScrollBar();
 	ConsoleManager::SetCursorBlinking(false);
 	ConsoleManager::SetTitle("Satisfactory Calculator V 0.01");
@@ -69,6 +69,29 @@ void ConsoleWindow::Run() {
 			}
 
 			nowScene->UpdateBase();
+
+			if (nowScene->NeedToChangeScene) {
+				int sceneChangeTemp = nowScene->NeedToChangeScene;
+				nowScene->NeedToChangeScene = 0;
+
+				if (sceneChangeTemp > 0) {
+					for (int i = 0; i < sceneChangeTemp; i++) {
+						if (nowSceneIndex < scenes.size() - 1) {
+							ChangeScene(++nowSceneIndex);
+						}
+						else ChangeScene(0);
+					}
+				}
+				else {
+					for (int i = 0; i < -sceneChangeTemp; i++) {
+						if (nowSceneIndex > 0) {
+							ChangeScene(--nowSceneIndex);
+						}
+						else ChangeScene(static_cast<int>(scenes.size()) - 1);
+					}
+				}
+			}
+
 		}
 	};
 

@@ -4,9 +4,29 @@ void ConsoleScene::AddObject(ConsoleObject* _object, int _layer) {
 	Objects[_layer].push_back(_object);
 }
 
+KeyGuides ConsoleScene::GetAllKeyGuides() {
+	KeyGuides result;
+
+	for (auto& keyGuide : AdditionalKeyGuides) {
+		result.push_back(keyGuide);
+	}
+
+	if (Selecting) {
+		for (auto& keyGuide : Selecting->GetKeyGuides()) {
+			result.push_back(keyGuide);
+		}
+	}
+
+	return result;
+}
+
 void ConsoleScene::InitializeBase() {
 
 	Initialize();
+
+	AdditionalKeyGuides.push_back({ "ESC",    "Go Home"});
+	AdditionalKeyGuides.push_back({ "LShift", "Left Scene"});
+	AdditionalKeyGuides.push_back({ "RShift", "Right Scene"});
 	
 	for (auto& layer : Objects) {
 		for (auto& object : layer.second) {
@@ -34,7 +54,6 @@ void ConsoleScene::UpdateBase() {
 		}
 	}
 }
-#include <iostream>
 
 void ConsoleScene::Rerender() {
 

@@ -8,11 +8,11 @@
 #include <unordered_map>
 #include "ConsoleManager.Hxx"
 
-#define KEY_PRESSING 0x8000
-#define KEY_TOGGLE   0x1
+constexpr int KEY_PRESSING = 0x8000;
+constexpr int KEY_TOGGLE   = 0x1;
 
-#define AUTO_PRESSING_DELAY 380ull
-#define AUTO_PRESSING_GAP    45ull
+constexpr clock_t AUTO_PRESSING_DELAY = 380ull;
+constexpr clock_t AUTO_PRESSING_GAP   = 45ull;
 
 enum class Keys {
 	UP, DOWN, LEFT, RIGHT, SELECT, BACK, FIND, HOME, LEFTTAB, RIGHTTAB

@@ -3,10 +3,13 @@
 #ifndef _I_SELECTABLE_HXX_
 #define _I_SELECTABLE_HXX_
 
+#include "KeyGuide.Hxx"
 
 class ISelectable {
 
 public:
+	virtual KeyGuides GetKeyGuides() const = 0;
+
 	virtual void Select() = 0;
 	virtual void UnSelect() = 0;
 

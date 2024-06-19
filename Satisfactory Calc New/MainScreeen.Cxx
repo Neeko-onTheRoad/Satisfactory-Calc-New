@@ -1,5 +1,5 @@
 #include "MainScreen.Hxx"
-#include <iostream>
+
 void MainScreen::Initialize() {
 	
 	{ // Title
@@ -8,15 +8,17 @@ void MainScreen::Initialize() {
 		title->SetForegroundColor(Color::HilightedForegroundColor);
 		title->SetBackgroundColor(Color::HilightedBackgroundColor);
 		
-
+		// "Utility" Coloring
 		for (unsigned x = 7u; x <= 12u; x++) {
 			title->SetForegroundColor(Color::DefaultForegroundColor, x, 6);
 		}
 
+		// "Console" Coloring
 		for (unsigned x = 15u; x <= 20u; x++) {
 			title->SetForegroundColor(Color::DefaultForegroundColor, x, 6);
 		}
 
+		// Version Text Coloring
 		for (unsigned x = 56u; x < title->GetSizeX(); x++) {
 			title->SetForegroundColor(Color::DefaultForegroundColor, x, 5);
 		}
@@ -47,6 +49,17 @@ void MainScreen::Initialize() {
 		credit->        LinkLower(exit);
 		exit->          LinkLower(itemWiki);
 
+		// Change 
+		itemWiki->SetCallBack([&]() {
+			NeedToChangeScene = 1;
+		});
+
+		// Popup Credit screen when selected
+		credit->SetCallBack([&]() {
+			creditPopup->Render = true;
+			Selecting = creditPopup;
+		});
+
 		exit->SetCallBack([](){
 			std::exit(0);
 		});
@@ -72,6 +85,7 @@ void MainScreen::Initialize() {
 		creditPopup->SetForegroundColor(Color::DefaultForegroundColor);
 		creditPopup->SetBackgroundColor(Color::HilightedBackgroundColor);
 
+		// Upper, Middle, Lower Hrizontal Line Coloring
 		for (unsigned x = 0u; x < creditPopup->GetSizeX(); x++) {
 			creditPopup->SetForegroundColor(Color::HilightedForegroundColor, x, 0u);
 			creditPopup->SetForegroundColor(Color::HilightedForegroundColor, x, 7u);
@@ -79,20 +93,24 @@ void MainScreen::Initialize() {
 			creditPopup->SetForegroundColor(Color::HilightedForegroundColor, x, creditPopup->GetSizeY() - 1u);
 		}
 
+		// Left, Right Virtucal Line Coloring
 		for (unsigned y = 1u; y < creditPopup->GetSizeY() - 1; y++) {
 			creditPopup->SetForegroundColor(Color::HilightedForegroundColor, 0u, y);
 			creditPopup->SetForegroundColor(Color::HilightedForegroundColor, creditPopup->GetSizeX() - 1u, y);
 		}
 
+		// Choe Su Ang.T Name Rainbow Coloring
 		ColorCode suAngRainbow[] = {
-			196, 208, 220, 154, 1, 47, 51, 1, 33, 21, 57, 128, 163
-		//  C    h    o    e    _  S   u   _  A   n   g   .    T
+			196, 208, 220, 154, 1, 47, 51, 1, 33, 27, 57
+		//  C    h    o    e    _  S   u   _  A   n   g
 		};
 
-		for (int x = 0; x < 13; x++) {
+		for (int x = 0; x < sizeof(suAngRainbow); x++) {
 			creditPopup->SetForegroundColor(suAngRainbow[x], x + 22, 14);
 		}
 
+		creditPopup->AdditionalKeyGuides.push_back({"Backspace", "Close"});
+		creditPopup->Render = false;
 		AddObject(creditPopup, 1);
 
 	}
@@ -102,6 +120,17 @@ void MainScreen::Initialize() {
 
 void MainScreen::Update() {
 
+	// Credit Popup Logic
+	if (Selecting == creditPopup) {
+		if (KeyManager::GetKeyPressed(Keys::BACK)) {
+			creditPopup->Render = false;
+			Selecting = credit;
+			NeedUpdate = true;
+		}
+		return;
+	}
+
+	// Button Up & Down Logic
 	if (KeyManager::GetKeyPressed(Keys::DOWN)) {
 		Selecting->UnSelect();
 		Selecting = Selecting->GetLower();
@@ -114,9 +143,12 @@ void MainScreen::Update() {
 		Selecting->Select();
 		NeedUpdate = true;
 	}
+
+	// Button Pressed Logic
 	else if (KeyManager::GetKeyPressed(Keys::SELECT)) {
 		if (TextButton* text = dynamic_cast<TextButton*>(Selecting)) {
 			text->CallBack();
+			NeedUpdate = true;
 		}
 	}
 

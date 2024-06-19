@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef _WIKI_HXX_
-#define _WIKI_HXX_
+#ifndef _ITEM_WIKI_HXX_
+#define _ITEM_WIKI_HXX_
 
 #include "ConsoleScene.Hxx"
 
-class Wiki : public ConsoleScene {
+class ItemWiki : public ConsoleScene {
 
 private:
 

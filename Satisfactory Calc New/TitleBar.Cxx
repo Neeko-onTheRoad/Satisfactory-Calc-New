@@ -3,8 +3,8 @@
 void ConsoleWindow::RerenderTitleBar() {
 
 	for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
-		titleBar[0][x] = ASCII_HZ_BAR;
-		titleBar[2][x] = ASCII_HZ_BAR;
+		titleBar[0][x] = Ascii::HZ_BAR;
+		titleBar[2][x] = Ascii::HZ_BAR;
 		titleBarForegroundColor[0][x] = Color::HilightedForegroundColor;
 		titleBarForegroundColor[2][x] = Color::HilightedForegroundColor;
 	}
@@ -13,18 +13,18 @@ void ConsoleWindow::RerenderTitleBar() {
 	size_t selectingStart = 0u;
 	size_t selectingEnd = 0u;
 
-	sceneStatusBar += ASCII_VT_BAR;
+	sceneStatusBar += Ascii::VT_BAR;
 
 	for (unsigned index = 0u; index < scenes.size(); index++) {
 		if (index == nowSceneIndex) {
 			selectingStart = sceneStatusBar.size();
 			sceneStatusBar += "  " + scenes[index]->GetTitle() + "  ";
 			selectingEnd = sceneStatusBar.size() - 1;
-			sceneStatusBar += ASCII_VT_BAR;
+			sceneStatusBar += Ascii::VT_BAR;
 		}
 
 		else {
-			sceneStatusBar += "  " + scenes[index]->GetTitle() + "  " + ASCII_VT_BAR;
+			sceneStatusBar += "  " + scenes[index]->GetTitle() + "  " + Ascii::VT_BAR;
 		}
 	}
 

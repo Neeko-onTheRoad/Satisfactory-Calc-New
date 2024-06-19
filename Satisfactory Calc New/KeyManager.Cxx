@@ -27,7 +27,7 @@ int KeySettings::Get(Keys key) {
 	}
 }
 
-#undef CASE
+#undef AUTO_CASE
 
 void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 	_action(Keys::UP);

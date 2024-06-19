@@ -5,10 +5,9 @@
 
 #include <vector>
 
-class Item;
+struct Item;
 
-
-class Recipe {
+struct Recipe {
 
 private:
 	std::vector<Item*> input;

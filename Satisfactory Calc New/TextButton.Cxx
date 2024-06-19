@@ -3,6 +3,16 @@
 void TextButton::Initialize() {}
 void TextButton::Update() {}
 
+void TextButton::RebuildKeyGuides() {
+	keyGuides.clear();
+
+	           keyGuides.push_back({ "Enter",       "Select" });
+	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
+	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
+	if (left)  keyGuides.push_back({ "Arrow Left",  "Go Left"  });
+	if (right) keyGuides.push_back({ "Arrow Right", "Go Right" });
+}
+
 void TextButton::Make(int _posX, int _posY, std::string _element) {
 
 	positionX = _posX;
@@ -37,13 +47,29 @@ void TextButton::CallBack() {
 	callBack();
 }
 
+void TextButton::SetForegroundColor(ColorCode _color) {
+	foregroundColor = _color;
+}
+
+void TextButton::SetBackgroundColor(ColorCode _color) {
+	backgroundColor = _color;
+}
+
+void TextButton::SetSelectedForegroundColor(ColorCode _color) {
+	selectedForegroundColor = _color;
+}
+
+void TextButton::SetSelectedBackgroundColor(ColorCode _color) {
+	selectedBackgroundColor = _color;
+}
+
 void TextButton::Select() {
 
 	Object[0][1] = '>';
 
 	for (unsigned x = 0u; x < sizeX; x++) {
-		ForegroundColor[0][x] = Color::HilightedForegroundColor;
-		BackgroundColor[0][x] = Color::HilightedBackgroundColor;
+		ForegroundColor[0][x] = selectedForegroundColor;
+		BackgroundColor[0][x] = selectedBackgroundColor;
 	}
 
 }
@@ -53,12 +79,26 @@ void TextButton::UnSelect() {
 	Object[0][1] = '-';
 
 	for (unsigned x = 0u; x < sizeX; x++) {
-		ForegroundColor[0][x] = Color::DefaultForegroundColor;
-		BackgroundColor[0][x] = Color::DefaultBackgroundColor;
+		ForegroundColor[0][x] = foregroundColor;
+		BackgroundColor[0][x] = backgroundColor;
 	}
 
-	ForegroundColor[0][1] = Color::HilightedForegroundColor;
+	ForegroundColor[0][1] = selectedForegroundColor;
 
+}
+
+KeyGuides TextButton::GetKeyGuides() const {
+	KeyGuides result;
+
+	for (const auto& keyGuide : keyGuides) {
+		result.push_back(keyGuide);
+	}
+
+	for (const auto& keyGuide : AdditionalKeyGuides) {
+		result.push_back(keyGuide);
+	}
+
+	return result;
 }
 
 ISelectable* TextButton::GetUpper() const {
@@ -79,18 +119,26 @@ ISelectable* TextButton::GetRight() const {
 
 void TextButton::LinkUpper(ISelectable* _upper) {
 	upper = _upper;
+	RebuildKeyGuides();
+	NeedUpdate = true;
 }
 
 void TextButton::LinkLower(ISelectable* _lower) {
 	lower = _lower;
+	RebuildKeyGuides();
+	NeedUpdate = true;
 }
 
 void TextButton::LinkLeft(ISelectable* _left) {
 	left = _left;
+	RebuildKeyGuides();
+	NeedUpdate = true;
 }
 
 void TextButton::LinkRight(ISelectable* _right) {
 	right = _right;
+	RebuildKeyGuides();
+	NeedUpdate = true;
 }
 
 void TextButton::SetPositionX(int _x) {

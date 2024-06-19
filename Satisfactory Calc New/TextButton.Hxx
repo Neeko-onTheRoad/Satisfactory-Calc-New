@@ -27,6 +27,8 @@ private:
 
 	std::function<void()> callBack = [](){};
 
+	KeyGuides keyGuides;
+
 	ISelectable* upper = nullptr;
 	ISelectable* lower = nullptr;
 	ISelectable* left  = nullptr;
@@ -37,6 +39,7 @@ private:
 	ColorCode selectedForegroundColor = Color::HilightedForegroundColor;
 	ColorCode selectedBackgroundColor = Color::HilightedBackgroundColor;
 
+	void RebuildKeyGuides();
 
 protected:
 
@@ -54,6 +57,14 @@ public:
 
 	void ISelectable::Select();
 	void ISelectable::UnSelect();
+
+	void SetForegroundColor(ColorCode _color);
+	void SetBackgroundColor(ColorCode _color);
+	void SetSelectedForegroundColor(ColorCode _color);
+	void SetSelectedBackgroundColor(ColorCode _color);
+
+	KeyGuides AdditionalKeyGuides;
+	KeyGuides ISelectable::GetKeyGuides() const;
 
 	ISelectable* ISelectable::GetUpper() const;
 	ISelectable* ISelectable::GetLower() const;

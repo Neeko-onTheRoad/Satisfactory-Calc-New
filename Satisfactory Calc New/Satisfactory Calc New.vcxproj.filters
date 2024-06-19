@@ -46,9 +46,6 @@
     <Filter Include="헤더 파일\Satisfactory">
       <UniqueIdentifier>{92293909-7936-48ca-a3e7-fe7b8cbba61b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Satisfactory">
-      <UniqueIdentifier>{7a55f266-2a97-4931-93a3-7c19042ad581}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Client\ConsoleWindow">
       <UniqueIdentifier>{eefbf996-dce0-414a-8ecb-07b57345dc6d}</UniqueIdentifier>
     </Filter>
@@ -78,17 +75,8 @@
     <ClCompile Include="TextBoxObject.Cxx">
       <Filter>소스 파일\Client\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Wiki.Cxx">
+    <ClCompile Include="ItemWiki.Cxx">
       <Filter>소스 파일\Client\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Building.Cxx">
-      <Filter>소스 파일\Satisfactory</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.Cxx">
-      <Filter>소스 파일\Satisfactory</Filter>
-    </ClCompile>
-    <ClCompile Include="Recipe.Cxx">
-      <Filter>소스 파일\Satisfactory</Filter>
     </ClCompile>
     <ClCompile Include="TitleBar.Cxx">
       <Filter>소스 파일\Client\ConsoleWindow</Filter>
@@ -110,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="TextButton.Cxx">
       <Filter>소스 파일\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Satisfactory.Cxx">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +131,7 @@
     <ClInclude Include="TextBoxObject.Hxx">
       <Filter>헤더 파일\Client\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Wiki.Hxx">
+    <ClInclude Include="ItemWiki.Hxx">
       <Filter>헤더 파일\Client\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Item.Hxx">
@@ -163,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="ISelectable.Hxx">
       <Filter>헤더 파일\Client\Objects\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyGuide.Hxx">
+      <Filter>헤더 파일\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Satisfactory.Hxx">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

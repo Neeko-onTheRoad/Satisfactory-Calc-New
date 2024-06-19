@@ -3,20 +3,21 @@
 #ifndef _ASCII_MAP_HXX_
 #define _ASCII_MAP_HXX_
 
-
-#define ASCII_BR_BAR         '\001' //
-#define ASCII_BL_BAR         '\002' //
-#define ASCII_UR_BAR         '\002' //
-#define ASCII_UL_BAR         '\002' //
-#define ASCII_VT_BAR         '\005' //
-#define ASCII_HZ_BAR         '\006' //
-#define ASCII_CROSS_BAR      '\020' //
-#define ASCII_UT_BAR         '\025' //
-#define ASCII_BT_BAR         '\026' //
-#define ASCII_LT_BAR         '\027' //
-#define ASCII_RT_BAR         '\031' //
-#define ASCII_RIGHT_TRIANGLE '\021' //
-#define ASCII_UP_TRIANGLE    '\036' //
-#define ASCII_DOWN_TRIANGLE  '\037' //
+namespace Ascii {
+	constexpr char BR_BAR         = '\001'; //
+	constexpr char BL_BAR         = '\002'; //
+	constexpr char UR_BAR         = '\002'; //
+	constexpr char UL_BAR         = '\002'; //
+	constexpr char VT_BAR         = '\005'; //
+	constexpr char HZ_BAR         = '\006'; //
+	constexpr char CROSS_BAR      = '\020'; //
+	constexpr char UT_BAR         = '\025'; //
+	constexpr char BT_BAR         = '\026'; //
+	constexpr char LT_BAR         = '\027'; //
+	constexpr char RT_BAR         = '\031'; //
+	constexpr char RIGHT_TRIANGLE = '\021'; //
+	constexpr char UP_TRIANGLE    = '\036'; //
+	constexpr char DOWN_TRIANGLE  = '\037'; //
+}
 
 #endif

@@ -135,24 +135,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BottomBar.Cxx" />
-    <ClCompile Include="Building.Cxx" />
     <ClCompile Include="Color.Cxx" />
     <ClCompile Include="ConsoleObject.Cxx" />
     <ClCompile Include="ConsoleScene.Cxx" />
     <ClCompile Include="EmptyScene.Cxx" />
-    <ClCompile Include="Item.Cxx" />
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
     <ClCompile Include="ConsoleManager.Cxx" />
     <ClCompile Include="MainLogic.Cxx" />
     <ClCompile Include="MainScreeen.Cxx" />
-    <ClCompile Include="Recipe.Cxx" />
     <ClCompile Include="Render.Cxx" />
     <ClCompile Include="ResourceManager.Cxx" />
+    <ClCompile Include="Satisfactory.Cxx" />
     <ClCompile Include="TextBoxObject.Cxx" />
     <ClCompile Include="TextButton.Cxx" />
     <ClCompile Include="TitleBar.Cxx" />
-    <ClCompile Include="Wiki.Cxx" />
+    <ClCompile Include="ItemWiki.Cxx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsciiMap.Hxx" />
@@ -163,15 +161,17 @@
     <ClInclude Include="ConsoleWindow.Hxx" />
     <ClInclude Include="DynamicArray.Hxx" />
     <ClInclude Include="EmptyScene.Hxx" />
+    <ClInclude Include="Satisfactory.Hxx" />
     <ClInclude Include="ISelectable.Hxx" />
     <ClInclude Include="Item.Hxx" />
+    <ClInclude Include="KeyGuide.Hxx" />
     <ClInclude Include="KeyManager.Hxx" />
     <ClInclude Include="ConsoleManager.Hxx" />
     <ClInclude Include="MainScreen.Hxx" />
     <ClInclude Include="IReplaceable.Hxx" />
     <ClInclude Include="ResourceManager.Hxx" />
     <ClInclude Include="TextBoxObject.Hxx" />
-    <ClInclude Include="Wiki.Hxx" />
+    <ClInclude Include="ItemWiki.Hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Recipe.Hxx" />

@@ -4,6 +4,16 @@
 void TextBoxObject::Initialize() {}
 void TextBoxObject::Update() {}
 
+void TextBoxObject::RebuildKeyGuides() {
+	keyGuides.clear();
+
+	           keyGuides.push_back({ "Enter",       "Select"   });
+	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
+	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
+	if (left ) keyGuides.push_back({ "Arrow Left",  "Go Left"  });
+	if (right) keyGuides.push_back({ "Arrow Right", "Go Right" });
+}
+
 void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottomMargin) {
 	
 	positionX = _posX;
@@ -42,6 +52,63 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 
 }
 
+void TextBoxObject::Select() {}
+void TextBoxObject::UnSelect() {}
+
+KeyGuides TextBoxObject::GetKeyGuides() const {
+	KeyGuides result;
+
+	for (const auto& keyGuide : keyGuides) {
+		result.push_back(keyGuide);
+	}
+
+	for (const auto& keyGuide : AdditionalKeyGuides) {
+		result.push_back(keyGuide);
+	}
+
+	return result;
+}
+
+ISelectable* TextBoxObject::GetUpper() const {
+	return upper;
+}
+
+ISelectable* TextBoxObject::GetLower() const {
+	return lower;
+}
+
+ISelectable* TextBoxObject::GetLeft() const {
+	return left;
+}
+
+ISelectable* TextBoxObject::GetRight() const {
+	return right;
+}
+
+void TextBoxObject::LinkUpper(ISelectable* _upper) {
+	upper = _upper;
+	RebuildKeyGuides();
+	NeedUpdate = true;
+}
+
+void TextBoxObject::LinkLower(ISelectable* _lower) {
+	lower = _lower;
+	RebuildKeyGuides();
+	NeedUpdate = true;
+}
+
+void TextBoxObject::LinkLeft(ISelectable* _left) {
+	left = _left;
+	RebuildKeyGuides();
+	NeedUpdate = true;
+}
+
+void TextBoxObject::LinkRight(ISelectable* _right) {
+	right = _right;
+	RebuildKeyGuides();
+	NeedUpdate = true;
+}
+
 void TextBoxObject::SetPositionX(int _x) {
 	positionX = _x;
 }
@@ -65,3 +132,4 @@ int TextBoxObject::GetPositionX() const {
 int TextBoxObject::GetPositionY() const {
 	return positionY;
 }
+

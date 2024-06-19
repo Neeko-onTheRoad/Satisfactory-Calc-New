@@ -35,6 +35,7 @@ void ConsoleWindow::Rerender() {
 	RerenderBottomBar();
 	nowScene->Rerender();
 
+	
 
 	for (unsigned y = 0u; y < TITLE_BAR_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
