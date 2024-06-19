@@ -2,6 +2,7 @@
 
 void ConsoleWindow::RerenderBottomBar() {
 
+	// Render Color And Line in BottomBar
 	for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 		bottomBar[0][x] = Ascii::HZ_BAR;
 		bottomBarForegroundColor[0][x] = Color::HilightedForegroundColor;
@@ -9,6 +10,7 @@ void ConsoleWindow::RerenderBottomBar() {
 		bottomBarForegroundColor[3][x] = Color::HilightedForegroundColor;
 	}
 
+	// Render KeyGuides in BottomBar
 	int index = 0;
 	for (auto& key : nowScene->GetAllKeyGuides()) {
 		
@@ -17,6 +19,7 @@ void ConsoleWindow::RerenderBottomBar() {
 		bool actionLonger;
 		int  minLength;
 
+		// Get Shorter string
 		if (key.Action.size() > key.Key.size()) {
 			actionLonger = true;
 			minLength = static_cast<int>(key.Key.size());
@@ -26,7 +29,7 @@ void ConsoleWindow::RerenderBottomBar() {
 			minLength = static_cast<int>(key.Action.size());
 		}
 
-
+		// Print both string to Shorter string's length
 		for (int i = 0; i < minLength; i++) {
 			bottomBar[1][index] = key.Key[i];
 			bottomBar[2][index] = key.Action[i];
@@ -34,6 +37,7 @@ void ConsoleWindow::RerenderBottomBar() {
 		}
 
 		
+		// Print Longer string's remaining string
 		if (actionLonger) {
 			for (int i = minLength; i < key.Action.size(); i++) {
 				bottomBar[2][index++] = key.Action[i];

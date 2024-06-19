@@ -17,8 +17,6 @@
 #include "ItemWiki.Hxx"
 #include "MainScreen.Hxx"
 
-#define TARGET_FPS 144u
-
 
 class ConsoleWindow {
 

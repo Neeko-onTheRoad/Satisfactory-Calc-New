@@ -2,6 +2,7 @@
 
 void ConsoleWindow::RenderDefault() {
 
+	// Clear Title bar
 	for (unsigned y = 0u; y < TITLE_BAR_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			renderBuffer[y][x] = ' ';
@@ -10,6 +11,7 @@ void ConsoleWindow::RenderDefault() {
 		}
 	}
 
+	// Clear Main Screen
 	for (unsigned y = TITLE_BAR_HEIGHT; y < BOTTOM_BAR_OFFSET; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			renderBuffer[y][x] = ' ';
@@ -18,6 +20,7 @@ void ConsoleWindow::RenderDefault() {
 		}
 	}
 
+	// Clear Bottom Bar
 	for (unsigned y = 0u; y < BOTTOM_BAR_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			bottomBar[y][x] = ' ';
@@ -27,16 +30,18 @@ void ConsoleWindow::RenderDefault() {
 	}
 }
 
+
+
 void ConsoleWindow::Rerender() {
 
 	RenderDefault();
 
+
 	RerenderTitleBar();
 	RerenderBottomBar();
 	nowScene->Rerender();
-
 	
-
+	// Write Title Bar's element in Output Buffer
 	for (unsigned y = 0u; y < TITLE_BAR_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			renderBuffer[y][x] = titleBar[y][x];
@@ -45,7 +50,7 @@ void ConsoleWindow::Rerender() {
 		}
 	}
 
-
+	// Write Main Screen's element in Output Buffer
 	for (unsigned y = TITLE_BAR_HEIGHT; y < BOTTOM_BAR_OFFSET; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			renderBuffer[y][x]    = nowScene->SceneRenderBuffer   [y - TITLE_BAR_HEIGHT][x];
@@ -54,6 +59,7 @@ void ConsoleWindow::Rerender() {
 		}
 	}
 
+	// Write Bottom Bar's element in Output Buffer
 	for (unsigned y = 0u; y < BOTTOM_BAR_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			renderBuffer[y + BOTTOM_BAR_OFFSET][x] = bottomBar[y][x];
@@ -64,11 +70,15 @@ void ConsoleWindow::Rerender() {
 
 }
 
+
+
 void ConsoleWindow::Display() {
 
+	// Set Cursor Position to 0, 0 and make Output be Covered Over
 	ConsoleManager::ResetCursor();
-
 	displayBuffer.clear();
+
+	// Put Final Results in Display Buffer
 	for (unsigned y = 0u; y < CONSOLE_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH - 1u; x++) {
 			displayBuffer += Color::Foreground(foregroundColor[y][x]);
@@ -79,6 +89,7 @@ void ConsoleWindow::Display() {
 		displayBuffer += "\r\n";
 	}
 
+	// print Rendered Elements and Clear Buffer
 	std::cout << displayBuffer.substr(0, displayBuffer.size() - 1);
 
 }

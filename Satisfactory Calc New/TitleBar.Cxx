@@ -2,6 +2,7 @@
 
 void ConsoleWindow::RerenderTitleBar() {
 
+	// Render Color and Lines of Title Bar
 	for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 		titleBar[0][x] = Ascii::HZ_BAR;
 		titleBar[2][x] = Ascii::HZ_BAR;
@@ -15,6 +16,7 @@ void ConsoleWindow::RerenderTitleBar() {
 
 	sceneStatusBar += Ascii::VT_BAR;
 
+	// Write Scenes' 
 	for (unsigned index = 0u; index < scenes.size(); index++) {
 		if (index == nowSceneIndex) {
 			selectingStart = sceneStatusBar.size();

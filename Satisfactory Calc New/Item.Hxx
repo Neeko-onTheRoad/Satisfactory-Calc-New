@@ -16,7 +16,7 @@ enum class ItemCategory {
 
 #define AUTO_CASE(CAT) case ItemCategory::##CAT: return #CAT;
 
-std::string GetCategoriyName(ItemCategory _category) {
+static std::string GetCategoriyName(ItemCategory _category) {
 	switch (_category) {
 		AUTO_CASE(Ores);
 		AUTO_CASE(Ingots);
