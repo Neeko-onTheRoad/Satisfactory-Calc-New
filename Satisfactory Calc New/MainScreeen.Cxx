@@ -24,7 +24,7 @@ void MainScreen::Initialize() {
 		}
 
 		AddObject(title);
-	}
+	} 
 
 	{ // Buttons
 
@@ -111,6 +111,13 @@ void MainScreen::Initialize() {
 
 		creditPopup->AdditionalKeyGuides.push_back({"Backspace", "Close"});
 		creditPopup->Render = false;
+
+		creditPopup->SetBackCallBack([&]() {
+			creditPopup->Render = false;
+			Selecting = credit;
+			NeedUpdate = true;
+		});
+
 		AddObject(creditPopup, 1);
 
 	}
@@ -119,16 +126,6 @@ void MainScreen::Initialize() {
 }
 
 void MainScreen::Update() {
-
-	// Credit Popup Logic
-	if (Selecting == creditPopup) {
-		if (KeyManager::GetKeyPressed(Keys::BACK)) {
-			creditPopup->Render = false;
-			Selecting = credit;
-			NeedUpdate = true;
-		}
-		return;
-	}
 
 	// Button Up & Down Logic
 	if (KeyManager::GetKeyPressed(Keys::DOWN)) {
@@ -144,13 +141,13 @@ void MainScreen::Update() {
 		NeedUpdate = true;
 	}
 
-	// Button Pressed Logic
-	else if (KeyManager::GetKeyPressed(Keys::SELECT)) {
-		if (TextButton* text = dynamic_cast<TextButton*>(Selecting)) {
-			text->CallBack();
-			NeedUpdate = true;
-		}
-	}
+	//// Button Pressed Logic
+	//else if (KeyManager::GetKeyPressed(Keys::SELECT)) {
+	//	if (TextButton* text = dynamic_cast<TextButton*>(Selecting)) {
+	//		text->CallBack();
+	//		NeedUpdate = true;
+	//	}
+	//}
 
 }
 

@@ -1,14 +1,24 @@
 #include "ItemWiki.Hxx"
 
+std::string to_string(ItemSortOption _orderBy) {
+	switch (_orderBy) {
+		case ItemSortOption::Category: return "Category";
+		case ItemSortOption::NameA2Z:  return "Name (A ~ Z)";
+		case ItemSortOption::NameZ2A:  return "Name (Z ~ A)";
+	}
+}
+
 std::string ItemWiki::GetTitle() const {
 	return "Item Wiki";
 }
 
 void ItemWiki::Initialize() {
 
-	// Push Elements in A2Z, Z2A-Sorted Map (Not Dictionary-Ordered)
+	// Push Elements in List
 	for (auto& item : Satisfactory::ItemList) {
-		ItemSortedByNameA2Z[item->Name[0]].push_back(item);
+		ItemSortedByCategory[item->Category].push_back(item);
+		ItemSortedByNameA2Z [item->Name[0]] .push_back(item);
+		ItemSortedByNameZ2A [item->Name[0]] .push_back(item);
 	}
 
 	// Dictionary Order Every Elements in A2Z-Sorted Map
@@ -21,8 +31,37 @@ void ItemWiki::Initialize() {
 		std::sort(Z2A.second.rbegin(), Z2A.second.rend());
 	}
 
+
+	// Draw Order type Button
+	{
+		TextBoxObject* OrderBy = new TextBoxObject;
+		OrderBy->Make(3, 1, " Item Ordered By: \n");
+		OrderBy->SetForegroundColor(Color::HilightedForegroundColor);
+		OrderBy->SetBackgroundColor(Color::HilightedBackgroundColor);
+
+		AddObject(OrderBy);
+
+	}
+
+	SelectBox<int>* sb1 = new SelectBox<int>;
+	std::vector<std::pair<int, std::string>> sb1ls;
+	sb1ls.emplace_back(1, "One");
+	sb1ls.emplace_back(2, "Two");
+
+	sb1->Make(4, 2, sb1ls
+	);
+
+	AddObject(sb1);
+
+
 }
 
 void ItemWiki::Update() {
+
+}
+
+void ItemWiki::drawInBuffer() {
+	
+
 
 }

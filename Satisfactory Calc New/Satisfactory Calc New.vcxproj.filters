@@ -96,11 +96,11 @@
     <ClCompile Include="MainScreeen.Cxx">
       <Filter>소스 파일\Client\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="TextButton.Cxx">
-      <Filter>소스 파일\Client\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Satisfactory.Cxx">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextButton.Cxx">
+      <Filter>소스 파일\Client\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Satisfactory.Hxx">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectBox.Hxx">
+      <Filter>헤더 파일\Client\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

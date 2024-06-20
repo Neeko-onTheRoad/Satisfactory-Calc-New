@@ -50,7 +50,7 @@ void ConsoleScene::UpdateBase() {
 	// Update all Object
 	for (auto& layer : Objects) {
 		for (auto& object : layer.second) {
-			object->UpdateBaes();
+			object->UpdateBaes(Selecting);
 			
 			if (object->NeedUpdate) {
 				NeedUpdate = true;

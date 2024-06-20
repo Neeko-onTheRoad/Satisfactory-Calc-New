@@ -1,10 +1,27 @@
-#include "TextBoxObject.Hxx"	
-#include <iostream>
+#include "TextBoxObject.Hxx"
 
 void TextBoxObject::Initialize() {}
-void TextBoxObject::Update() {}
+void TextBoxObject::Update(ISelectable* _selecting) {
+	
+	if (_selecting == this) {
 
-void TextBoxObject::RebuildKeyGuides() {
+		// CallBack Logic
+		if (KeyManager::GetKeyPressed(Keys::SELECT)) {
+			CallBack();
+			NeedUpdate = true;
+		}
+
+		else if (KeyManager::GetKeyPressed(Keys::BACK)) {
+			BackCallBack();
+			NeedUpdate = true;
+		}
+
+		// Move Selected Logic
+	}
+
+}
+
+void TextBoxObject::rebuildKeyGuides() {
 	keyGuides.clear();
 
 	// Initialize Default key Guides
@@ -94,34 +111,36 @@ ISelectable* TextBoxObject::GetRight() const {
 
 void TextBoxObject::LinkUpper(ISelectable* _upper) {
 	upper = _upper;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextBoxObject::LinkLower(ISelectable* _lower) {
 	lower = _lower;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextBoxObject::LinkLeft(ISelectable* _left) {
 	left = _left;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextBoxObject::LinkRight(ISelectable* _right) {
 	right = _right;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextBoxObject::SetPositionX(int _x) {
 	positionX = _x;
+	NeedUpdate = true;
 }
 
 void TextBoxObject::SetPositionY(int _y) {
 	positionY = _y;
+	NeedUpdate = true;
 }
 
 unsigned TextBoxObject::GetSizeX() const {

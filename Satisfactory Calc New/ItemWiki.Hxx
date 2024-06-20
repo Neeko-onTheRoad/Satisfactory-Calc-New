@@ -5,13 +5,17 @@
 
 #include <algorithm>
 #include "Item.Hxx"
+#include "SelectBox.Hxx"
 #include "TextButton.Hxx"
 #include "ConsoleScene.Hxx"
 #include "Satisfactory.Hxx"
+#include "TextBoxObject.Hxx"
 
 enum class ItemSortOption {
 	NameA2Z, NameZ2A, Category
 };
+
+static std::string to_string(ItemSortOption _orderBy);
 
 class ItemWiki : public ConsoleScene {
 
@@ -26,7 +30,7 @@ private:
 
 	std::map<int, TextButton> RenderTextButton;
 
-
+	void drawInBuffer();
 	
 
 protected:

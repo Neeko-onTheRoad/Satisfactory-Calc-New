@@ -170,6 +170,7 @@
     <ClInclude Include="MainScreen.Hxx" />
     <ClInclude Include="IReplaceable.Hxx" />
     <ClInclude Include="ResourceManager.Hxx" />
+    <ClInclude Include="SelectBox.Hxx" />
     <ClInclude Include="TextBoxObject.Hxx" />
     <ClInclude Include="ItemWiki.Hxx" />
   </ItemGroup>

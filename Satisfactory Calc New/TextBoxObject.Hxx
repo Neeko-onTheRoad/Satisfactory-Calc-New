@@ -30,13 +30,13 @@ private:
 	ISelectable* left  = nullptr;
 	ISelectable* right = nullptr;
 
-	void RebuildKeyGuides();
+	void rebuildKeyGuides();
 
 
 protected:
 
 	void ConsoleObject::Initialize();
-	void ConsoleObject::Update();
+	void ConsoleObject::Update(ISelectable* _selecting);
 
 
 public:

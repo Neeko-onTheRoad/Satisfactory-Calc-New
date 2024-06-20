@@ -5,8 +5,8 @@ void ConsoleObject::InitializeBase() {
 	Initialize();
 }
 
-void ConsoleObject::UpdateBaes() {
-	Update(); 
+void ConsoleObject::UpdateBaes(ISelectable* _selecting) {
+	Update(_selecting); 
 }
 
 // Replace all Foreground color of element

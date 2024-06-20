@@ -1,21 +1,38 @@
 #include "TextButton.Hxx"
 
 void TextButton::Initialize() {}
-void TextButton::Update() {}
+void TextButton::Update(ISelectable* _selecting) {
+	if (_selecting == this) {
 
-void TextButton::RebuildKeyGuides() {
+		// CallBack Logic
+		if (KeyManager::GetKeyPressed(Keys::SELECT)) {
+			CallBack();
+			NeedUpdate = true;
+		}
+
+		else if (KeyManager::GetKeyPressed(Keys::BACK)) {
+			BackCallBack();
+			NeedUpdate = true;
+		}
+
+		// Move Selected Logic
+	}
+}
+
+void TextButton::rebuildKeyGuides() {
 	keyGuides.clear();
 
 	// Initialize Default Key Guides
-	           keyGuides.push_back({ "Enter",       "Select" });
+	           keyGuides.push_back({ "Enter",       "Select"   });
 	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
 	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
 	if (left)  keyGuides.push_back({ "Arrow Left",  "Go Left"  });
 	if (right) keyGuides.push_back({ "Arrow Right", "Go Right" });
 }
 
-void TextButton::Make(int _posX, int _posY, std::string _element) {
+void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _bar) {
 
+	bar       = _bar;
 	positionX = _posX;
 	positionY = _posY;
 
@@ -23,7 +40,8 @@ void TextButton::Make(int _posX, int _posY, std::string _element) {
 
 	// Calculate object width by size of lement
 	// Add 4 because button's element will be " - Element "
-	sizeX = static_cast<unsigned>(_element.size()) + 4u;
+	// Add 2 if Bar is not enabled. element will be " Element "
+	sizeX = static_cast<unsigned>(_element.size()) + (bar ? 4u : 2u);
 	sizeY = 1;
 
 	// Initialize Render Buffer
@@ -31,25 +49,17 @@ void TextButton::Make(int _posX, int _posY, std::string _element) {
 	ForegroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultForegroundColor);
 	BackgroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultBackgroundColor);
 
-	Object[0][1] = '-';
+	if (bar) Object[0][1] = '-';
 
 	// Draw Element in Render Buffer, Same with Upper, offset will be 3
 	for (unsigned x = 0u; x < _element.size(); x++) {
-		Object[0][x + 3] = _element[x];
+		Object[0][x + (bar ? 3u : 1u)] = _element[x];
 	}
 
 	ForegroundColor[0][1] = Color::HilightedForegroundColor;
 
 	NeedUpdate = true;
 
-}
-
-void TextButton::SetCallBack(std::function<void()> _func) {
-	callBack = _func;
-}
-
-void TextButton::CallBack() {
-	callBack();
 }
 
 void TextButton::SetForegroundColor(ColorCode _color) {
@@ -71,7 +81,7 @@ void TextButton::SetSelectedBackgroundColor(ColorCode _color) {
 void TextButton::Select() {
 
 	// Change Bar
-	Object[0][1] = '>';
+	if (bar) Object[0][1] = '>';
 
 	// Recolor element
 	for (unsigned x = 0u; x < sizeX; x++) {
@@ -84,7 +94,7 @@ void TextButton::Select() {
 void TextButton::UnSelect() {
 
 	// Change Bar
-	Object[0][1] = '-';
+	if (bar) Object[0][1] = '-';
 
 	// Recolor element
 	for (unsigned x = 0u; x < sizeX; x++) {
@@ -92,7 +102,7 @@ void TextButton::UnSelect() {
 		BackgroundColor[0][x] = backgroundColor;
 	}
 
-	ForegroundColor[0][1] = selectedForegroundColor;
+	if (bar) ForegroundColor[0][1] = selectedForegroundColor;
 
 }
 
@@ -130,34 +140,36 @@ ISelectable* TextButton::GetRight() const {
 
 void TextButton::LinkUpper(ISelectable* _upper) {
 	upper = _upper;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextButton::LinkLower(ISelectable* _lower) {
 	lower = _lower;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextButton::LinkLeft(ISelectable* _left) {
 	left = _left;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextButton::LinkRight(ISelectable* _right) {
 	right = _right;
-	RebuildKeyGuides();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 }
 
 void TextButton::SetPositionX(int _x) {
 	positionX = _x;
+	NeedUpdate = true;
 }
 
 void TextButton::SetPositionY(int _y) {
 	positionY = _y;
+	NeedUpdate = true;
 }
 
 unsigned TextButton::GetSizeX() const {
