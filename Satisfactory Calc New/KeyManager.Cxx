@@ -11,6 +11,7 @@ std::unordered_map<Keys, int>      KeyManager::AutoPressCount;
 
 #define AUTO_CASE(key) case Keys::##key: { return KeySettings::##key; }
 
+// Return Key Code by int converted by Key Enum
 int KeySettings::Get(Keys key) {
 	switch (key) {
 		AUTO_CASE(UP)
@@ -29,6 +30,7 @@ int KeySettings::Get(Keys key) {
 
 #undef AUTO_CASE
 
+// Run function _action in all Keys
 void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 	_action(Keys::UP);
 	_action(Keys::DOWN);
@@ -43,7 +45,7 @@ void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 }
 
 
-
+// Reset All KeyState
 void KeyManager::Initialize() {
 	KeySettings::ForeachKeys([&](Keys key) {
 		Pressing      [key] = false;
@@ -61,18 +63,25 @@ void KeyManager::Initialize() {
 
 
 void KeyManager::Update() {
+
+	// If Window is not focused, disable all Key
 	if (!ConsoleManager::GetConsoleSelected()) {
 		KeyManager::Initialize();
 		return;
 	}
-
+	
+	// Else Update all Keys
 	KeySettings::ForeachKeys([&](Keys key) {
 
+		// Get Key Pressed
 		bool PressingTemp = GetAsyncKeyState(KeySettings::Get(key)) < 0;
 
 		Pressing[key] = PressingTemp;
 		
+		// If Key state is diffrent with Current Key State
 		if (PressingTemp ^ PressingPrev[key]) {
+
+			// Get Curent Key State and Change Key State
 			if (PRLatch[key] == KeyState::Released) {
 
 				Pressed      [key] = false;
@@ -96,6 +105,7 @@ void KeyManager::Update() {
 			Released[key] = false;
 		}
 
+		// Manage Auto Click if User Pressing Key with long time
 		if (PressingStart[key] != 0) {
 
 			if (clock() - PressingStart[key] - (AUTO_PRESSING_GAP * AutoPressCount[key]) > AUTO_PRESSING_DELAY) {

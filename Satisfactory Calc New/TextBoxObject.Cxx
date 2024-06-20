@@ -7,6 +7,7 @@ void TextBoxObject::Update() {}
 void TextBoxObject::RebuildKeyGuides() {
 	keyGuides.clear();
 
+	// Initialize Default key Guides
 	           keyGuides.push_back({ "Enter",       "Select"   });
 	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
 	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
@@ -22,7 +23,8 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 
 	std::vector<std::string> splited;
 	std::string token = "";
-
+	
+	// Split String by '\n' to vector
 	for (const auto& ch : _element) {
 		if (ch == '\n') {
 			if (static_cast<int>(token.size()) > sizeX) sizeX = static_cast<int>(token.size());
@@ -36,12 +38,15 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 		}
 	}
 
+	// Calcualte total Height with size of vector and _bottomMargin
 	sizeY = static_cast<int>(splited.size()) + _bottomMargin;
 
+	// Initialize Redner Buffer
 	Object          = Make2DimDynamicArray(sizeY, sizeX, ' ');
 	ForegroundColor = Make2DimDynamicArray(sizeY, sizeX, Color::DefaultForegroundColor);
 	BackgroundColor = Make2DimDynamicArray(sizeY, sizeX, Color::DefaultBackgroundColor);
 
+	// Draw Initialized string in Render Buffer
 	for (unsigned y = 0u; y < splited.size(); y++) {
 		for (unsigned x = 0u; x < splited[y].size(); x++) {
 			Object[y][x] = splited[y][x];
@@ -56,6 +61,8 @@ void TextBoxObject::Select() {}
 void TextBoxObject::UnSelect() {}
 
 KeyGuides TextBoxObject::GetKeyGuides() const {
+
+	// Add Original Key Guide and Additional Key Guide and return
 	KeyGuides result;
 
 	for (const auto& keyGuide : keyGuides) {

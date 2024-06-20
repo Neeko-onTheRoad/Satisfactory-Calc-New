@@ -9,6 +9,7 @@ void ConsoleObject::UpdateBaes() {
 	Update(); 
 }
 
+// Replace all Foreground color of element
 void ConsoleObject::SetForegroundColor(ColorCode _color) {
 	for (unsigned y = 0u; y < GetSizeY(); y++) {
 		for (unsigned x = 0u; x < GetSizeX(); x++) {
@@ -17,6 +18,7 @@ void ConsoleObject::SetForegroundColor(ColorCode _color) {
 	}
 }
 
+// Rplace all Background color of element
 void ConsoleObject::SetBackgroundColor(ColorCode _color) {
 	for (unsigned y = 0u; y < GetSizeY(); y++) {
 		for (unsigned x = 0u; x < GetSizeX(); x++) {
@@ -25,6 +27,8 @@ void ConsoleObject::SetBackgroundColor(ColorCode _color) {
 	}
 }
 
+// Replace Foreground color of (x, y) in element
+// Throw out_of_range if position is not in range
 void ConsoleObject::SetForegroundColor(ColorCode _color, unsigned _x, unsigned _y) {
 
 	if (_x >= GetSizeX() || _y >= GetSizeY()) {
@@ -39,6 +43,8 @@ void ConsoleObject::SetForegroundColor(ColorCode _color, unsigned _x, unsigned _
 
 }
 
+// Replace Background color of (x, y) in element
+// Throw out_of_range if position is not in range
 void ConsoleObject::SetBackgroundColor(ColorCode _color, unsigned _x, unsigned _y) {
 	if (_x >= GetSizeX() || _y >= GetSizeY()) {
 		std::cerr << "ConsoleObject::SetBackroundColor()" << std::endl

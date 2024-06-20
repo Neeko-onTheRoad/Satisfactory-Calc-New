@@ -9,19 +9,25 @@
 #include "ConsoleScene.Hxx"
 #include "Satisfactory.Hxx"
 
+enum class ItemSortOption {
+	NameA2Z, NameZ2A, Category
+};
+
 class ItemWiki : public ConsoleScene {
 
 private:
 
 	int scroll = 0;
+	ItemSortOption sortOption = ItemSortOption::Category;
 
 	std::map<char,         std::vector<Item*>> ItemSortedByNameA2Z;
 	std::map<char,         std::vector<Item*>> ItemSortedByNameZ2A;
 	std::map<ItemCategory, std::vector<Item*>> ItemSortedByCategory;
 
-	enum class ItemSortOption {
-		NameA2Z, NameZ2A, Category
-	} sortBy;
+	std::map<int, TextButton> RenderTextButton;
+
+
+	
 
 protected:
 	

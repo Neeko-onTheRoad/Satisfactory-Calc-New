@@ -36,7 +36,6 @@ void ConsoleWindow::Rerender() {
 
 	RenderDefault();
 
-
 	RerenderTitleBar();
 	RerenderBottomBar();
 	nowScene->Rerender();

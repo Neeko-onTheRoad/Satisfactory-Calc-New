@@ -2,9 +2,12 @@
 
 void ConsoleScene::AddObject(ConsoleObject* _object, int _layer) {
 	Objects[_layer].push_back(_object);
+	NeedUpdate = true;
 }
 
 KeyGuides ConsoleScene::GetAllKeyGuides() {
+
+	// Add Key Guide of Scene and Selecting Object and return
 	KeyGuides result;
 
 	for (auto& keyGuide : AdditionalKeyGuides) {
@@ -24,6 +27,7 @@ void ConsoleScene::InitializeBase() {
 
 	Initialize();
 
+	// Shared Key Guides of all Scene (except from home screen)
 	AdditionalKeyGuides.push_back({ "ESC",    "Go Home"});
 	AdditionalKeyGuides.push_back({ "LShift", "Left Scene"});
 	AdditionalKeyGuides.push_back({ "RShift", "Right Scene"});
@@ -43,6 +47,7 @@ void ConsoleScene::UpdateBase() {
 
 	Update();
 
+	// Update all Object
 	for (auto& layer : Objects) {
 		for (auto& object : layer.second) {
 			object->UpdateBaes();
@@ -57,6 +62,7 @@ void ConsoleScene::UpdateBase() {
 
 void ConsoleScene::Rerender() {
 
+	// Initialize element Render Buffer
 	for (unsigned y = 0u; y < SCENE_HEIGHT; y++) {
 		for (unsigned x = 0u; x < CONSOLE_WIDTH; x++) {
 			SceneRenderBuffer[y][x] = ' ';
@@ -66,6 +72,7 @@ void ConsoleScene::Rerender() {
 	}
 
 
+	// Draw all Object in Render Buffer
 	for (auto& layer : Objects) {
 		for (auto& object : layer.second) {
 
@@ -77,6 +84,7 @@ void ConsoleScene::Rerender() {
 					int renderY = y + object->GetPositionY();
 					int renderX = x + object->GetPositionX();
 
+					// Check pixel is in Screen
 					if (
 						renderY >= 0 &&
 						renderX >= 0 &&

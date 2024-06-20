@@ -6,7 +6,9 @@ void Satisfactory::Initialize() {
 
 	using namespace Items;
 
-	{
+	//================================================================================================| Item
+	//==================================================================| Ores
+	{ 
 		Limestone = new Item();
 		Limestone->Name = "Limestone";
 		Limestone->Description.push_back("Used for crafting.");

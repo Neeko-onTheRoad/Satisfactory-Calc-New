@@ -21,7 +21,6 @@ void ItemWiki::Initialize() {
 		std::sort(Z2A.second.rbegin(), Z2A.second.rend());
 	}
 
-
 }
 
 void ItemWiki::Update() {

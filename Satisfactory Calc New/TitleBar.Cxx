@@ -16,8 +16,10 @@ void ConsoleWindow::RerenderTitleBar() {
 
 	sceneStatusBar += Ascii::VT_BAR;
 
-	// Write Scenes' 
+	// Write Scenes' names in Buffer
 	for (unsigned index = 0u; index < scenes.size(); index++) {
+
+		// Hilight if Scene is selected
 		if (index == nowSceneIndex) {
 			selectingStart = sceneStatusBar.size();
 			sceneStatusBar += "  " + scenes[index]->GetTitle() + "  ";
@@ -25,11 +27,13 @@ void ConsoleWindow::RerenderTitleBar() {
 			sceneStatusBar += Ascii::VT_BAR;
 		}
 
+		// Else just write
 		else {
 			sceneStatusBar += "  " + scenes[index]->GetTitle() + "  " + Ascii::VT_BAR;
 		}
 	}
 
+	// Put Buffer's element in RenderBuffer
 	for (int index = 0u; index < sceneStatusBar.size(); index++) {
 		titleBar[1][index] = sceneStatusBar[index];
 

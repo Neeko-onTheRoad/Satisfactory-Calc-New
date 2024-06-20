@@ -6,6 +6,7 @@ void TextButton::Update() {}
 void TextButton::RebuildKeyGuides() {
 	keyGuides.clear();
 
+	// Initialize Default Key Guides
 	           keyGuides.push_back({ "Enter",       "Select" });
 	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
 	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
@@ -20,15 +21,19 @@ void TextButton::Make(int _posX, int _posY, std::string _element) {
 
 	stringElement = _element;
 
+	// Calculate object width by size of lement
+	// Add 4 because button's element will be " - Element "
 	sizeX = static_cast<unsigned>(_element.size()) + 4u;
 	sizeY = 1;
 
+	// Initialize Render Buffer
 	Object          = Make2DimDynamicArray(1, sizeX, ' ');
 	ForegroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultForegroundColor);
 	BackgroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultBackgroundColor);
 
 	Object[0][1] = '-';
 
+	// Draw Element in Render Buffer, Same with Upper, offset will be 3
 	for (unsigned x = 0u; x < _element.size(); x++) {
 		Object[0][x + 3] = _element[x];
 	}
@@ -65,8 +70,10 @@ void TextButton::SetSelectedBackgroundColor(ColorCode _color) {
 
 void TextButton::Select() {
 
+	// Change Bar
 	Object[0][1] = '>';
 
+	// Recolor element
 	for (unsigned x = 0u; x < sizeX; x++) {
 		ForegroundColor[0][x] = selectedForegroundColor;
 		BackgroundColor[0][x] = selectedBackgroundColor;
@@ -76,8 +83,10 @@ void TextButton::Select() {
 
 void TextButton::UnSelect() {
 
+	// Change Bar
 	Object[0][1] = '-';
 
+	// Recolor element
 	for (unsigned x = 0u; x < sizeX; x++) {
 		ForegroundColor[0][x] = foregroundColor;
 		BackgroundColor[0][x] = backgroundColor;
@@ -88,6 +97,8 @@ void TextButton::UnSelect() {
 }
 
 KeyGuides TextButton::GetKeyGuides() const {
+	
+	// Add Original Key Guides and Additional Key Guide and return
 	KeyGuides result;
 
 	for (const auto& keyGuide : keyGuides) {
