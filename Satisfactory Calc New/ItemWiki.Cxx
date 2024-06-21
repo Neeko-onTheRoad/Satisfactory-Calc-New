@@ -45,15 +45,37 @@ void ItemWiki::Initialize() {
 
 	SelectBox<int>* sb1 = new SelectBox<int>;
 	std::vector<std::pair<int, std::string>> sb1ls;
-	sb1ls.emplace_back(1, "One");
-	sb1ls.emplace_back(2, "Two");
+	sb1ls.emplace_back(1, "Tst1One");
+	sb1ls.emplace_back(2, "Tst1Twofewfewa");
+	sb1ls.emplace_back(2, "Tst1Twofewffewaewa");
+	sb1ls.emplace_back(2, "Tst1Twofeffwfewa");
+	sb1ls.emplace_back(2, "Tst1Twofewfewa");
 
-	sb1->Make(4, 2, sb1ls
-	);
+	sb1->Make(4, 3, sb1ls);
+
+
+	SelectBox<int>* sb2 = new SelectBox<int>;
+	std::vector<std::pair<int, std::string>> sb2ls;
+	sb2ls.emplace_back(1, "Tst2One");
+	sb2ls.emplace_back(2, "Tst2Twofeeafw");
+
+	sb2->Make(4, 4, sb2ls);
+	sb2->LinkUpper(sb1);
+	sb2->LinkLower(sb1);
+	sb1->LinkUpper(sb2);
+	sb1->LinkLower(sb2);
 
 	AddObject(sb1);
+	AddObject(sb2);
 
+	for (auto& i : sb1->Options) {
+		AddObject(i, 1);
+	}
+	for (auto& i : sb2->Options) {
+		AddObject(i, 1);
+	}
 
+	Selecting = sb1;
 }
 
 void ItemWiki::Update() {

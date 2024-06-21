@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 
+#include "SelectBox.Hxx"
 #include "ISelectable.Hxx"
 #include "ConsoleObject.Hxx"
 

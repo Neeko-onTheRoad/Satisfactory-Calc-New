@@ -45,7 +45,6 @@ void ConsoleScene::InitializeBase() {
 
 void ConsoleScene::UpdateBase() {
 
-	Update();
 
 	// Update all Object
 	for (auto& layer : Objects) {
@@ -58,6 +57,42 @@ void ConsoleScene::UpdateBase() {
 			}
 		}
 	}
+
+	// Move Logic
+	if (KeyManager::GetKeyPressed(Keys::UP)) {
+		if (Selecting->GetUpper()) {
+			Selecting->UnSelect();
+			Selecting = Selecting->GetUpper();
+			Selecting->Select();
+			NeedUpdate = true;
+		}
+	}
+	else if (KeyManager::GetKeyPressed(Keys::DOWN)) {
+		if (Selecting->GetLower()) {
+			Selecting->UnSelect();
+			Selecting = Selecting->GetLower();
+			Selecting->Select();
+			NeedUpdate = true;
+		}
+	}
+	else if (KeyManager::GetKeyPressed(Keys::LEFT)) {
+		if (Selecting->GetLeft()) {
+			Selecting->UnSelect();
+			Selecting = Selecting->GetLeft();
+			Selecting->Select();
+			NeedUpdate = true;
+		}
+	}
+	else if (KeyManager::GetKeyPressed(Keys::RIGHT)) {
+		if (Selecting->GetRight()) {
+			Selecting->UnSelect();
+			Selecting = Selecting->GetRight();
+			Selecting->Select();
+			NeedUpdate = true;
+		}
+	}
+
+	Update();
 }
 
 void ConsoleScene::Rerender() {
@@ -91,9 +126,9 @@ void ConsoleScene::Rerender() {
 						renderY < SCENE_HEIGHT &&
 						renderX < CONSOLE_WIDTH
 					) {
-						SceneRenderBuffer   [renderY][renderX] = object->Object         [y][x];
-						SceneForegroundColor[renderY][renderX] = object->ForegroundColor[y][x];
-						SceneBackgroundColor[renderY][renderX] = object->BackgroundColor[y][x];
+						SceneRenderBuffer [renderY][renderX] = object->Object [y][x];
+						if (object->ForegroundColor[y][x]) SceneForegroundColor[renderY][renderX] = object->ForegroundColor[y][x];
+						if (object->BackgroundColor[y][x]) SceneBackgroundColor[renderY][renderX] = object->BackgroundColor[y][x];
 					}
 				}
 			}

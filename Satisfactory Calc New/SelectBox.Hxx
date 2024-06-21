@@ -3,6 +3,10 @@
 #ifndef _SELECT_BOX_HXX_
 #define _SELECT_BOX_HXX_
 
+#include <cmath>
+#include <sstream>
+#include "AsciiMap.Hxx"
+#include "TextButton.Hxx"
 #include "ISelectable.Hxx"
 #include "IReplaceable.Hxx"
 #include "ConsoleObject.Hxx"
@@ -18,6 +22,7 @@ class SelectBox :
 {
 
 private:
+
 	
 	unsigned sizeX = 0u;
 	unsigned sizeY = 0u;
@@ -25,7 +30,11 @@ private:
 	int positionX = 0;
 	int positionY = 0;
 
+	bool isSelected = false;
+	bool needToPopup = false;
 	unsigned nowSelectedIndex = 0u;
+	unsigned willSelectedIndex = 0u;
+	unsigned maxOptionsStrLength = 0u;
 	std::pair<T, std::string> nowSelected;
 	std::vector<std::pair<T, std::string>> elements;
 
@@ -52,24 +61,29 @@ private:
 		if (right) keyGuides.push_back({ "Arrow Right", "Go Right"      });
 	}
 
-	void selectElement(unsigned _index) {
+	void rerenderUnSelected() {
 
-		// throw if _index is larger then Option's amount
-		if (_index >= elements.size()) {
-			std::cerr << "SelectBox::Make()" << std::endl
+		// throw if nowSelectedIndex is larger then Option's amount
+		if (nowSelectedIndex >= elements.size()) {
+			std::cerr << "SelectBox::rerenderUnSelected()" << std::endl
 				<< "Max index is " << elements.size()
-				<< ", But try to select element in " << _index;
+				<< ", But try to select element in " << nowSelectedIndex;
 
 			throw std::out_of_range("SelectBox::Make()");
 		}
 
-		
-		nowSelectedIndex = _index;
-		nowSelected = elements[_index];
-
 		// Calculate object width by selected option's name
 		// Add 2 because element will be " Element "
 		sizeX = static_cast<unsigned>(nowSelected.second.size()) + 2u; 
+		sizeY = 1;
+
+		delete[] Object[0];
+		delete[] ForegroundColor[0];
+		delete[] BackgroundColor[0];
+
+		delete[] Object;
+		delete[] ForegroundColor;
+		delete[] BackgroundColor;
 
 		// Initialize Render Buffer
 		Object          = Make2DimDynamicArray(1, sizeX, ' ');
@@ -82,17 +96,82 @@ private:
 
 	}
 
+	void rerenderSelected() {
+		
+		if (nowSelectedIndex >= elements.size()) {
+			std::cerr << "SelectBox::rerenderSelected()" << std::endl
+				      << "Max index is " << elements.size()
+				      << ", But try to select element in " << nowSelectedIndex;
+
+			throw std::out_of_range("SelectBox::Make()");
+		}
+
+		delete[] Object[0];
+		delete[] ForegroundColor[0];
+		delete[] BackgroundColor[0];
+
+		delete[] Object;
+		delete[] BackgroundColor;
+		delete[] ForegroundColor;
+
+		Object          = Make2DimDynamicArray(1, sizeX, ' ');
+		ForegroundColor = Make2DimDynamicArray(1, sizeX, Color::NoColor);
+		BackgroundColor = Make2DimDynamicArray(1, sizeX, Color::NoColor);
+
+		for (int x = 0; x < nowSelected.second.size(); x++) {
+			Object[0][x + 1u] = nowSelected.second[x];
+		}
+
+		for (int x = 0; x < nowSelected.second.size() + 2; x++) {
+			BackgroundColor[0][x] = Color::HilightedForegroundColor;
+			ForegroundColor[0][x] = Color::HilightedBackgroundColor;
+		}
+
+		for (auto& button : Options) {
+			button->Render = true;
+		}
+
+	}
+
 protected:
 
+
 	void ConsoleObject::Initialize() {};
-	void ConsoleObject::Update(ISelectable* _selecting) {};
+	void ConsoleObject::Update(ISelectable*& _selecting) {
+		
+		if (needToPopup) {
+			_selecting = Options[nowSelectedIndex];
+			_selecting->Select();
+
+			needToPopup = false;
+		}
+
+		if (_selecting == this) {
+
+			if (isSelected) {
+				
+			}
+
+			else {
+			
+				if (KeyManager::GetKeyPressed(Keys::SELECT)) {
+					isSelected = true;
+					NeedUpdate = true;
+
+					rerenderSelected();
+
+					needToPopup = true;
+				}
+			}
+		}
+	};
 
 	void ISelectable::Select() {
 
 		// Change Color of Element to Hilighted Color
 		for (unsigned x = 0u; x < sizeX; x++) {
 			ForegroundColor[0][x] = selectedForegroundColor;
-			BackgroundColor[0][x] = selectedForegroundColor;
+			BackgroundColor[0][x] = selectedBackgroundColor;
 		}
 	}
 	void ISelectable::UnSelect() {
@@ -106,6 +185,7 @@ protected:
 
 public:
 
+	std::vector<TextButton*> Options;
 	virtual ~SelectBox() {};
 
 	void Make(int _posX, int _posY, const std::vector<std::pair<T, std::string>>& _elements, unsigned _defaultOption = 0) {
@@ -119,13 +199,54 @@ public:
 			throw std::out_of_range("SelectBox::Make()");
 		}
 
-		elements = _elements;
-
 		positionX = _posX;
 		positionY = _posY;
 		sizeY     = 1u;
 
-		selectElement(_defaultOption);
+
+		nowSelectedIndex = _defaultOption;
+		nowSelected = _elements[_defaultOption];
+		elements = _elements;
+
+
+		Object = Make2DimDynamicArray(1, sizeX, ' ');
+		ForegroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultForegroundColor);
+		BackgroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultBackgroundColor);
+
+		// Get Max Leght of options String
+		for (auto& element : _elements) {
+			if (element.second.size() > maxOptionsStrLength) {
+				maxOptionsStrLength = static_cast<unsigned>(element.second.size());
+			}
+		}
+
+		// Make Options to Button
+		for (unsigned index = 0u; index < _elements.size(); index++) {
+
+			TextButton* tempButton = new TextButton;
+
+			std::string buttonStringTemps = elements[index].second;
+			
+			unsigned space = static_cast<unsigned>(maxOptionsStrLength - elements[index].second.size());
+			for (unsigned s = 0; s < space; s++) {
+				buttonStringTemps += ' ';
+			}
+
+			tempButton->SetBackgroundColor(Color::HilightedBackgroundColor);
+			tempButton->SetSelectedBackgroundColor(Color::DefaultForegroundColor);
+			tempButton->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
+			tempButton->AdditionalKeyGuides.push_back({"Backspace", "Cancel"});
+			tempButton->Make(positionX, positionY + index + 1, buttonStringTemps, false);
+
+
+			tempButton->Render = false;
+
+			Options.push_back(tempButton);
+			rerenderUnSelected();
+		}
+
+		// Render Default
+		rerenderUnSelected();
 
 	}
 

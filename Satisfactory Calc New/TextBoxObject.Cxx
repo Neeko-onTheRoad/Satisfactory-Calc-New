@@ -1,7 +1,7 @@
 #include "TextBoxObject.Hxx"
 
 void TextBoxObject::Initialize() {}
-void TextBoxObject::Update(ISelectable* _selecting) {
+void TextBoxObject::Update(ISelectable*& _selecting) {
 	
 	if (_selecting == this) {
 
@@ -15,8 +15,6 @@ void TextBoxObject::Update(ISelectable* _selecting) {
 			BackCallBack();
 			NeedUpdate = true;
 		}
-
-		// Move Selected Logic
 	}
 
 }

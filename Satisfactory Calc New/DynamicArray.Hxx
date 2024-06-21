@@ -14,6 +14,7 @@ T* MakeDynamicArray(size_t _size, T _allocator) {
 	return result;
 }
 
+
 template <class T>
 T** Make2DimDynamicArray(size_t _sizeY, size_t _sizeX, T _allocator) {
 	T** result = new T*[_sizeY];

@@ -46,7 +46,7 @@ private:
 protected:
 
 	void ConsoleObject::Initialize();
-	void ConsoleObject::Update(ISelectable* _selecting);
+	void ConsoleObject::Update(ISelectable*& _selecting);
 	
 
 public:

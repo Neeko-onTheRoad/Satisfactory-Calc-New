@@ -14,7 +14,7 @@ class ConsoleObject {
 protected:
 
 	virtual void Initialize() = 0;
-	virtual void Update(ISelectable* _selecting) = 0;
+	virtual void Update(ISelectable*& _selecting) = 0;
 
 public:
 
@@ -38,7 +38,7 @@ public:
 	void SetBackgroundColor(ColorCode _color, unsigned _x, unsigned _y);
 
 	void InitializeBase();
-	void UpdateBaes(ISelectable* _selecting);
+	void UpdateBaes(ISelectable*& _selecting);
 
 };
 

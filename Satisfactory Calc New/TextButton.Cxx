@@ -1,7 +1,7 @@
 #include "TextButton.Hxx"
 
 void TextButton::Initialize() {}
-void TextButton::Update(ISelectable* _selecting) {
+void TextButton::Update(ISelectable*& _selecting) {
 	if (_selecting == this) {
 
 		// CallBack Logic
@@ -15,7 +15,6 @@ void TextButton::Update(ISelectable* _selecting) {
 			NeedUpdate = true;
 		}
 
-		// Move Selected Logic
 	}
 }
 
@@ -56,8 +55,9 @@ void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _b
 		Object[0][x + (bar ? 3u : 1u)] = _element[x];
 	}
 
-	ForegroundColor[0][1] = Color::HilightedForegroundColor;
+	if (bar) ForegroundColor[0][1] = Color::HilightedForegroundColor;
 
+	UnSelect();
 	NeedUpdate = true;
 
 }

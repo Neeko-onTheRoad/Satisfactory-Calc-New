@@ -5,7 +5,7 @@ void ConsoleObject::InitializeBase() {
 	Initialize();
 }
 
-void ConsoleObject::UpdateBaes(ISelectable* _selecting) {
+void ConsoleObject::UpdateBaes(ISelectable*& _selecting) {
 	Update(_selecting); 
 }
 

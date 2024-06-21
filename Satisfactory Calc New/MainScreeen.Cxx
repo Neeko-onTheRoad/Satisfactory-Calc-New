@@ -126,29 +126,6 @@ void MainScreen::Initialize() {
 }
 
 void MainScreen::Update() {
-
-	// Button Up & Down Logic
-	if (KeyManager::GetKeyPressed(Keys::DOWN)) {
-		Selecting->UnSelect();
-		Selecting = Selecting->GetLower();
-		Selecting->Select();
-		NeedUpdate = true;
-	}
-	else if (KeyManager::GetKeyPressed(Keys::UP)) {
-		Selecting->UnSelect();
-		Selecting = Selecting->GetUpper();
-		Selecting->Select();
-		NeedUpdate = true;
-	}
-
-	//// Button Pressed Logic
-	//else if (KeyManager::GetKeyPressed(Keys::SELECT)) {
-	//	if (TextButton* text = dynamic_cast<TextButton*>(Selecting)) {
-	//		text->CallBack();
-	//		NeedUpdate = true;
-	//	}
-	//}
-
 }
 
 std::string MainScreen::GetTitle() const {
