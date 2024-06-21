@@ -9,11 +9,15 @@ void TextBoxObject::Update(ISelectable*& _selecting) {
 		if (KeyManager::GetKeyPressed(Keys::SELECT)) {
 			CallBack();
 			NeedUpdate = true;
+
+			return;
 		}
 
-		else if (KeyManager::GetKeyPressed(Keys::BACK)) {
+		if (KeyManager::GetKeyPressed(Keys::BACK)) {
 			BackCallBack();
 			NeedUpdate = true;
+
+			return;
 		}
 	}
 
@@ -32,9 +36,13 @@ void TextBoxObject::rebuildKeyGuides() {
 
 void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottomMargin) {
 	
+	// Delete All Element
+	Delete2DimDynamicArray(Object, sizeY);
+	Delete2DimDynamicArray(ForegroundColor, sizeY);
+	Delete2DimDynamicArray(BackgroundColor, sizeY);
+
 	positionX = _posX;
 	positionY = _posY;
-
 
 	std::vector<std::string> splited;
 	std::string token = "";

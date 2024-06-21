@@ -8,9 +8,13 @@ std::string to_string(ItemSortOption _orderBy) {
 	}
 }
 
+
+
 std::string ItemWiki::GetTitle() const {
 	return "Item Wiki";
 }
+
+
 
 void ItemWiki::Initialize() {
 
@@ -33,53 +37,32 @@ void ItemWiki::Initialize() {
 
 
 	// Draw Order type Button
+	TextBoxObject* orderBy = new TextBoxObject;
+	orderBy->Make(3, 1, " Item Ordered By: \n");
+
+	AddObject(orderBy);
+
+	// Draw Order type Selection Button
+	SelectBox<ItemSortOption>* orderByOptions = new SelectBox<ItemSortOption>;
 	{
-		TextBoxObject* OrderBy = new TextBoxObject;
-		OrderBy->Make(3, 1, " Item Ordered By: \n");
-		OrderBy->SetForegroundColor(Color::HilightedForegroundColor);
-		OrderBy->SetBackgroundColor(Color::HilightedBackgroundColor);
+		std::vector<std::pair<ItemSortOption, std::string>> orderByOptionsElements;
+		orderByOptionsElements.emplace_back(ItemSortOption::Category, "Category");
+		orderByOptionsElements.emplace_back(ItemSortOption::NameA2Z, "Name (A~Z)");
+		orderByOptionsElements.emplace_back(ItemSortOption::NameZ2A, "Name (Z~A)");
 
-		AddObject(OrderBy);
-
+		orderByOptions->Make(orderBy->GetPositionX() + orderBy->GetSizeX(), 1, orderByOptionsElements);
 	}
 
-	SelectBox<int>* sb1 = new SelectBox<int>;
-	std::vector<std::pair<int, std::string>> sb1ls;
-	sb1ls.emplace_back(1, "Tst1One");
-	sb1ls.emplace_back(2, "Tst1Twofewfewa");
-	sb1ls.emplace_back(2, "Tst1Twofewffewaewa");
-	sb1ls.emplace_back(2, "Tst1Twofeffwfewa");
-	sb1ls.emplace_back(2, "Tst1Twofewfewa");
+	AddObject(orderByOptions);
 
-	sb1->Make(4, 3, sb1ls);
-
-
-	SelectBox<int>* sb2 = new SelectBox<int>;
-	std::vector<std::pair<int, std::string>> sb2ls;
-	sb2ls.emplace_back(1, "Tst2One");
-	sb2ls.emplace_back(2, "Tst2Twofeeafw");
-
-	sb2->Make(4, 4, sb2ls);
-	sb2->LinkUpper(sb1);
-	sb2->LinkLower(sb1);
-	sb1->LinkUpper(sb2);
-	sb1->LinkLower(sb2);
-
-	AddObject(sb1);
-	AddObject(sb2);
-
-	for (auto& i : sb1->Options) {
-		AddObject(i, 1);
-	}
-	for (auto& i : sb2->Options) {
-		AddObject(i, 1);
-	}
-
-	Selecting = sb1;
+	Selecting = orderByOptions;
 }
 
-void ItemWiki::Update() {
 
+
+
+void ItemWiki::Update() {
+	
 }
 
 void ItemWiki::drawInBuffer() {

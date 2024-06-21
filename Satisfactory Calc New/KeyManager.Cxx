@@ -20,7 +20,6 @@ int KeySettings::Get(Keys key) {
 		AUTO_CASE(RIGHT)
 		AUTO_CASE(SELECT)
 		AUTO_CASE(BACK)
-		AUTO_CASE(FIND)
 		AUTO_CASE(HOME)
 		AUTO_CASE(LEFTTAB)
 		AUTO_CASE(RIGHTTAB)
@@ -38,7 +37,6 @@ void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 	_action(Keys::RIGHT);
 	_action(Keys::SELECT);
 	_action(Keys::BACK);
-	_action(Keys::FIND);
 	_action(Keys::HOME);
 	_action(Keys::LEFTTAB);
 	_action(Keys::RIGHTTAB);

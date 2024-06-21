@@ -32,9 +32,9 @@ void ConsoleObject::SetBackgroundColor(ColorCode _color) {
 void ConsoleObject::SetForegroundColor(ColorCode _color, unsigned _x, unsigned _y) {
 
 	if (_x >= GetSizeX() || _y >= GetSizeY()) {
-		std::cerr << "ConsoleObject::SetForegroundColor()" << std::endl
-		          << "Max Size is " << GetSizeX() << " " << GetSizeY()
-				  << ", But you changed " << _x << " " << _y;
+		std::cerr << "ConsoleObject::SetForegroundColor()" << std::endl;
+		std::cerr << "Max Size is " << GetSizeX() << " " << GetSizeY();
+		std::cerr << ", But you changed " << _x << " " << _y;
 
 		throw std::out_of_range("ConsoleObject::SetForegroundColor()");
 	}
@@ -47,9 +47,9 @@ void ConsoleObject::SetForegroundColor(ColorCode _color, unsigned _x, unsigned _
 // Throw out_of_range if position is not in range
 void ConsoleObject::SetBackgroundColor(ColorCode _color, unsigned _x, unsigned _y) {
 	if (_x >= GetSizeX() || _y >= GetSizeY()) {
-		std::cerr << "ConsoleObject::SetBackroundColor()" << std::endl
-		          << "Max Size is " << GetSizeX() << " " << GetSizeY()
-				  << ", But you changed " << _x << " " << _y << std::endl;
+		std::cerr << "ConsoleObject::SetBackroundColor()" << std::endl;
+		std::cerr << "Max Size is " << GetSizeX() << " " << GetSizeY();
+		std::cerr << ", But you changed " << _x << " " << _y << std::endl;
 
 		throw std::out_of_range("ConsoleObject::SetBackroundColor()");
 	}

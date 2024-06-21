@@ -1,6 +1,11 @@
 #include "ConsoleScene.Hxx"
 
 void ConsoleScene::AddObject(ConsoleObject* _object, int _layer) {
+	
+	//if (SelectBox<void*>* selectBox = dynamic_cast<SelectBox<void*>*>(_object)) {
+	//	
+	//}
+
 	Objects[_layer].push_back(_object);
 	NeedUpdate = true;
 }
@@ -65,6 +70,8 @@ void ConsoleScene::UpdateBase() {
 			Selecting = Selecting->GetUpper();
 			Selecting->Select();
 			NeedUpdate = true;
+
+			return;
 		}
 	}
 	else if (KeyManager::GetKeyPressed(Keys::DOWN)) {
@@ -73,6 +80,8 @@ void ConsoleScene::UpdateBase() {
 			Selecting = Selecting->GetLower();
 			Selecting->Select();
 			NeedUpdate = true;
+
+			return;
 		}
 	}
 	else if (KeyManager::GetKeyPressed(Keys::LEFT)) {
@@ -81,6 +90,8 @@ void ConsoleScene::UpdateBase() {
 			Selecting = Selecting->GetLeft();
 			Selecting->Select();
 			NeedUpdate = true;
+			
+			return;
 		}
 	}
 	else if (KeyManager::GetKeyPressed(Keys::RIGHT)) {
@@ -89,6 +100,8 @@ void ConsoleScene::UpdateBase() {
 			Selecting = Selecting->GetRight();
 			Selecting->Select();
 			NeedUpdate = true;
+
+			return;
 		}
 	}
 

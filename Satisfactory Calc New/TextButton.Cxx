@@ -8,11 +8,15 @@ void TextButton::Update(ISelectable*& _selecting) {
 		if (KeyManager::GetKeyPressed(Keys::SELECT)) {
 			CallBack();
 			NeedUpdate = true;
+
+			return;
 		}
 
-		else if (KeyManager::GetKeyPressed(Keys::BACK)) {
+		if (KeyManager::GetKeyPressed(Keys::BACK)) {
 			BackCallBack();
 			NeedUpdate = true;
+
+			return;
 		}
 
 	}
@@ -31,6 +35,11 @@ void TextButton::rebuildKeyGuides() {
 
 void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _bar) {
 
+	// Delete All Element
+	Delete2DimDynamicArray(Object, sizeY);
+	Delete2DimDynamicArray(ForegroundColor, sizeY);
+	Delete2DimDynamicArray(BackgroundColor, sizeY);
+
 	bar       = _bar;
 	positionX = _posX;
 	positionY = _posY;
@@ -48,14 +57,17 @@ void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _b
 	ForegroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultForegroundColor);
 	BackgroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultBackgroundColor);
 
-	if (bar) Object[0][1] = '-';
 
 	// Draw Element in Render Buffer, Same with Upper, offset will be 3
 	for (unsigned x = 0u; x < _element.size(); x++) {
 		Object[0][x + (bar ? 3u : 1u)] = _element[x];
 	}
 
-	if (bar) ForegroundColor[0][1] = Color::HilightedForegroundColor;
+	// Draw front bar if Need
+	if (bar) {
+		Object[0][1] = '-';
+		ForegroundColor[0][1] = Color::HilightedForegroundColor;
+	}
 
 	UnSelect();
 	NeedUpdate = true;

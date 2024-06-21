@@ -15,7 +15,7 @@ constexpr clock_t AUTO_PRESSING_DELAY = 380ull;
 constexpr clock_t AUTO_PRESSING_GAP   = 45ull;
 
 enum class Keys {
-	UP, DOWN, LEFT, RIGHT, SELECT, BACK, FIND, HOME, LEFTTAB, RIGHTTAB
+	UP, DOWN, LEFT, RIGHT, SELECT, BACK, HOME, LEFTTAB, RIGHTTAB
 };
 
 enum class KeyState {
@@ -36,7 +36,6 @@ public:
 	static constexpr int SELECT = VK_RETURN;
 	static constexpr int BACK   = VK_BACK;
 	static constexpr int HOME   = VK_ESCAPE;
-	static constexpr int FIND   = (int)'F';
 
 	static int  Get(Keys key);
 	static void ForeachKeys(std::function<void(Keys)> action);

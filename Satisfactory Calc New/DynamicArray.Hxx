@@ -31,4 +31,14 @@ T** Make2DimDynamicArray(size_t _sizeY, size_t _sizeX, T _allocator) {
 }
 
 
+template <class T>
+void Delete2DimDynamicArray(T**& _array, size_t _sizeY) {
+	for (int y = 0; y < _sizeY; y++) {
+		delete[] _array[y];
+	}
+
+	delete[] _array;
+}
+
+
 #endif
