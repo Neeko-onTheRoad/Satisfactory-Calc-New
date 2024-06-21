@@ -2,6 +2,6 @@
 
 void Satisfactory::InitializeBuildings() {
 
-	using namespace Building;
+	using namespace Buildings;
 
 }

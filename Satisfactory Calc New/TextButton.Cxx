@@ -26,7 +26,7 @@ void TextButton::rebuildKeyGuides() {
 	keyGuides.clear();
 
 	// Initialize Default Key Guides
-	           keyGuides.push_back({ "Enter",       "Select"   });
+	keyGuides.push_back({ "Enter", "Select" });
 	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
 	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
 	if (left)  keyGuides.push_back({ "Arrow Left",  "Go Left"  });
@@ -70,6 +70,7 @@ void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _b
 	}
 
 	UnSelect();
+	rebuildKeyGuides();
 	NeedUpdate = true;
 
 }

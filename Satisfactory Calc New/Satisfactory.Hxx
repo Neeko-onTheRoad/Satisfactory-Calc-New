@@ -6,6 +6,9 @@
 #include "Item.Hxx"
 #include "Recipe.Hxx"
 #include "Building.Hxx"
+#include "ItemTable.Hxx"
+#include "RecipeTable.Hxx"
+#include "BuildingTable.Hxx"
 
 namespace Satisfactory {
 
@@ -18,6 +21,8 @@ namespace Satisfactory {
 	static std::vector<Item*>     ItemList;
 	static std::vector<Recipe*>   RecipeList;
 	static std::vector<Building*> BuildingList;
+	
+	static std::vector<Item*> PowerSources;
 
 }
 

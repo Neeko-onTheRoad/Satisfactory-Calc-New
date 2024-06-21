@@ -14,9 +14,15 @@
 // All definition of this class will be do in hether file
 // Template class can't be definition in other files
 
+class SelectBoxBase {
+public:
+	std::vector<TextButton*> OptionButtons;
+};
+
 template <class T>
 class SelectBox :
 	public ConsoleObject,
+	public SelectBoxBase,
 	public ISelectable, 
 	public IReplaceable
 {
@@ -55,11 +61,14 @@ private:
 		keyGuides.clear();
 
 		// Initialize Default Key Guides
-					keyGuides.push_back({ "Enter",      "Change Option" });
-		if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"         });
-		if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"       });
-		if (left)  keyGuides.push_back({ "Arrow Left",  "Go Left"       });
-		if (right) keyGuides.push_back({ "Arrow Right", "Go Right"      });
+
+		keyGuides.push_back({ "Enter", "Change Option" });
+		if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
+		if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
+		if (left)  keyGuides.push_back({ "Arrow Left",  "Go Left"  });
+		if (right) keyGuides.push_back({ "Arrow Right", "Go Right" });
+			
+
 	}
 
 	void rerenderUnSelected() {
@@ -240,7 +249,6 @@ protected:
 
 public:
 
-	std::vector<TextButton*> OptionButtons;
 	virtual ~SelectBox() {};
 
 	void Make(int _posX, int _posY, const std::vector<std::pair<T, std::string>>& _elements, unsigned _defaultOption = 0) {
@@ -293,7 +301,11 @@ public:
 			tempButton->SetBackgroundColor(Color::HilightedBackgroundColor);
 			tempButton->SetSelectedBackgroundColor(Color::DefaultForegroundColor);
 			tempButton->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
-			tempButton->AdditionalKeyGuides.push_back({"Backspace", "Cancel"});
+
+			tempButton->AdditionalKeyGuides.push_back({ "Backspace",  "Cancel"  });
+			tempButton->AdditionalKeyGuides.push_back({ "Arrow Up",   "Go Up"   });
+			tempButton->AdditionalKeyGuides.push_back({ "Arrow Down", "Go Down" });
+
 			tempButton->Make(positionX, positionY + index + 1, buttonStringTemps, false);
 
 			if (index == _defaultOption) {
@@ -308,8 +320,10 @@ public:
 		}
 
 		// Render Default
+		rebuildKeyGuides();
 		rerenderUnSelected();
 
+		NeedUpdate = true;
 	}
 
 	T GetElement() {

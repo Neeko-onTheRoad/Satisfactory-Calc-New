@@ -46,6 +46,7 @@ struct Item {
 	ItemCategory Category     = ItemCategory::Ores;
 	unsigned     MaxStackSize = 0;
 	unsigned     SinkPoint    = 0;
+	unsigned     Energy       = 0;
 
 	std::vector<const Recipe*> Recipes = {};
 	std::vector<const Recipe*> Usages  = {};

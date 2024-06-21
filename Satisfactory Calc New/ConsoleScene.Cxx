@@ -2,9 +2,12 @@
 
 void ConsoleScene::AddObject(ConsoleObject* _object, int _layer) {
 	
-	//if (SelectBox<void*>* selectBox = dynamic_cast<SelectBox<void*>*>(_object)) {
-	//	
-	//}
+	if (SelectBoxBase* selectBox = dynamic_cast<SelectBoxBase*>(_object)) {
+
+		for (auto& optionButton : selectBox->OptionButtons) {
+			Objects[_layer + 1].push_back(optionButton);
+		}
+	}
 
 	Objects[_layer].push_back(_object);
 	NeedUpdate = true;

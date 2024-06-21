@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include "Item.Hxx"
+#include "WikiPage.Hxx"
 #include "SelectBox.Hxx"
 #include "TextButton.Hxx"
 #include "ConsoleScene.Hxx"
@@ -15,8 +16,6 @@ enum class ItemSortOption {
 	NameA2Z, NameZ2A, Category
 };
 
-static std::string to_string(ItemSortOption _orderBy);
-
 class ItemWiki : public ConsoleScene {
 
 private:
@@ -24,13 +23,18 @@ private:
 	int scroll = 0;
 	ItemSortOption sortOption = ItemSortOption::Category;
 
-	std::map<char,         std::vector<Item*>> ItemSortedByNameA2Z;
-	std::map<char,         std::vector<Item*>> ItemSortedByNameZ2A;
-	std::map<ItemCategory, std::vector<Item*>> ItemSortedByCategory;
+	std::map<char,         std::vector<Item*>> itemSortedByNameA2Z;
+	std::map<char,         std::vector<Item*>> itemSortedByNameZ2A;
+	std::map<ItemCategory, std::vector<Item*>> itemSortedByCategory;
 
-	std::map<int, TextButton> RenderTextButton;
+	std::vector<TextButton*> renderedTextButtonNameA2Z;
+	std::vector<TextButton*> renderedTextButtonNameZ2A;
+	std::vector<TextButton*> renderedTextButtonCategory;
+
+	std::map<int, TextButton*> renderBuffer;
 
 	void drawInBuffer();
+	void rerender();
 	
 
 protected:

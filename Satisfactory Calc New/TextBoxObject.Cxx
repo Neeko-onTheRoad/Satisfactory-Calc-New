@@ -27,7 +27,7 @@ void TextBoxObject::rebuildKeyGuides() {
 	keyGuides.clear();
 
 	// Initialize Default key Guides
-	           keyGuides.push_back({ "Enter",       "Select"   });
+	keyGuides.push_back({ "Enter", "Select" });
 	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
 	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
 	if (left ) keyGuides.push_back({ "Arrow Left",  "Go Left"  });
@@ -76,6 +76,7 @@ void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottom
 		}
 	}
 
+	rebuildKeyGuides();
 	NeedUpdate = true;
 
 }

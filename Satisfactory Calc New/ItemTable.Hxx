@@ -10,7 +10,7 @@ namespace Satisfactory {
 
 		// Ores
 		static Item* Limestone;
-		static Item* Ironore;
+		static Item* IronOre;
 		static Item* CopperOre;
 		static Item* CateriumOre;
 		static Item* Coal;
