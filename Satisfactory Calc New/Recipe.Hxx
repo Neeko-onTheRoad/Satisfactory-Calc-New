@@ -12,21 +12,21 @@ struct Building;
 
 struct Recipe {
 
-	std::string name     = "";
-	bool        isAlt    = false;
-	Building*   building = nullptr;
+	std::string Name     = "";
+	bool        IsAlt    = false;
+	Building*   Building = nullptr;
 
-	std::vector<std::tuple<Item*, lDouble, unsigned>> input  = {};
-	std::vector<std::tuple<Item*, lDouble, unsigned>> output = {};
+	std::vector<std::tuple<Item*, lDouble, unsigned>> Input  = {};
+	std::vector<std::tuple<Item*, lDouble, unsigned>> Output = {};
 
 	void AddInput(Item* _item, lDouble _perMin, unsigned _amount) {
-		_item->Usages.push_back(this);
-		input.emplace_back(_item, _perMin, _amount);
+		if (_item) _item->Usages.push_back(this);
+		Input.emplace_back(_item, _perMin, _amount);
 	}
 
 	void AddOutput(Item* _item, lDouble _perMin, unsigned _amount) {
-		_item->Recipes.push_back(this);
-		input.emplace_back(_item, _perMin, _amount);
+		if (_item) _item->Recipes.push_back(this);
+		Output.emplace_back(_item, _perMin, _amount);
 	}
 
 };

@@ -39,7 +39,7 @@ std::string KeyManager::GetName(Keys key) {
 		case Keys::HOME:     return "ESC";
 		case Keys::LEFTTAB:  return "LShift";
 		case Keys::RIGHTTAB: return "RShift";
-		default: "N\\A";
+		default: return "N\\A";
 	}
 }
 

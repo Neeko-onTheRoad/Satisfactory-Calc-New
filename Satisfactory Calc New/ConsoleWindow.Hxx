@@ -16,17 +16,17 @@
 
 #include "ItemWiki.Hxx"
 #include "MainScreen.Hxx"
-
+#include "EmptyScene.Hxx"
 
 class ConsoleWindow {
 
 private:
 
 	unsigned nowSceneIndex = 0u;
-	ConsoleScene* nowScene;
+	ConsoleScene* nowScene = new EmptyScene;
 	std::vector<ConsoleScene*> scenes;
 
-	ISelectable* selecting;
+	ISelectable* selecting = nullptr;
 
 	char      titleBar               [TITLE_BAR_HEIGHT][CONSOLE_WIDTH] = {};
 	ColorCode titleBarForegroundColor[TITLE_BAR_HEIGHT][CONSOLE_WIDTH] = {};

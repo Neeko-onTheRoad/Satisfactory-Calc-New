@@ -37,7 +37,7 @@ void ItemWikiPage::Update(ISelectable*& _selecting) {
 }
 
 void ItemWikiPage::Make(const Item* item, ISelectable* _before) {
-	
+
 	Before = _before;
 
 	for (int y = 0; y < SCENE_HEIGHT; y++) {
@@ -198,9 +198,42 @@ void ItemWikiPage::Make(const Item* item, ISelectable* _before) {
 
 	// Recipes
 
-	unsigned recipeY = 0;
+	unsigned recipeEndPoint = upperBarEndPoint + 4u;
 
-	for (int i = 0; i < )
+	std::string InputItem  = "Input Item";
+	std::string OutputItem = "Output Item";
+	std::string Building   = "Building";
+
+	for (unsigned x = 0; x < InputItem.size(); x++) {
+		Object[upperBarEndPoint + 2][x + infoBarRightPoint + 5] = InputItem[x];
+		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 5] = Color::HilightedForegroundColor;
+	}
+
+	for (unsigned x = 0; x < OutputItem.size(); x++) {
+		Object[upperBarEndPoint + 2][x + infoBarRightPoint + 33] = OutputItem[x];
+		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 33] = Color::HilightedForegroundColor;
+	}
+
+	for (unsigned x = 0; x < Building.size(); x++) {
+		Object[upperBarEndPoint + 2][x + infoBarRightPoint + 61] = Building[x];
+		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 61] = Color::HilightedForegroundColor;
+	}
+
+	for (unsigned x = infoBarRightPoint + 4; x < CONSOLE_WIDTH - 4; x++) {
+		Object[upperBarEndPoint + 3][x] = Ascii::HZ_BAR;
+		ForegroundColor[upperBarEndPoint + 3][x] = Color::HilightedForegroundColor;
+	}
+
+	for (auto& recipe : item->Recipes) {
+	}
+
+	for (unsigned y = upperBarEndPoint + 1; y < recipeEndPoint; y++) {
+		for (unsigned x = infoBarRightPoint + 3; x < CONSOLE_WIDTH - 3; x++) {
+			BackgroundColor[y][x] = Color::HilightedBackgroundColor;
+		}
+	}
+
+
 
 }
 

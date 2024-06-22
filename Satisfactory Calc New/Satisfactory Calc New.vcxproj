@@ -106,6 +106,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>Z:\Librarys\boost_1_85_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>Z:\Librarys\boost_1_85_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,9 +142,6 @@
     <ClCompile Include="ConsoleObject.Cxx" />
     <ClCompile Include="ConsoleScene.Cxx" />
     <ClCompile Include="EmptyScene.Cxx" />
-    <ClCompile Include="InitializeBuilding.Cxx" />
-    <ClCompile Include="InitializeItem.Cxx" />
-    <ClCompile Include="InitializeRecipe.Cxx" />
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
     <ClCompile Include="ConsoleManager.Cxx" />
@@ -160,16 +159,12 @@
   <ItemGroup>
     <ClInclude Include="AsciiMap.Hxx" />
     <ClInclude Include="Building.Hxx" />
-    <ClInclude Include="BuildingTable.Hxx" />
     <ClInclude Include="Color.Hxx" />
     <ClInclude Include="ConsoleObject.Hxx" />
     <ClInclude Include="ConsoleScene.Hxx" />
     <ClInclude Include="ConsoleWindow.Hxx" />
     <ClInclude Include="DynamicArray.Hxx" />
     <ClInclude Include="EmptyScene.Hxx" />
-    <ClInclude Include="ImageManager.Hxx" />
-    <ClInclude Include="ItemTable.Hxx" />
-    <ClInclude Include="RecipeTable.Hxx" />
     <ClInclude Include="Satisfactory.Hxx" />
     <ClInclude Include="ISelectable.Hxx" />
     <ClInclude Include="Item.Hxx" />

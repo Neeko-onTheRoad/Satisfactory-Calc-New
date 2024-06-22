@@ -7,8 +7,6 @@
 
 int main(void) {
 
-
-
 	ConsoleWindow window = ConsoleWindow();
 
 	window.Initialize();

@@ -1,7 +1,6 @@
 #include "Satisfactory.Hxx"
 
-void Satisfactory::InitializeBuildings() {
+namespace Satisfactory {
 
-	using namespace Buildings;
 
 }

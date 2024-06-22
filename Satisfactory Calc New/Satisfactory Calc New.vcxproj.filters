@@ -52,14 +52,8 @@
     <Filter Include="헤더 파일\Satisfactory\Structures">
       <UniqueIdentifier>{76d691ab-724e-4e3e-b880-b5f812b60f8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Satisfactory\Tables">
-      <UniqueIdentifier>{9abb12bd-5858-423d-b946-451006a6c807}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Satisfactory">
-      <UniqueIdentifier>{4d445dc4-85bf-4f6b-b46a-e70b6205cbed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Satisfactory\Initializes">
-      <UniqueIdentifier>{6e9d90da-e018-44fe-a1a9-50d19b78e507}</UniqueIdentifier>
+      <UniqueIdentifier>{0f6aae91-f14a-416f-8e11-09033133efad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -116,15 +110,6 @@
     </ClCompile>
     <ClCompile Include="Satisfactory.Cxx">
       <Filter>소스 파일\Satisfactory</Filter>
-    </ClCompile>
-    <ClCompile Include="InitializeBuilding.Cxx">
-      <Filter>소스 파일\Satisfactory\Initializes</Filter>
-    </ClCompile>
-    <ClCompile Include="InitializeItem.Cxx">
-      <Filter>소스 파일\Satisfactory\Initializes</Filter>
-    </ClCompile>
-    <ClCompile Include="InitializeRecipe.Cxx">
-      <Filter>소스 파일\Satisfactory\Initializes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,18 +175,6 @@
     </ClInclude>
     <ClInclude Include="Item.Hxx">
       <Filter>헤더 파일\Satisfactory\Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildingTable.Hxx">
-      <Filter>헤더 파일\Satisfactory\Tables</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemTable.Hxx">
-      <Filter>헤더 파일\Satisfactory\Tables</Filter>
-    </ClInclude>
-    <ClInclude Include="RecipeTable.Hxx">
-      <Filter>헤더 파일\Satisfactory\Tables</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageManager.Hxx">
-      <Filter>헤더 파일\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

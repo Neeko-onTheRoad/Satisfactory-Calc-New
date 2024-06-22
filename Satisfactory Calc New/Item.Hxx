@@ -6,10 +6,8 @@
 #include <string>
 #include <vector>
 
-typedef std::vector<std::string> Strings;
-
 enum class ItemCategory {
-	Ores, Ingots, Minerals, Ailiens, Liquids, Gas,
+	Ores, Ingots, Minerals, Aliens, Liquids, Gas,
 	StandardParts, IndustrialParts, Electronics, Communications,
 	Containers, Fuels, Consumed, Ammos, Nuclear, Waste, Spectial
 };
@@ -21,7 +19,7 @@ static std::string GetCategoriyName(ItemCategory _category) {
 		AUTO_CASE(Ores);
 		AUTO_CASE(Ingots);
 		AUTO_CASE(Minerals);
-		AUTO_CASE(Ailiens);
+		AUTO_CASE(Aliens);
 		AUTO_CASE(Liquids);
 		AUTO_CASE(Gas);
 		AUTO_CASE(Containers);
@@ -37,22 +35,25 @@ static std::string GetCategoriyName(ItemCategory _category) {
 
 #undef AUTO_CASE
 
+
+
+
+
 struct Recipe;
 
 struct Item {
 
-	std::string  Name         = "N\\A";
-	Strings      Description  = { };
-	ItemCategory Category     = ItemCategory::Ores;
-	unsigned     MaxStackSize = 0;
-	unsigned     SinkPoint    = 0;
-
-	unsigned     Energy       = 0;
-	unsigned     PowerUseMin  = 0;
-	unsigned     PowerUseAvrg = 0;
-	unsigned     PowerUseMax  = 0;
-
-	std::string  Radioactive  = "";
+	std::string              Name         = "N\\A";
+	std::vector<std::string> Description  = { };
+	ItemCategory             Category     = ItemCategory::Ores;
+	unsigned                 MaxStackSize = 0;
+	unsigned                 SinkPoint    = 0;
+				             
+	unsigned                 Energy       = 0;
+	unsigned                 PowerUseMin  = 0;
+	unsigned                 PowerUseAvrg = 0;
+	unsigned                 PowerUseMax  = 0;
+	std::string              Radioactive  = "";
 
 	std::vector<const Recipe*> Recipes = {};
 	std::vector<const Recipe*> Usages  = {};

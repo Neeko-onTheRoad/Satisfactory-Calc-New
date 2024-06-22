@@ -106,6 +106,7 @@ void TextButton::Select() {
 		BackgroundColor[0][x] = selectedBackgroundColor;
 	}
 
+	if (bar) ForegroundColor[0][1] = Color::HilightedForegroundColor;
 }
 
 void TextButton::UnSelect() {
@@ -119,7 +120,7 @@ void TextButton::UnSelect() {
 		BackgroundColor[0][x] = backgroundColor;
 	}
 
-	if (bar) ForegroundColor[0][1] = selectedForegroundColor;
+	if (bar) ForegroundColor[0][1] = Color::HilightedForegroundColor;
 
 }
 

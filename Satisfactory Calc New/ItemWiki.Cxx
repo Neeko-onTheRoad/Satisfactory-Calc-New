@@ -43,6 +43,7 @@ void ItemWiki::Initialize() {
 		AddObject(centerLine);
 	}
 
+
 	// Make Item Buttons
 	int y = 3;
 	for (auto& item : Satisfactory::ItemList) {
@@ -129,7 +130,7 @@ void ItemWiki::Initialize() {
 
 		}
 	}
-	
+
 	nowPage = new ItemWikiPage;
 	AddObject(nowPage);
 

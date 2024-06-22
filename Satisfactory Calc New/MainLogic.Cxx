@@ -12,8 +12,6 @@ void ConsoleWindow::Initialize() {
 	Satisfactory::Initialize();
 	Resources::Initialize();
 
-
-
 	// Faster I/O
 	std::ios_base::sync_with_stdio(0);
 	std::cout.tie(0);

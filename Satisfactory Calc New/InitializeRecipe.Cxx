@@ -1,7 +1,6 @@
 #include "Satisfactory.Hxx"
 
-void Satisfactory::InitializeRecipes() {
+namespace Satisfactory {
 
-	using namespace Recipes;
-
+	
 }
