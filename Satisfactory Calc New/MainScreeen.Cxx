@@ -109,7 +109,7 @@ void MainScreen::Initialize() {
 			creditPopup->SetForegroundColor(suAngRainbow[x], x + 22, 14);
 		}
 
-		creditPopup->AdditionalKeyGuides.push_back({"Backspace", "Close"});
+		creditPopup->AdditionalKeyGuides.push_back({ Keys::BACK, "Close" });
 		creditPopup->Render = false;
 
 		creditPopup->SetBackCallBack([&]() {

@@ -36,9 +36,9 @@ void ConsoleScene::InitializeBase() {
 	Initialize();
 
 	// Shared Key Guides of all Scene (except from home screen)
-	AdditionalKeyGuides.push_back({ "ESC",    "Go Home"});
-	AdditionalKeyGuides.push_back({ "LShift", "Left Scene"});
-	AdditionalKeyGuides.push_back({ "RShift", "Right Scene"});
+	AdditionalKeyGuides.push_back({ Keys::HOME,     "Go Home"     });
+	AdditionalKeyGuides.push_back({ Keys::LEFTTAB,  "Left Scene"  });
+	AdditionalKeyGuides.push_back({ Keys::RIGHTTAB, "Right Scene" });
 	
 	for (auto& layer : Objects) {
 		for (auto& object : layer.second) {
@@ -67,44 +67,46 @@ void ConsoleScene::UpdateBase() {
 	}
 
 	// Move Logic
-	if (KeyManager::GetKeyPressed(Keys::UP)) {
-		if (Selecting->GetUpper()) {
-			Selecting->UnSelect();
-			Selecting = Selecting->GetUpper();
-			Selecting->Select();
-			NeedUpdate = true;
+	if (Selecting) {
+		if (KeyManager::GetKeyPressed(Keys::UP)) {
+			if (Selecting->GetUpper()) {
+				Selecting->UnSelect();
+				Selecting = Selecting->GetUpper();
+				Selecting->Select();
+				NeedUpdate = true;
 
-			return;
+				return;
+			}
 		}
-	}
-	else if (KeyManager::GetKeyPressed(Keys::DOWN)) {
-		if (Selecting->GetLower()) {
-			Selecting->UnSelect();
-			Selecting = Selecting->GetLower();
-			Selecting->Select();
-			NeedUpdate = true;
+		else if (KeyManager::GetKeyPressed(Keys::DOWN)) {
+			if (Selecting->GetLower()) {
+				Selecting->UnSelect();
+				Selecting = Selecting->GetLower();
+				Selecting->Select();
+				NeedUpdate = true;
 
-			return;
+				return;
+			}
 		}
-	}
-	else if (KeyManager::GetKeyPressed(Keys::LEFT)) {
-		if (Selecting->GetLeft()) {
-			Selecting->UnSelect();
-			Selecting = Selecting->GetLeft();
-			Selecting->Select();
-			NeedUpdate = true;
+		else if (KeyManager::GetKeyPressed(Keys::LEFT)) {
+			if (Selecting->GetLeft()) {
+				Selecting->UnSelect();
+				Selecting = Selecting->GetLeft();
+				Selecting->Select();
+				NeedUpdate = true;
 			
-			return;
+				return;
+			}
 		}
-	}
-	else if (KeyManager::GetKeyPressed(Keys::RIGHT)) {
-		if (Selecting->GetRight()) {
-			Selecting->UnSelect();
-			Selecting = Selecting->GetRight();
-			Selecting->Select();
-			NeedUpdate = true;
+		else if (KeyManager::GetKeyPressed(Keys::RIGHT)) {
+			if (Selecting->GetRight()) {
+				Selecting->UnSelect();
+				Selecting = Selecting->GetRight();
+				Selecting->Select();
+				NeedUpdate = true;
 
-			return;
+				return;
+			}
 		}
 	}
 

@@ -20,9 +20,9 @@ void ConsoleWindow::RerenderBottomBar() {
 		int  minLength;
 
 		// Get Shorter string
-		if (key.Action.size() > key.Key.size()) {
+		if (key.Action.size() > KeyManager::GetName(key.Key).size()) {
 			actionLonger = true;
-			minLength = static_cast<int>(key.Key.size());
+			minLength = static_cast<int>(KeyManager::GetName(key.Key).size());
 		}
 		else {
 			actionLonger = false;
@@ -31,7 +31,7 @@ void ConsoleWindow::RerenderBottomBar() {
 
 		// Print both string to Shorter string's length
 		for (int i = 0; i < minLength; i++) {
-			bottomBar[1][index] = key.Key[i];
+			bottomBar[1][index] = KeyManager::GetName(key.Key)[i];
 			bottomBar[2][index] = key.Action[i];
 			index++;
 		}
@@ -44,8 +44,8 @@ void ConsoleWindow::RerenderBottomBar() {
 			}
 		}
 		else {
-			for (int i = minLength; i < key.Key.size(); i++) {
-				bottomBar[1][index++] = key.Key[i];
+			for (int i = minLength; i < KeyManager::GetName(key.Key).size(); i++) {
+				bottomBar[1][index++] = KeyManager::GetName(key.Key)[i];
 			}
 		}
 

@@ -49,6 +49,18 @@
     <Filter Include="소스 파일\Client\ConsoleWindow">
       <UniqueIdentifier>{eefbf996-dce0-414a-8ecb-07b57345dc6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Satisfactory\Structures">
+      <UniqueIdentifier>{76d691ab-724e-4e3e-b880-b5f812b60f8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Satisfactory\Tables">
+      <UniqueIdentifier>{9abb12bd-5858-423d-b946-451006a6c807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Satisfactory">
+      <UniqueIdentifier>{4d445dc4-85bf-4f6b-b46a-e70b6205cbed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Satisfactory\Initializes">
+      <UniqueIdentifier>{6e9d90da-e018-44fe-a1a9-50d19b78e507}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Index.Cxx">
@@ -96,11 +108,23 @@
     <ClCompile Include="MainScreeen.Cxx">
       <Filter>소스 파일\Client\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Satisfactory.Cxx">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="TextButton.Cxx">
       <Filter>소스 파일\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemWikiPage.Cxx">
+      <Filter>소스 파일\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Satisfactory.Cxx">
+      <Filter>소스 파일\Satisfactory</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializeBuilding.Cxx">
+      <Filter>소스 파일\Satisfactory\Initializes</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializeItem.Cxx">
+      <Filter>소스 파일\Satisfactory\Initializes</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializeRecipe.Cxx">
+      <Filter>소스 파일\Satisfactory\Initializes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,12 +158,6 @@
     <ClInclude Include="ItemWiki.Hxx">
       <Filter>헤더 파일\Client\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Item.Hxx">
-      <Filter>헤더 파일\Satisfactory</Filter>
-    </ClInclude>
-    <ClInclude Include="Building.Hxx">
-      <Filter>헤더 파일\Satisfactory</Filter>
-    </ClInclude>
     <ClInclude Include="AsciiMap.Hxx">
       <Filter>헤더 파일\Utilitys</Filter>
     </ClInclude>
@@ -158,19 +176,37 @@
     <ClInclude Include="KeyGuide.Hxx">
       <Filter>헤더 파일\Client</Filter>
     </ClInclude>
-    <ClInclude Include="Satisfactory.Hxx">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SelectBox.Hxx">
       <Filter>헤더 파일\Client\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Satisfactory.Hxx">
+      <Filter>헤더 파일\Satisfactory</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemWikiPage.Hxx">
+      <Filter>헤더 파일\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.Hxx">
+      <Filter>헤더 파일\Satisfactory\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.Hxx">
+      <Filter>헤더 파일\Satisfactory\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingTable.Hxx">
+      <Filter>헤더 파일\Satisfactory\Tables</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemTable.Hxx">
+      <Filter>헤더 파일\Satisfactory\Tables</Filter>
+    </ClInclude>
+    <ClInclude Include="RecipeTable.Hxx">
+      <Filter>헤더 파일\Satisfactory\Tables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Recipe.Hxx">
-      <Filter>헤더 파일\Satisfactory</Filter>
-    </None>
     <None Include="TextButton.Hxx">
       <Filter>헤더 파일\Client\Objects</Filter>
+    </None>
+    <None Include="Recipe.Hxx">
+      <Filter>헤더 파일\Satisfactory\Structures</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

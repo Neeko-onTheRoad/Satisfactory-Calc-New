@@ -18,11 +18,11 @@ namespace Satisfactory {
 	void InitializeRecipes();
 	void InitializeBuildings();
 
-	static std::vector<Item*>     ItemList;
-	static std::vector<Recipe*>   RecipeList;
-	static std::vector<Building*> BuildingList;
+	extern std::vector<Item*>     ItemList;
+	extern std::vector<Recipe*>   RecipeList;
+	extern std::vector<Building*> BuildingList;
 	
-	static std::vector<Item*> PowerSources;
+	extern std::vector<Item*> PowerSources;
 
 }
 

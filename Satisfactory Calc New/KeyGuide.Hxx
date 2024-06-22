@@ -8,7 +8,7 @@
 
 struct KeyGuide {
 	
-	std::string Key = "N\\A";
+	Keys Key = Keys::UP;
 	std::string Action = "N\\A";
 
 };

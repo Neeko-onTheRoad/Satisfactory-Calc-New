@@ -58,6 +58,7 @@ private:
 
 
 public:
+	static std::string GetName(Keys key);
 	
 	static void Initialize();
 	static void Update();

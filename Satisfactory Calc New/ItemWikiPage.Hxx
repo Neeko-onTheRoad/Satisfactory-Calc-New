@@ -1,23 +1,22 @@
 #pragma once
 
-#ifndef _WIKI_PAGE_HXX_
-#define _WIKI_PAGE_HXX_
+#ifndef _ITEM_WIKI_PAGE_HXX_
+#define _ITEM_WIKI_PAGE_HXX_
 
 #include "Item.Hxx"
 #include "ConsoleObject.Hxx"
 #include "ConsoleWindow.Hxx"
 
-class WikiPage :
+class ItemWikiPage :
 	public ConsoleObject,
 	public ISelectable
 {
 
 private:
 
-	WikiPage();
-	~WikiPage();
-
 	ISelectable* Before;
+
+
 
 protected:
 
@@ -25,6 +24,9 @@ protected:
 	void ConsoleObject::Update(ISelectable*& _selecting);
 
 public:
+
+	ItemWikiPage();
+	~ItemWikiPage();
 
 	void Make(const Item* item, ISelectable* _before);
 	
@@ -36,10 +38,10 @@ public:
 
 	KeyGuides ISelectable::GetKeyGuides() const;
 
-	ISelectable* ISelectable::GetUpper() const {};
-	ISelectable* ISelectable::GetLower() const {};
-	ISelectable* ISelectable::GetLeft () const {};
-	ISelectable* ISelectable::GetRight() const {};
+	ISelectable* ISelectable::GetUpper() const { return nullptr; };
+	ISelectable* ISelectable::GetLower() const { return nullptr; };
+	ISelectable* ISelectable::GetLeft () const { return nullptr; };
+	ISelectable* ISelectable::GetRight() const { return nullptr; };
 
 	void ISelectable::LinkUpper(ISelectable* _upper) {};
 	void ISelectable::LinkLower(ISelectable* _lower) {};

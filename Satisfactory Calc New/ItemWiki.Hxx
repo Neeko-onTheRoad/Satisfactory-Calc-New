@@ -5,33 +5,26 @@
 
 #include <algorithm>
 #include "Item.Hxx"
-#include "WikiPage.Hxx"
 #include "SelectBox.Hxx"
 #include "TextButton.Hxx"
 #include "ConsoleScene.Hxx"
 #include "Satisfactory.Hxx"
 #include "TextBoxObject.Hxx"
 
-enum class ItemSortOption {
-	NameA2Z, NameZ2A, Category
-};
-
+class ItemWikiPage;
 class ItemWiki : public ConsoleScene {
 
 private:
 
 	int scroll = 0;
-	ItemSortOption sortOption = ItemSortOption::Category;
 
-	std::map<char,         std::vector<Item*>> itemSortedByNameA2Z;
-	std::map<char,         std::vector<Item*>> itemSortedByNameZ2A;
-	std::map<ItemCategory, std::vector<Item*>> itemSortedByCategory;
+	TextBoxObject* nowTitle;
+	ItemWikiPage* nowPage;
 
-	std::vector<TextButton*> renderedTextButtonNameA2Z;
-	std::vector<TextButton*> renderedTextButtonNameZ2A;
-	std::vector<TextButton*> renderedTextButtonCategory;
+	ItemCategory nowScelectedCategory = ItemCategory::Ores;
+	std::vector<TextButton*> categoryButtons;
+	std::map<ItemCategory, std::vector<TextButton*>> itemButtons;
 
-	std::map<int, TextButton*> renderBuffer;
 
 	void drawInBuffer();
 	void rerender();

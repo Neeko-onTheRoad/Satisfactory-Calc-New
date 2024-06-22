@@ -1,25 +1,25 @@
-#include "WikiPage.Hxx"
+#include "ItemWikiPage.Hxx"
 
-WikiPage::WikiPage() {
+ItemWikiPage::ItemWikiPage() {
 	Render = false;
 	Before = nullptr;
 
 	Object = Make2DimDynamicArray(SCENE_HEIGHT, CONSOLE_WIDTH, ' ');
 	ForegroundColor = Make2DimDynamicArray(SCENE_HEIGHT, CONSOLE_WIDTH, Color::DefaultForegroundColor);
-	BackgroundColor = Make2DimDynamicArray(SCENE_HEIGHT, CONSOLE_WIDTH, Color::DefaultBackgroundColor);
+	BackgroundColor = Make2DimDynamicArray(SCENE_HEIGHT, CONSOLE_WIDTH, Color::HilightedBackgroundColor);
 }
 
-WikiPage::~WikiPage() {
+ItemWikiPage::~ItemWikiPage() {
 	Delete2DimDynamicArray(Object, SCENE_HEIGHT);
 	Delete2DimDynamicArray(ForegroundColor, SCENE_HEIGHT);
 	Delete2DimDynamicArray(BackgroundColor, SCENE_HEIGHT);
 }
 
-void WikiPage::Initialize() {
-	
+void ItemWikiPage::Initialize() {
+
 }
 
-void WikiPage::Update(ISelectable*& _selecting) {
+void ItemWikiPage::Update(ISelectable*& _selecting) {
 
 	if (_selecting == this) {
 		if (KeyManager::GetKeyPressed(Keys::BACK)) {
@@ -35,38 +35,38 @@ void WikiPage::Update(ISelectable*& _selecting) {
 
 }
 
-void WikiPage::Make(const Item* item, ISelectable* _before) {
+void ItemWikiPage::Make(const Item* item, ISelectable* _before) {
 	
 	Before = _before;
 
 }
 
-unsigned WikiPage::GetSizeX() const {
+unsigned ItemWikiPage::GetSizeX() const {
 	return CONSOLE_WIDTH;
 }
 
-unsigned WikiPage::GetSizeY() const {
+unsigned ItemWikiPage::GetSizeY() const {
 	return SCENE_HEIGHT;
 }
 
-int WikiPage::GetPositionX() const {
+int ItemWikiPage::GetPositionX() const {
 	return 0;
 }
 
-int WikiPage::GetPositionY() const {
+int ItemWikiPage::GetPositionY() const {
 	return 0;
 }
 
-KeyGuides WikiPage::GetKeyGuides() const {
-
+KeyGuides ItemWikiPage::GetKeyGuides() const {
+	return KeyGuides();
 }
 
-void WikiPage::Select() {
+void ItemWikiPage::Select() {
 	Render = true;
 	NeedUpdate = true;
 }
 
-void WikiPage::UnSelect() {
+void ItemWikiPage::UnSelect() {
 	Render = false;	
 	NeedUpdate = true;
 }

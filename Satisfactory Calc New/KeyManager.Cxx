@@ -9,9 +9,8 @@ std::unordered_map<Keys, clock_t>  KeyManager::PressingStart;
 std::unordered_map<Keys, KeyState> KeyManager::AutoPressLatch;
 std::unordered_map<Keys, int>      KeyManager::AutoPressCount;
 
-#define AUTO_CASE(key) case Keys::##key: { return KeySettings::##key; }
-
 // Return Key Code by int converted by Key Enum
+#define AUTO_CASE(key) case Keys::##key: { return KeySettings::##key; }
 int KeySettings::Get(Keys key) {
 	switch (key) {
 		AUTO_CASE(UP)
@@ -26,8 +25,23 @@ int KeySettings::Get(Keys key) {
 		default: return 0;
 	}
 }
-
 #undef AUTO_CASE
+
+// Return Key Code by String converted
+std::string KeyManager::GetName(Keys key) {
+	switch (key) {
+		case Keys::UP:       return "Arrow Up";
+		case Keys::DOWN:     return "Arrow Down";
+		case Keys::LEFT:     return "Arrow Left";
+		case Keys::RIGHT:    return "Arrow Right";
+		case Keys::SELECT:   return "Enter";
+		case Keys::BACK:     return "Backspace";
+		case Keys::HOME:     return "ESC";
+		case Keys::LEFTTAB:  return "LShift";
+		case Keys::RIGHTTAB: return "RShift";
+		default: "N\\A";
+	}
+}
 
 // Run function _action in all Keys
 void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
@@ -41,6 +55,7 @@ void KeySettings::ForeachKeys(std::function<void(Keys)> _action) {
 	_action(Keys::LEFTTAB);
 	_action(Keys::RIGHTTAB);
 }
+
 
 
 // Reset All KeyState

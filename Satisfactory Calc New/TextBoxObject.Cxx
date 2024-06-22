@@ -27,11 +27,11 @@ void TextBoxObject::rebuildKeyGuides() {
 	keyGuides.clear();
 
 	// Initialize Default key Guides
-	keyGuides.push_back({ "Enter", "Select" });
-	if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
-	if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
-	if (left ) keyGuides.push_back({ "Arrow Left",  "Go Left"  });
-	if (right) keyGuides.push_back({ "Arrow Right", "Go Right" });
+	keyGuides.push_back({ Keys::SELECT, "Select" });
+	if (upper) keyGuides.push_back({ Keys::UP,    "Go Up"    });
+	if (lower) keyGuides.push_back({ Keys::DOWN,  "Go Down"  });
+	if (left ) keyGuides.push_back({ Keys::LEFT,  "Go Left"  });
+	if (right) keyGuides.push_back({ Keys::RIGHT, "Go Right" });
 }
 
 void TextBoxObject::Make(int _posX, int _posY, std::string _element, int _bottomMargin) {

@@ -155,7 +155,7 @@
     <ClCompile Include="TextButton.Cxx" />
     <ClCompile Include="TitleBar.Cxx" />
     <ClCompile Include="ItemWiki.Cxx" />
-    <ClCompile Include="WikiPage.Cxx" />
+    <ClCompile Include="ItemWikiPage.Cxx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsciiMap.Hxx" />
@@ -181,7 +181,7 @@
     <ClInclude Include="SelectBox.Hxx" />
     <ClInclude Include="TextBoxObject.Hxx" />
     <ClInclude Include="ItemWiki.Hxx" />
-    <ClInclude Include="WikiPage.Hxx" />
+    <ClInclude Include="ItemWikiPage.Hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Recipe.Hxx" />
