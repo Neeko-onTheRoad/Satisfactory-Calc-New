@@ -200,6 +200,9 @@
     <ClInclude Include="RecipeTable.Hxx">
       <Filter>헤더 파일\Satisfactory\Tables</Filter>
     </ClInclude>
+    <ClInclude Include="ImageManager.Hxx">
+      <Filter>헤더 파일\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TextButton.Hxx">

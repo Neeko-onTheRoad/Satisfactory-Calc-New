@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include "Item.Hxx"
+#include "AsciiMap.Hxx"
 #include "SelectBox.Hxx"
 #include "TextButton.Hxx"
 #include "ConsoleScene.Hxx"
@@ -19,14 +20,12 @@ private:
 	int scroll = 0;
 
 	TextBoxObject* nowTitle;
-	ItemWikiPage* nowPage;
+	ItemWikiPage*  nowPage;
 
-	ItemCategory nowScelectedCategory = ItemCategory::Ores;
+	ItemCategory nowSelectedCategory = ItemCategory::Ores;
 	std::vector<TextButton*> categoryButtons;
 	std::map<ItemCategory, std::vector<TextButton*>> itemButtons;
 
-
-	void drawInBuffer();
 	void rerender();
 	
 

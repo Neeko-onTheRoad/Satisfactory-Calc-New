@@ -8,9 +8,40 @@ std::string ItemWiki::GetTitle() const {
 
 void ItemWiki::Initialize() {
 
-	// MakeCategoryLine
+	{
+		TextBoxObject* line = new TextBoxObject;
 
+		std::string lineStr = "";
 
+		for (int x = 0; x < CONSOLE_WIDTH; x++) {
+			lineStr += ' ';
+		}
+		lineStr += "\n";
+		for (int x = 0; x < CONSOLE_WIDTH; x++) {
+			lineStr += Ascii::HZ_BAR;
+		}
+		lineStr += "\n";
+
+		line->Make(0, 0, lineStr);
+		line->SetBackgroundColor(Color::HilightedBackgroundColor);
+
+		AddObject(line);
+	}
+
+	{
+		TextBoxObject* centerLine = new TextBoxObject;
+
+		std::string lineStr = "";
+		
+		for (int y = 2; y < SCENE_HEIGHT; y++) {
+			lineStr += Ascii::VT_BAR;
+			lineStr += '\n';
+		}
+
+		centerLine->Make(CONSOLE_WIDTH / 2 - 10, 2, lineStr);
+
+		AddObject(centerLine);
+	}
 
 	// Make Item Buttons
 	int y = 3;
@@ -18,21 +49,18 @@ void ItemWiki::Initialize() {
 
 		TextButton* buttonTemp = new TextButton;
 		
-		buttonTemp->Make(4, y++, item->Name);
+		buttonTemp->Make(CONSOLE_WIDTH / 2 - 6, y++, item->Name);
 		buttonTemp->Render = false;  
 		buttonTemp->AdditionalKeyGuides.push_back({ Keys::BACK, "Category Select"});
 		buttonTemp->SetBackCallBack([&]() {
-			
-			for (auto& nowItemButtons : itemButtons[nowScelectedCategory]) {
-				nowItemButtons->Render = false;
-			}
 
-			for (auto& categoryButton : categoryButtons) {
-				categoryButton->Render = true;
+			for (auto& itemButtons : itemButtons[nowSelectedCategory]) {
+				itemButtons->Render = false;
 			}
 
 			Selecting->UnSelect();
 			Selecting = categoryButtons[0];
+			categoryButtons[0]->SetSelectedForegroundColor(Color::HilightedForegroundColor);
 			Selecting->Select();
 
 			NeedUpdate = true;
@@ -40,7 +68,7 @@ void ItemWiki::Initialize() {
 		});
 		buttonTemp->SetCallBack([&]() {
 			nowPage->Render = true;
-			nowPage->Make(item, buttonTemp);
+			nowPage->Make(item, itemButtons[nowSelectedCategory][0]);
 
 			Selecting->UnSelect();
 			Selecting = nowPage;
@@ -63,17 +91,15 @@ void ItemWiki::Initialize() {
 		buttonTemp->Make(4, y++, GetCategoriyName(category.first));
 		buttonTemp->SetCallBack([&]() {
 
-			for (auto& categoryButton : categoryButtons) {
-				categoryButton->Render = false;
-			}
-
 			for (auto& targetItemButton : itemButtons[category.first]) {
 				targetItemButton->Render = true;
 			}
 
-			nowScelectedCategory = category.first;
+			nowSelectedCategory = category.first;
 
-			Selecting->UnSelect();
+			dynamic_cast<TextButton*>(Selecting)->SetSelectedForegroundColor(Color::DefaultForegroundColor);
+			Selecting->Select();
+
 			Selecting = itemButtons[category.first][0];
 			Selecting->Select();
 
@@ -114,18 +140,9 @@ void ItemWiki::Initialize() {
 
 
 void ItemWiki::Update() {
-	
-
 
 }
 
 void ItemWiki::rerender() {
 
-}
-
-void ItemWiki::drawInBuffer() {
-
-
-
-	NeedUpdate = true;
 }

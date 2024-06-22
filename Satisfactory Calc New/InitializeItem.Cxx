@@ -19,6 +19,11 @@ namespace Satisfactory {
 			Limestone->Category = ItemCategory::Ores;
 			Limestone->MaxStackSize = 100;
 			Limestone->SinkPoint = 2;
+
+			Limestone->PowerUseMin  = 250;
+			Limestone->PowerUseAvrg = 500;
+			Limestone->PowerUseMax  = 750;
+
 			Satisfactory::ItemList.push_back(Limestone);
 		} {
 			IronOre = new Item;
@@ -96,11 +101,10 @@ namespace Satisfactory {
 			Uranium->Name = "Uranium";
 			Uranium->Description.push_back("Uranium is a radioactive element.");
 			Uranium->Description.push_back("Used to produce Encased Uranium Cells for Uranium Fuel Rods.");
-			Uranium->Description.push_back("");
-			Uranium->Description.push_back("Caution: Moderately Radioactive.");
 			Uranium->Category = ItemCategory::Ores;
 			Uranium->MaxStackSize = 100;
 			Uranium->SinkPoint = 35;
+			Uranium->Radioactive = "Morderately";
 			Satisfactory::ItemList.push_back(Uranium);
 		}
 	}

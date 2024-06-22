@@ -42,11 +42,17 @@ struct Recipe;
 struct Item {
 
 	std::string  Name         = "N\\A";
-	Strings      Description  = { "N\\A" };
+	Strings      Description  = { };
 	ItemCategory Category     = ItemCategory::Ores;
 	unsigned     MaxStackSize = 0;
 	unsigned     SinkPoint    = 0;
+
 	unsigned     Energy       = 0;
+	unsigned     PowerUseMin  = 0;
+	unsigned     PowerUseAvrg = 0;
+	unsigned     PowerUseMax  = 0;
+
+	std::string  Radioactive  = "";
 
 	std::vector<const Recipe*> Recipes = {};
 	std::vector<const Recipe*> Usages  = {};

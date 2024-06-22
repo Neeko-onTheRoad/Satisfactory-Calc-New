@@ -77,18 +77,22 @@ void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _b
 
 void TextButton::SetForegroundColor(ColorCode _color) {
 	foregroundColor = _color;
+	NeedUpdate = true;
 }
 
 void TextButton::SetBackgroundColor(ColorCode _color) {
 	backgroundColor = _color;
+	NeedUpdate = true;
 }
 
 void TextButton::SetSelectedForegroundColor(ColorCode _color) {
 	selectedForegroundColor = _color;
+	NeedUpdate = true;
 }
 
 void TextButton::SetSelectedBackgroundColor(ColorCode _color) {
 	selectedBackgroundColor = _color;
+	NeedUpdate = true;
 }
 
 void TextButton::Select() {

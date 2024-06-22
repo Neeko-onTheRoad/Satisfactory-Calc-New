@@ -167,6 +167,7 @@
     <ClInclude Include="ConsoleWindow.Hxx" />
     <ClInclude Include="DynamicArray.Hxx" />
     <ClInclude Include="EmptyScene.Hxx" />
+    <ClInclude Include="ImageManager.Hxx" />
     <ClInclude Include="ItemTable.Hxx" />
     <ClInclude Include="RecipeTable.Hxx" />
     <ClInclude Include="Satisfactory.Hxx" />
