@@ -3,7 +3,6 @@
 #ifndef _SATISFACTORY_HXX_
 #define _SATISFACTORY_HXX_
 
-#include <map>
 #include "Item.Hxx"
 #include "Recipe.Hxx"
 #include "Building.Hxx"
@@ -11,14 +10,11 @@
 #include "RecipeTable.Hxx"
 #include "BuildingTable.Hxx"
 
-#define NAME_OF(var) #var
-
 namespace Satisfactory {
 
 	namespace Items {
 
-		//==============================================================================================|  Ores
-
+		// Ores
 		extern Item* Limestone;
 		extern Item* IronOre;
 		extern Item* CopperOre;
@@ -30,14 +26,14 @@ namespace Satisfactory {
 		extern Item* SAMOre;
 		extern Item* Uranium;
 
-		//==============================================================================================|  Ingots
+		// Ingots
 		extern Item* IronIngot;
 		extern Item* CopperIngot;
 		extern Item* CateriumIngot;
 		extern Item* SteelIngot;
 		extern Item* AluminumIngot;
 
-		//==============================================================================================|  Minerals
+		// Minerals
 		extern Item* Concrete;
 		extern Item* QuartzCrystal;
 		extern Item* Silica;
@@ -46,12 +42,12 @@ namespace Satisfactory {
 		extern Item* PetroleumCoke;
 		extern Item* AluminumScrap;
 
-		//==============================================================================================|  Aliens
+		// Aliens
 
 		extern Item* AlienProtein;
 		extern Item* AlienDNACapsule;
 
-		//==============================================================================================|  Liquids
+		// Liquids
 
 		extern Item* Water;
 		extern Item* CrudeOil;
@@ -63,11 +59,11 @@ namespace Satisfactory {
 		extern Item* SulfuricAcid;
 		extern Item* NitriAcid;
 
-		//==============================================================================================|  Gas
+		// Gas
 
 		extern Item* NitrogenGas;
 
-		//==============================================================================================|  Standard Parts
+		// Standard Parts
 
 		extern Item* IronRod;
 		extern Item* Screw;
@@ -86,7 +82,7 @@ namespace Satisfactory {
 		extern Item* Plastic;
 		extern Item* Rubber;
 
-		//==============================================================================================|  Industrial Parts
+		// Industrial Parts
 
 		extern Item* Rotor;
 		extern Item* Stator;
@@ -96,7 +92,7 @@ namespace Satisfactory {
 		extern Item* CoolingSystem;
 		extern Item* TurboMotor;
 
-		//==============================================================================================|  Electronics
+		// Electronics
 
 		extern Item* Wire;
 		extern Item* Cable;
@@ -105,7 +101,7 @@ namespace Satisfactory {
 		extern Item* AILimiter;
 		extern Item* HighSpeedConnector;
 
-		//==============================================================================================|  Communications
+		// Communications
 
 		extern Item* Computer;
 		extern Item* Supercomputer;
@@ -114,7 +110,7 @@ namespace Satisfactory {
 		extern Item* CrystalOscillator;
 		extern Item* SuperpositionOscillator;
 
-		//==============================================================================================|  Containers
+		// Containers
 
 		extern Item* EmptyCanister;
 		extern Item* EmptyFluidTank;
@@ -125,7 +121,7 @@ namespace Satisfactory {
 		extern Item* PackagedNitricAcid;
 		extern Item* PackagedNitrogenGas;
 
-		//==============================================================================================|  Fuels
+		// Fuels
 
 		extern Item* Leaves;
 		extern Item* Mycelia;
@@ -142,7 +138,7 @@ namespace Satisfactory {
 		extern Item* UraniumFuelRod;
 		extern Item* PlutoniumFuelRod;
 
-		//==============================================================================================|  Consumed
+		// Consumed
 
 		extern Item* BlackPowder;
 		extern Item* SmokelessPowder;
@@ -151,7 +147,7 @@ namespace Satisfactory {
 		extern Item* Beacon;
 		extern Item* IodineInfusedFilter;
 
-		//==============================================================================================|  Ammos
+		// Ammos
 
 		extern Item* IronRebar;
 		extern Item* StunRebar;
@@ -166,7 +162,7 @@ namespace Satisfactory {
 		extern Item* ClusterNobelisk;
 		extern Item* NukeNobelisk;
 
-		//==============================================================================================|  Nuclear
+		// Nuclear
 
 		extern Item* ElectromagneticControlRod;
 		extern Item* EncasedUraniumCell;
@@ -174,12 +170,12 @@ namespace Satisfactory {
 		extern Item* PlutoniumPellet;
 		extern Item* EncasedPlutoniumCell;
 
-		//==============================================================================================|  Waste
+		// Waste
 
 		extern Item* UraniumWaste;
 		extern Item* PlutoniumWaste;
 
-		//==============================================================================================|  Special
+		// Special
 
 		extern Item* BluePowerSlug;
 		extern Item* YellowPowerSlug;
@@ -223,68 +219,34 @@ namespace Satisfactory {
 
 		//==============================================================================================| Generators
 
-		extern Building* BiomassBurner;
-		extern Building* CoalGenerator;
-		extern Building* FuelGenerator;
-		extern Building* GeothermalGenerator;
-		extern Building* NuclearPowerPlant;
-		extern Building* PowerStorage;
-
 		//==============================================================================================| Special
-
-		extern Building* TheHUB;
-		extern Building* MAM;
-		extern Building* SpaceElevator;
-		extern Building* BlueprintDesigner;
-		extern Building* AWESOMESink;
-		extern Building* AWESOMEShop;
 
 		//==============================================================================================| Workstations
 
-		extern Building* CraftBench;
-		extern Building* EquipmentWorkshop;
-
 		//==============================================================================================| Storage
-
-		extern Building* PersonalStorageBox;
-		extern Building* MedicalStorageBox;
-		extern Building* HazardStorageBox;
-		extern Building* StorageContainer;
-		extern Building* IndustrialStorageContainer;
-		extern Building* FluidBuffer;
-		extern Building* IndustrialFluidBuffer;
 
 		//==============================================================================================| DockingStations
 
-		extern Building* TruckStation;
-		extern Building* DronePort;
-		extern Building* FreightPlatform;
-		extern Building* FluidFreightPlatform;
-
 		//==============================================================================================| Towers
-
-		extern Building* LookoutTower;
-		extern Building* RadarTower;
-
 	}
 
-	//namespace Recipes {
+	namespace Recipes {
 
-	//	//==============================================================================================| Ores
+		//==============================================================================================| Ores
 
-	//	extern Recipe* IronOre;
+		extern Recipe* IronOre;
 
-	//	//==============================================================================================| Ingots
+		//==============================================================================================| Ingots
 
-	//	extern Recipe* IronIngot;
-	//	extern Recipe* IronAlloyIngot;
-	//	extern Recipe* PureIronIngot;
-	//}
+		extern Recipe* IronIngot;
+		extern Recipe* IronAlloyIngot;
+		extern Recipe* PureIronIngot;
+	}
 
 
-	extern std::map<std::string, Item*>     ItemList;
-	extern std::map<std::string, Recipe*>   RecipeList;
-	extern std::map<std::string, Building*> BuildingList;
+	extern std::vector<Item*>     ItemList;
+	extern std::vector<Recipe*>   RecipeList;
+	extern std::vector<Building*> BuildingList;
 
 	extern std::vector<Item*> PowerSources;
 
