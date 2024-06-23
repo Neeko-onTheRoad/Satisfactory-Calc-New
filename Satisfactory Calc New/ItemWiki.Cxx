@@ -5,7 +5,6 @@ std::string ItemWiki::GetTitle() const {
 	return "Item Wiki";
 }
 
-
 void ItemWiki::Initialize() {
 
 	{
@@ -77,7 +76,7 @@ void ItemWiki::Initialize() {
 		});
 		buttonTemp->SetCallBack([&]() {
 			nowPage->Render = true;
-			nowPage->Make(item.second, itemButtons[nowSelectedCategory][0]);
+			nowPage->Make(item.second, itemButtons[nowSelectedCategory][0], this);
 
 			Selecting->UnSelect();
 			Selecting = nowPage;
@@ -91,6 +90,7 @@ void ItemWiki::Initialize() {
 
 		prevCategory = item.second->Category;
 
+
 	}
 
 	y = 3;
@@ -99,7 +99,7 @@ void ItemWiki::Initialize() {
 		// Make Category Buttons
 		TextButton* buttonTemp = new TextButton;
 		
-		buttonTemp->Make(4, y++, GetCategoriyName(category.first));
+		buttonTemp->Make(4, y++, ItemNameOfCategory[category.first]);
 		buttonTemp->SetCallBack([&]() {
 
 			for (auto& targetItemButton : itemButtons[category.first]) {
@@ -166,11 +166,11 @@ void ItemWiki::Initialize() {
 	Selecting = categoryButtons[0];
 
 	NeedUpdate = true;
+
 }
 
 
 void ItemWiki::Update() {
-
 }
 
 void ItemWiki::rerender() {

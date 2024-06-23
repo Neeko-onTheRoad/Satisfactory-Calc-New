@@ -1,0 +1,9 @@
+Smelter
+Smelter
+Smelts ore into ingots.
+
+Can be automated by feeding ore into it with a conveyor belt connected to the input.
+The produced ingots can be automatically extracted by connecting a conveyor belt to the output.
+\desEnd
+Production
+4

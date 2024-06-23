@@ -16,7 +16,7 @@ class ItemWikiPage;
 class ItemWiki : public ConsoleScene {
 
 private:
-
+	SelectBox<int>* sb = new SelectBox<int>;
 	int scroll = 0;
 
 	TextBoxObject* nowTitle;

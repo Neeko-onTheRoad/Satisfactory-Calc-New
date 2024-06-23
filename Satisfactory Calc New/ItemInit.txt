@@ -1,0 +1,5 @@
+Limestone
+DesUsed for crafting.
+Basic resource mainly used for stable foundations.
+|>endDes
+Ores

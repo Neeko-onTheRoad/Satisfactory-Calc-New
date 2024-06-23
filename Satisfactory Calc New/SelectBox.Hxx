@@ -3,8 +3,10 @@
 #ifndef _SELECT_BOX_HXX_
 #define _SELECT_BOX_HXX_
 
+#include <map>
 #include <cmath>
 #include <sstream>
+
 #include "AsciiMap.Hxx"
 #include "TextButton.Hxx"
 #include "ISelectable.Hxx"
@@ -14,15 +16,9 @@
 // All definition of this class will be do in hether file
 // Template class can't be definition in other files
 
-class SelectBoxBase {
-public:
-	std::vector<TextButton*> OptionButtons;
-};
-
 template <class T>
 class SelectBox :
 	public ConsoleObject,
-	public SelectBoxBase,
 	public ISelectable, 
 	public IReplaceable
 {
@@ -42,6 +38,7 @@ private:
 	unsigned willSelectedIndex = 0u;
 	unsigned maxOptionsStrLength = 0u;
 
+	std::vector<TextButton*> OptionButtons;
 	std::pair<T, std::string> nowSelectedElement;
 	std::vector<std::pair<T, std::string>> elements;
 
@@ -53,7 +50,7 @@ private:
 	ISelectable* right = nullptr;
 
 	ColorCode foregroundColor = Color::DefaultForegroundColor;
-	ColorCode backgroundColor = Color::DefaultBackgroundColor;
+	ColorCode backgroundColor = Color::HilightedBackgroundColor;
 	ColorCode selectedForegroundColor = Color::HilightedForegroundColor;
 	ColorCode selectedBackgroundColor = Color::HilightedBackgroundColor;
 
@@ -62,11 +59,11 @@ private:
 
 		// Initialize Default Key Guides
 
-		keyGuides.push_back({ "Enter", "Change Option" });
-		if (upper) keyGuides.push_back({ "Arrow Up",    "Go Up"    });
-		if (lower) keyGuides.push_back({ "Arrow Down",  "Go Down"  });
-		if (left)  keyGuides.push_back({ "Arrow Left",  "Go Left"  });
-		if (right) keyGuides.push_back({ "Arrow Right", "Go Right" });
+		keyGuides.push_back({ Keys::SELECT, "Change Option" });
+		if (upper) keyGuides.push_back({ Keys::UP,    "Go Up"    });
+		if (lower) keyGuides.push_back({ Keys::DOWN,  "Go Down"  });
+		if (left)  keyGuides.push_back({ Keys::LEFT,  "Go Left"  });
+		if (right) keyGuides.push_back({ Keys::RIGHT, "Go Right" });
 			
 
 	}
@@ -93,8 +90,8 @@ private:
 
 		// Initialize Render Buffer
 		Object          = Make2DimDynamicArray(1, sizeX, ' ');
-		ForegroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultForegroundColor);
-		BackgroundColor = Make2DimDynamicArray(1, sizeX, Color::DefaultBackgroundColor);
+		ForegroundColor = Make2DimDynamicArray(1, sizeX, foregroundColor);
+		BackgroundColor = Make2DimDynamicArray(1, sizeX, backgroundColor);
 
 		for (int x = 0; x < nowSelectedElement.second.size(); x++) {
 			Object[0][x + 1u] = nowSelectedElement.second[x];
@@ -251,8 +248,24 @@ public:
 
 	virtual ~SelectBox() {};
 
-	void Make(int _posX, int _posY, const std::vector<std::pair<T, std::string>>& _elements, unsigned _defaultOption = 0) {
+	void Make(
+		int _posX,
+		int _posY,
+		const std::vector<std::pair<T, std::string>>& _elements,
+		std::map<int, std::vector<ConsoleObject*>>& _objects,
+		int _layer,
+		unsigned _defaultOption = 0
+	) {
 
+		for (auto& button : OptionButtons) {
+
+			for (auto& layer : _objects) {
+				auto iterator = std::find(layer.second.begin(), layer.second.end(), button);
+				if (iterator != layer.second.end()) layer.second.erase(iterator);
+			}
+
+		}
+		
 		// throw if _defaultOption is larger then Option's amount
 		if (_defaultOption >= _elements.size()) {
 			std::cerr << "SelectBox::Make()" << std::endl;
@@ -287,6 +300,12 @@ public:
 		}
 
 		// Make Options to Button
+		
+		for (auto& button : OptionButtons) {
+			delete button;
+		}
+		OptionButtons.clear();
+
 		for (unsigned index = 0u; index < _elements.size(); index++) {
 
 			TextButton* tempButton = new TextButton;
@@ -302,9 +321,9 @@ public:
 			tempButton->SetSelectedBackgroundColor(Color::DefaultForegroundColor);
 			tempButton->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
 
-			tempButton->AdditionalKeyGuides.push_back({ "Backspace",  "Cancel"  });
-			tempButton->AdditionalKeyGuides.push_back({ "Arrow Up",   "Go Up"   });
-			tempButton->AdditionalKeyGuides.push_back({ "Arrow Down", "Go Down" });
+			tempButton->AdditionalKeyGuides.push_back({ Keys::BACK, "Cancel"  });
+			tempButton->AdditionalKeyGuides.push_back({ Keys::UP,   "Go Up"   });
+			tempButton->AdditionalKeyGuides.push_back({ Keys::DOWN, "Go Down" });
 
 			tempButton->Make(positionX, positionY + index + 1, buttonStringTemps, false);
 
@@ -317,6 +336,10 @@ public:
 
 			OptionButtons.push_back(tempButton);
 			rerenderUnSelected();
+		}
+
+		for (auto& button : OptionButtons) {
+			_objects[_layer].push_back(button);
 		}
 
 		// Render Default

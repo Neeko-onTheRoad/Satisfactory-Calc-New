@@ -138,10 +138,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BottomBar.Cxx" />
+    <ClCompile Include="Building.Cxx" />
     <ClCompile Include="Color.Cxx" />
     <ClCompile Include="ConsoleObject.Cxx" />
     <ClCompile Include="ConsoleScene.Cxx" />
     <ClCompile Include="EmptyScene.Cxx" />
+    <ClCompile Include="Item.Cxx" />
     <ClCompile Include="KeyManager.Cxx" />
     <ClCompile Include="Index.Cxx" />
     <ClCompile Include="ConsoleManager.Cxx" />
@@ -180,15 +182,15 @@
     <ClInclude Include="ItemWikiPage.Hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ItemInit.txt" />
     <None Include="Recipe.Hxx" />
     <None Include="TextButton.Hxx" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="BuildingInit.txt" />
-    <Text Include="RecipeInit.txt" />
     <Text Include="res\ConsoleTitle.txt" />
     <Text Include="res\Credit.txt" />
+    <Text Include="res\Initialize\BuildingInit.nkdt" />
+    <Text Include="res\Initialize\ItemInit.nkdt" />
+    <Text Include="res\Initialize\RecipeInit.nkdt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Icon.ico" />

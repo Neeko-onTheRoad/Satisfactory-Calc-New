@@ -17,6 +17,7 @@ class ItemWikiPage :
 private:
 
 	ISelectable* Before;
+	std::vector<ISelectable*> Objects;
 
 
 protected:
@@ -29,7 +30,7 @@ public:
 	ItemWikiPage();
 	~ItemWikiPage();
 
-	void Make(const Item* item, ISelectable* _before);
+	void Make(const Item* item, ISelectable* _before, ConsoleScene* _scene);
 	
 	unsigned ConsoleObject::GetSizeX() const;
 	unsigned ConsoleObject::GetSizeY() const;

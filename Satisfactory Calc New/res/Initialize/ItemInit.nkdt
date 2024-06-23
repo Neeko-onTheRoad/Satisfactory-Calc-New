@@ -1,0 +1,16 @@
+//=========================================================================| Ores
+
+Limestone
+    \nme Limestone
+    \des Used for crafting.
+    \des Basic resource mainly used for stable foundations.
+    \cat Ingots
+    \stk 100
+    \snk 2
+    \ene 100
+    \pmi 20
+    \pmx 40
+    \pav 30
+    \rad Fuck
+\end
+

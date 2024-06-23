@@ -3,6 +3,9 @@
 #ifndef _BUILDING_HXX_
 #define _BUILDING_HXX_
 
+#include <map>
+#include <string>
+#include <vector>
 #include <climits>
 
 enum class BuildingCategory {
@@ -10,22 +13,9 @@ enum class BuildingCategory {
 	Workstations, Storage, DockingStations, Towers
 };
 
-#define AUTO_CASE(CAT) case BuildingCategory::##CAT: return #CAT;
 
-static std::string GetCategoryName(BuildingCategory _category) {
-	switch (_category) {
-		AUTO_CASE(Extraction)
-		AUTO_CASE(Production)
-		AUTO_CASE(Generators)
-		AUTO_CASE(Special)
-		AUTO_CASE(Workstations)
-		AUTO_CASE(Storage)
-		AUTO_CASE(DockingStations)
-		AUTO_CASE(Towers)
-	}
-}
-
-#undef AUTO_CASE
+extern std::map<BuildingCategory, std::string> BuildingNameOfCategory;
+extern std::map<std::string, BuildingCategory> BuildingCategoryByName;
 
 
 struct Item;
