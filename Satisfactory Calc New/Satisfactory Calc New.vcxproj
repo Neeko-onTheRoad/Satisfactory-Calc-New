@@ -180,10 +180,13 @@
     <ClInclude Include="ItemWikiPage.Hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ItemInit.txt" />
     <None Include="Recipe.Hxx" />
     <None Include="TextButton.Hxx" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="BuildingInit.txt" />
+    <Text Include="RecipeInit.txt" />
     <Text Include="res\ConsoleTitle.txt" />
     <Text Include="res\Credit.txt" />
   </ItemGroup>

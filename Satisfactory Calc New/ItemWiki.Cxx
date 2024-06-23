@@ -52,9 +52,9 @@ void ItemWiki::Initialize() {
 
 		TextButton* buttonTemp = new TextButton;
 	
-		if (item->Category != prevCategory) y = 3;
+		if (item.second->Category != prevCategory) y = 3;
 
-		buttonTemp->Make(CONSOLE_WIDTH / 2 - 6, y++, item->Name);
+		buttonTemp->Make(CONSOLE_WIDTH / 2 - 6, y++, item.second->Name);
 		buttonTemp->Render = false;  
 		buttonTemp->AdditionalKeyGuides.push_back({ Keys::BACK, "Category Select"});
 		buttonTemp->SetBackCallBack([&]() {
@@ -77,7 +77,7 @@ void ItemWiki::Initialize() {
 		});
 		buttonTemp->SetCallBack([&]() {
 			nowPage->Render = true;
-			nowPage->Make(item, itemButtons[nowSelectedCategory][0]);
+			nowPage->Make(item.second, itemButtons[nowSelectedCategory][0]);
 
 			Selecting->UnSelect();
 			Selecting = nowPage;
@@ -86,10 +86,10 @@ void ItemWiki::Initialize() {
 			NeedUpdate = true;
 		});
 
-		itemButtons[item->Category].push_back(buttonTemp);
+		itemButtons[item.second->Category].push_back(buttonTemp);
 		AddObject(buttonTemp);
 
-		prevCategory = item->Category;
+		prevCategory = item.second->Category;
 
 	}
 
@@ -123,6 +123,8 @@ void ItemWiki::Initialize() {
 		// Link Buttons
 		for (auto& categoryButtons : itemButtons) {
 			
+			if (categoryButtons.second.size() == 1) continue;
+
 			for (int i = 0; i < categoryButtons.second.size(); i++) {
 				if (i == 0) {
 					categoryButtons.second[i]->LinkUpper(categoryButtons.second[categoryButtons.second.size() - 1]);
@@ -141,18 +143,20 @@ void ItemWiki::Initialize() {
 		}
 	}
 
-	for (int i = 0; i < categoryButtons.size(); i++) {
-		if (i == 0) {
-			categoryButtons[i]->LinkUpper(categoryButtons[categoryButtons.size() - 1]);
-			categoryButtons[i]->LinkLower(categoryButtons[i + 1]);
-		}
-		else if (i == categoryButtons.size() - 1) {
-			categoryButtons[i]->LinkUpper(categoryButtons[i - 1]);
-			categoryButtons[i]->LinkLower(categoryButtons[0]);
-		}
-		else {
-			categoryButtons[i]->LinkUpper(categoryButtons[i - 1]);
-			categoryButtons[i]->LinkLower(categoryButtons[i + 1]);
+	if (categoryButtons.size() != 1) {
+		for (int i = 0; i < categoryButtons.size(); i++) {
+			if (i == 0) {
+				categoryButtons[i]->LinkUpper(categoryButtons[categoryButtons.size() - 1]);
+				categoryButtons[i]->LinkLower(categoryButtons[i + 1]);
+			}
+			else if (i == categoryButtons.size() - 1) {
+				categoryButtons[i]->LinkUpper(categoryButtons[i - 1]);
+				categoryButtons[i]->LinkLower(categoryButtons[0]);
+			}
+			else {
+				categoryButtons[i]->LinkUpper(categoryButtons[i - 1]);
+				categoryButtons[i]->LinkLower(categoryButtons[i + 1]);
+			}
 		}
 	}
 
