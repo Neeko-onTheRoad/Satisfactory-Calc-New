@@ -55,6 +55,9 @@
     <Filter Include="소스 파일\Satisfactory">
       <UniqueIdentifier>{0f6aae91-f14a-416f-8e11-09033133efad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="리소스 파일\Initialize">
+      <UniqueIdentifier>{45519600-2088-4a41-b3bc-ed16d23e3330}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Index.Cxx">
@@ -184,6 +187,9 @@
     <None Include="Recipe.Hxx">
       <Filter>헤더 파일\Satisfactory\Structures</Filter>
     </None>
+    <None Include="ItemInit.txt">
+      <Filter>리소스 파일\Initialize</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\ConsoleTitle.txt">
@@ -191,6 +197,12 @@
     </Text>
     <Text Include="res\Credit.txt">
       <Filter>리소스 파일</Filter>
+    </Text>
+    <Text Include="BuildingInit.txt">
+      <Filter>리소스 파일\Initialize</Filter>
+    </Text>
+    <Text Include="RecipeInit.txt">
+      <Filter>리소스 파일\Initialize</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
