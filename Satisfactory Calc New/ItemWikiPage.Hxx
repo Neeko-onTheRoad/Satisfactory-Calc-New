@@ -6,6 +6,8 @@
 #include <tuple>
 #include <format>
 #include "Item.Hxx"
+#include "AsciiMap.Hxx"
+#include "SelectBox.Hxx"
 #include "ConsoleObject.Hxx"
 #include "ConsoleWindow.Hxx"
 
@@ -16,9 +18,18 @@ class ItemWikiPage :
 
 private:
 
-	ISelectable* Before;
-	std::vector<ISelectable*> Objects;
+	bool isSelected = false;
+	ISelectable* before;
+	ISelectable* nowSelect;
 
+	int upperBarEndPoint = 0;
+	int infoBarRightPoint = 0;
+
+	SelectBox<Recipe*>* recipeSelect;
+	std::vector<TextButton*> inputItems;
+	std::vector<TextButton*> outputItems;
+
+	void rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _objects, int _layer);
 
 protected:
 
@@ -30,7 +41,12 @@ public:
 	ItemWikiPage();
 	~ItemWikiPage();
 
-	void Make(const Item* item, ISelectable* _before, ConsoleScene* _scene);
+	void Make(
+		const Item* item, ISelectable* _before,
+		std::map<int, std::vector<ConsoleObject*>>& _objects,
+		ISelectable* _selecting,
+		int _layer
+	);
 	
 	unsigned ConsoleObject::GetSizeX() const;
 	unsigned ConsoleObject::GetSizeY() const;

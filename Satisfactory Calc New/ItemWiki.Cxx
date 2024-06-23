@@ -28,18 +28,22 @@ void ItemWiki::Initialize() {
 	}
 
 	{
-		TextBoxObject* centerLine = new TextBoxObject;
+		TextBoxObject* categoryBackground = new TextBoxObject;
 
-		std::string lineStr = "";
+		std::string categoryBgStr = "";
 		
 		for (int y = 2; y < SCENE_HEIGHT; y++) {
-			lineStr += Ascii::VT_BAR;
-			lineStr += '\n';
+			for (int x = 0; x < CONSOLE_WIDTH / 5; x++) {
+				categoryBgStr += " ";
+			}
+
+			categoryBgStr += '\n';
 		}
 
-		centerLine->Make(CONSOLE_WIDTH / 2 - 10, 2, lineStr);
+		categoryBackground->Make(0, 2, categoryBgStr);
+		categoryBackground->SetBackgroundColor(Color::HilightedBackgroundColor);
 
-		AddObject(centerLine);
+		AddObject(categoryBackground);
 	}
 
 
@@ -53,7 +57,7 @@ void ItemWiki::Initialize() {
 	
 		if (item.second->Category != prevCategory) y = 3;
 
-		buttonTemp->Make(CONSOLE_WIDTH / 2 - 6, y++, item.second->Name);
+		buttonTemp->Make(CONSOLE_WIDTH / 5 + 3, y++, item.second->Name);
 		buttonTemp->Render = false;  
 		buttonTemp->AdditionalKeyGuides.push_back({ Keys::BACK, "Category Select"});
 		buttonTemp->SetBackCallBack([&]() {
@@ -63,7 +67,7 @@ void ItemWiki::Initialize() {
 			}
 
 			for (auto& categoryButton : categoryButtons) {
-				categoryButton->SetSelectedForegroundColor(Color::HilightedForegroundColor);
+				categoryButton->SetSelectedBackgroundColor(Color::HilightedForegroundColor);
 				categoryButton->UnSelect();
 			}
 
@@ -76,7 +80,7 @@ void ItemWiki::Initialize() {
 		});
 		buttonTemp->SetCallBack([&]() {
 			nowPage->Render = true;
-			nowPage->Make(item.second, itemButtons[nowSelectedCategory][0], this);
+			nowPage->Make(item.second, itemButtons[nowSelectedCategory][0], Objects, Selecting, 2);
 
 			Selecting->UnSelect();
 			Selecting = nowPage;
@@ -99,7 +103,10 @@ void ItemWiki::Initialize() {
 		// Make Category Buttons
 		TextButton* buttonTemp = new TextButton;
 		
-		buttonTemp->Make(4, y++, ItemNameOfCategory[category.first]);
+		buttonTemp->SetBackgroundColor(Color::HilightedBackgroundColor);
+		buttonTemp->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
+		buttonTemp->SetSelectedBackgroundColor(Color::HilightedForegroundColor);
+		buttonTemp->Make(4, y++, ItemNameOfCategory[category.first], false);
 		buttonTemp->SetCallBack([&]() {
 
 			for (auto& targetItemButton : itemButtons[category.first]) {
@@ -108,7 +115,7 @@ void ItemWiki::Initialize() {
 
 			nowSelectedCategory = category.first;
 
-			dynamic_cast<TextButton*>(Selecting)->SetSelectedForegroundColor(Color::DefaultForegroundColor);
+			dynamic_cast<TextButton*>(Selecting)->SetSelectedBackgroundColor(Color::DefaultForegroundColor);
 			Selecting->Select();
 
 			Selecting = itemButtons[category.first][0];

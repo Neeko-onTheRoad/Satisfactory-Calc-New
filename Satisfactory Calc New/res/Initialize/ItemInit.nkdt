@@ -1,16 +1,21 @@
-//=========================================================================| Ores
+// \nme Name
+// \des Description
+// \cat Category
+// \stk Max Stack Size
+// \snk Sink Point
+// \ene Energy
+// \pmi Power Use Min
+// \pmx Power Use Max
+// \pav Power use Average
+// \rad Radeoactive
+
+//=================================================================| Ores
 
 Limestone
     \nme Limestone
     \des Used for crafting.
     \des Basic resource mainly used for stable foundations.
-    \cat Ingots
+    \cat Ores
     \stk 100
     \snk 2
-    \ene 100
-    \pmi 20
-    \pmx 40
-    \pav 30
-    \rad Fuck
 \end
-

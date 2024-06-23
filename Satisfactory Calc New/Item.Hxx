@@ -34,8 +34,8 @@ struct Item {
 	unsigned                 PowerUseMax  = 0;
 	std::string              Radioactive  = "";
 
-	std::vector<const Recipe*> Recipes = {};
-	std::vector<const Recipe*> Usages  = {};
+	std::vector<Recipe*> Recipes = {};
+	std::vector<Recipe*> Usages  = {};
 
 };
 

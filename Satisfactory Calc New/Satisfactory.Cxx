@@ -9,9 +9,13 @@ namespace Satisfactory {
 
 	std::vector<Item*> PowerSources;
 
+	Recipe* NullRecipe;
+
 	void Initialize() {
 	
-
+		NullRecipe = new Recipe;
+		NullRecipe->Name = "No Recipe";
+		NullRecipe->Building = new Building;
 
 		std::string input;
 			
@@ -99,7 +103,7 @@ namespace Satisfactory {
 		Satisfactory::RecipeList["F"] = test;
 
 		Recipe* tes2 = new Recipe;
-		tes2->Name = "Text One";
+		tes2->Name = "Text Onsfeae";
 		tes2->IsAlt = true;
 		tes2->Building = BuildingList["Assembler"];
 		tes2->AddInput(ItemList["Limestone"], 30., 1);

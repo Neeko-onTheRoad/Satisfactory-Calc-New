@@ -53,6 +53,8 @@ private:
 	ColorCode backgroundColor = Color::HilightedBackgroundColor;
 	ColorCode selectedForegroundColor = Color::HilightedForegroundColor;
 	ColorCode selectedBackgroundColor = Color::HilightedBackgroundColor;
+	ColorCode optionForegroundColor = Color::DefaultForegroundColor;
+	ColorCode optionBackgroundColor = Color::HilightedBackgroundColor;
 
 	void rebuildKeyGuides() {
 		keyGuides.clear();
@@ -182,6 +184,8 @@ protected:
 
 				_selecting = this;
 				nowSelectedIndex = willSelectedIndex;
+
+				BackCallBack();
 				rerenderUnSelected();
 				Select();
 
@@ -199,6 +203,8 @@ protected:
 
 				willSelectedIndex = nowSelectedIndex;
 				nowSelectedElement = elements[nowSelectedIndex];
+
+				BackCallBack();
 				rerenderUnSelected();
 				Select();
 
@@ -217,6 +223,7 @@ protected:
 				_selecting = OptionButtons[nowSelectedIndex];
 				_selecting->Select();
 
+				CallBack();
 				rerenderSelected();
 
 				isSelected = true;
@@ -317,7 +324,8 @@ public:
 				buttonStringTemps += ' ';
 			}
 
-			tempButton->SetBackgroundColor(Color::HilightedBackgroundColor);
+			tempButton->SetBackgroundColor(optionBackgroundColor);
+			tempButton->SetForegroundColor(optionForegroundColor);
 			tempButton->SetSelectedBackgroundColor(Color::DefaultForegroundColor);
 			tempButton->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
 
@@ -357,6 +365,8 @@ public:
 	void SetBackgroundColor(ColorCode _color) { backgroundColor = _color; }
 	void SetSelectedForegroundColor(ColorCode _color) { selectedForegroundColor = _color; }
 	void SetSelectedBackgroundColor(ColorCode _color) { selectedBackgroundColor = _color; }
+	void SetOptionForegroundColor(ColorCode _color) { optionForegroundColor = _color; }
+	void SetOptionBackgroundColor(ColorCode _color) { optionBackgroundColor = _color; }
 
 	KeyGuides AdditionalKeyGuides;
 	KeyGuides ISelectable::GetKeyGuides() const {

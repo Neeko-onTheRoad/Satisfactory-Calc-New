@@ -21,6 +21,8 @@ namespace Satisfactory {
 	extern std::map<std::string, Building*> BuildingList;
 
 	extern std::vector<Item*> PowerSources;
+	
+	extern Recipe* NullRecipe;
 
 	void Initialize();
 

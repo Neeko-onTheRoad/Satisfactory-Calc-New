@@ -1,8 +1,74 @@
 #include "ItemWikiPage.Hxx"
 
+void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _objects, int _layer) {
+
+	for (int y = upperBarEndPoint + 5; y < SCENE_HEIGHT - 2; y++) {
+		for (int x = infoBarRightPoint + 2; x < CONSOLE_WIDTH - 3; x++) {
+			Object[y][x] = ' ';
+			ForegroundColor[y][x] = Color::DefaultForegroundColor;
+			BackgroundColor[y][x] = Color::HilightedBackgroundColor;
+		}
+	}
+
+	for (auto& layer : _objects) {
+		auto iterator = std::find_if(layer.second.begin(), layer.second.end(), [&](auto& it) {
+			for (auto& button : inputItems ) if (it == button) return true;
+			for (auto& button : outputItems) if (it == button) return true;
+
+			return false;
+		});
+		if (iterator != layer.second.end()) layer.second.erase(iterator);
+	}
+
+	for (auto& button : inputItems ) delete button;
+	for (auto& button : outputItems) delete button;
+	inputItems .clear();
+	outputItems.clear();
+
+	std::string inputItemStr  = "Input Item";
+	std::string outputItemStr = "Output Item";
+
+	int indexY = upperBarEndPoint + 5;
+
+	for (int x = 0; x < inputItemStr.size(); x++) {
+		Object[indexY][x + infoBarRightPoint + 6] = inputItemStr[x];
+		ForegroundColor[indexY][x + infoBarRightPoint + 6] = Color::HilightedForegroundColor;
+	}
+
+	indexY++;
+
+	for (auto& input : recipeSelect->GetElement()->Input) {
+		TextButton* tempButton = new TextButton;
+
+		tempButton->SetBackgroundColor(Color::HilightedBackgroundColor);
+		tempButton->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
+		tempButton->SetSelectedBackgroundColor(Color::HilightedForegroundColor);
+		tempButton->Render = true;
+		tempButton->Make(infoBarRightPoint + 8, indexY++, std::get<0>(input)->Name, false); 
+		_objects[_layer].push_back(tempButton);
+		inputItems.push_back(tempButton);
+	}
+
+	for (auto& button : inputItems) {
+		// TODO: fuck
+		//_objects[_layer].push_back(button);
+	}
+
+	indexY++;
+
+	for (int x = 0; x < outputItemStr.size(); x++) {
+		Object[indexY][x + infoBarRightPoint + 6] = outputItemStr[x];
+		ForegroundColor[indexY][x + infoBarRightPoint + 6] = Color::HilightedForegroundColor;
+	}
+
+}
+
 ItemWikiPage::ItemWikiPage() {
+	recipeSelect = new SelectBox<Recipe*>;
+	nowSelect = recipeSelect;
+
 	Render = false;
-	Before = nullptr;
+	before = nullptr;
 
 	Object = Make2DimDynamicArray(SCENE_HEIGHT, CONSOLE_WIDTH, ' ');
 	ForegroundColor = Make2DimDynamicArray(SCENE_HEIGHT, CONSOLE_WIDTH, Color::DefaultForegroundColor);
@@ -21,10 +87,13 @@ void ItemWikiPage::Initialize() {
 
 void ItemWikiPage::Update(ISelectable*& _selecting) {
 
-	if (_selecting == this) {
+	if (isSelected) {
+
+		recipeSelect->UpdateBaes(nowSelect);
+
 		if (KeyManager::GetKeyPressed(Keys::BACK)) {
 			UnSelect();
-			_selecting = Before;
+			_selecting = before;
 			_selecting->Select();
 
 			Render = false;
@@ -32,13 +101,25 @@ void ItemWikiPage::Update(ISelectable*& _selecting) {
 
 			return;
 		}
+
 	}
 
 }
 
-void ItemWikiPage::Make(const Item* item, ISelectable* _before, ConsoleScene* _scene) {
+void ItemWikiPage::Make(
+	const Item* item, 
+	ISelectable* _before,
+	std::map<int, std::vector<ConsoleObject*>>& _objects,
+	ISelectable* _selecting,
+	int _layer
+) {
 
-	Before = _before;
+	before = _before;
+
+	for (auto& layer : _objects) {
+		auto iterator = std::find(layer.second.begin(), layer.second.end(), recipeSelect);
+		if (iterator != layer.second.end()) layer.second.erase(iterator);
+	}
 
 	for (int y = 0; y < SCENE_HEIGHT; y++) {
 		for (int x = 0; x < CONSOLE_WIDTH; x++) {
@@ -86,6 +167,7 @@ void ItemWikiPage::Make(const Item* item, ISelectable* _before, ConsoleScene* _s
 	}
 
 	int informationY = 2;
+
 	{
 		for (int x = 0; x < Category.size(); x++) {
 			Object[upperBarEndPoint + informationY][x + 5] = Category[x];
@@ -202,6 +284,51 @@ void ItemWikiPage::Make(const Item* item, ISelectable* _before, ConsoleScene* _s
 		}
 	}
 
+	{
+		std::string recipeStr = "Recipe: ";
+		for (int x = 0; x < recipeStr.size(); x++) {
+			Object[upperBarEndPoint + 2][x + infoBarRightPoint + 6] = recipeStr[x];
+			ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 6] = Color::HilightedForegroundColor;
+		}
+
+		int rsX = static_cast<int>(recipeStr.size()) + infoBarRightPoint + 6;
+		int rsY = upperBarEndPoint + 2;
+
+		std::vector<std::pair<Recipe*, std::string>> rsOptions;
+
+		for (auto& recipe : item->Recipes) {
+			rsOptions.emplace_back(recipe, recipe->Name);
+		}
+
+		if (rsOptions.size() == 0) {
+			rsOptions.emplace_back(Satisfactory::NullRecipe, "No Recipe");
+		}
+
+		recipeSelect->SetSelectedBackgroundColor(Color::HilightedForegroundColor);
+		recipeSelect->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
+		recipeSelect->SetOptionBackgroundColor(Color::DefaultBackgroundColor);
+		recipeSelect->Make(rsX, rsY, rsOptions, _objects, _layer + 1);
+		recipeSelect->SetCallBack([&]() { isSelected = false; });
+		recipeSelect->SetBackCallBack([&]() { 
+			isSelected = true;
+			rerenderRecipe(_objects, _layer);
+		});
+
+		recipeSelect->Render = false;
+		_objects[_layer].push_back(recipeSelect);
+
+		for (int x = infoBarRightPoint + 4; x < CONSOLE_WIDTH - 5; x++) {
+			Object[rsY + 1][x] = Ascii::HZ_BAR;
+			ForegroundColor[rsY + 1][x] = Color::LightForegroundColor;
+		}
+	}
+
+	this->upperBarEndPoint  = upperBarEndPoint;
+	this->infoBarRightPoint = infoBarRightPoint;
+
+	nowSelect = recipeSelect;
+	nowSelect->Select();
+	rerenderRecipe(_objects, _layer);
 }
 
 unsigned ItemWikiPage::GetSizeX() const {
@@ -225,11 +352,23 @@ KeyGuides ItemWikiPage::GetKeyGuides() const {
 }
 
 void ItemWikiPage::Select() {
+	recipeSelect->Render = true;
+
+	for (auto& button : inputItems ) button->Render = true;
+	for (auto& button : outputItems) button->Render = true;
+
+	isSelected = true;
 	Render = true;
 	NeedUpdate = true;
 }
 
 void ItemWikiPage::UnSelect() {
+	recipeSelect->Render = false;
+
+	for (auto& button : inputItems ) button->Render = false;
+	for (auto& button : outputItems) button->Render = false;
+
+	isSelected = false;
 	Render = false;	
 	NeedUpdate = true;
 }
