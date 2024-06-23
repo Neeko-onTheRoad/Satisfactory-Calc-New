@@ -46,22 +46,30 @@ void ItemWiki::Initialize() {
 
 	// Make Item Buttons
 	int y = 3;
+	ItemCategory prevCategory = ItemCategory::Ores;
+
 	for (auto& item : Satisfactory::ItemList) {
 
 		TextButton* buttonTemp = new TextButton;
-		
+	
+		if (item->Category != prevCategory) y = 3;
+
 		buttonTemp->Make(CONSOLE_WIDTH / 2 - 6, y++, item->Name);
 		buttonTemp->Render = false;  
 		buttonTemp->AdditionalKeyGuides.push_back({ Keys::BACK, "Category Select"});
 		buttonTemp->SetBackCallBack([&]() {
 
-			for (auto& itemButtons : itemButtons[nowSelectedCategory]) {
-				itemButtons->Render = false;
+			for (auto& itemButton : itemButtons[nowSelectedCategory]) {
+				itemButton->Render = false;
+			}
+
+			for (auto& categoryButton : categoryButtons) {
+				categoryButton->SetSelectedForegroundColor(Color::HilightedForegroundColor);
+				categoryButton->UnSelect();
 			}
 
 			Selecting->UnSelect();
 			Selecting = categoryButtons[0];
-			categoryButtons[0]->SetSelectedForegroundColor(Color::HilightedForegroundColor);
 			Selecting->Select();
 
 			NeedUpdate = true;
@@ -80,6 +88,8 @@ void ItemWiki::Initialize() {
 
 		itemButtons[item->Category].push_back(buttonTemp);
 		AddObject(buttonTemp);
+
+		prevCategory = item->Category;
 
 	}
 
@@ -111,23 +121,38 @@ void ItemWiki::Initialize() {
 		AddObject(buttonTemp);
 
 		// Link Buttons
-		for (auto& itemButton : itemButtons) {
+		for (auto& categoryButtons : itemButtons) {
 			
-			for (int i = 0; i < itemButton.second.size(); i++) {
+			for (int i = 0; i < categoryButtons.second.size(); i++) {
 				if (i == 0) {
-					itemButton.second[i]->LinkUpper(itemButton.second[itemButton.second.size() - 1]);
-					itemButton.second[i]->LinkLower(itemButton.second[i + 1]);
+					categoryButtons.second[i]->LinkUpper(categoryButtons.second[categoryButtons.second.size() - 1]);
+					categoryButtons.second[i]->LinkLower(categoryButtons.second[i + 1]);
 				}
-				else if (i == itemButton.second.size() - 1) {
-					itemButton.second[i]->LinkUpper(itemButton.second[i - 1]);
-					itemButton.second[i]->LinkLower(itemButton.second[0]);
+				else if (i == categoryButtons.second.size() - 1) {
+					categoryButtons.second[i]->LinkUpper(categoryButtons.second[i - 1]);
+					categoryButtons.second[i]->LinkLower(categoryButtons.second[0]);
 				}
 				else {
-					itemButton.second[i]->LinkUpper(itemButton.second[i - 1]);
-					itemButton.second[i]->LinkLower(itemButton.second[i + 1]);
+					categoryButtons.second[i]->LinkUpper(categoryButtons.second[i - 1]);
+					categoryButtons.second[i]->LinkLower(categoryButtons.second[i + 1]);
 				}
 			}
 
+		}
+	}
+
+	for (int i = 0; i < categoryButtons.size(); i++) {
+		if (i == 0) {
+			categoryButtons[i]->LinkUpper(categoryButtons[categoryButtons.size() - 1]);
+			categoryButtons[i]->LinkLower(categoryButtons[i + 1]);
+		}
+		else if (i == categoryButtons.size() - 1) {
+			categoryButtons[i]->LinkUpper(categoryButtons[i - 1]);
+			categoryButtons[i]->LinkLower(categoryButtons[0]);
+		}
+		else {
+			categoryButtons[i]->LinkUpper(categoryButtons[i - 1]);
+			categoryButtons[i]->LinkLower(categoryButtons[i + 1]);
 		}
 	}
 

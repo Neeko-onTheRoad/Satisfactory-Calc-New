@@ -3,6 +3,8 @@
 #ifndef _ITEM_WIKI_PAGE_HXX_
 #define _ITEM_WIKI_PAGE_HXX_
 
+#include <tuple>
+#include <format>
 #include "Item.Hxx"
 #include "ConsoleObject.Hxx"
 #include "ConsoleWindow.Hxx"
@@ -15,7 +17,6 @@ class ItemWikiPage :
 private:
 
 	ISelectable* Before;
-
 
 
 protected:

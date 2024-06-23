@@ -386,6 +386,7 @@ namespace Satisfactory {
 			{
 				{ //==============================================================================================| Production
 					Buildings::Smelter = new Building;
+					Buildings::Smelter->Name = "Smelter";
 					Buildings::Smelter->Category = BuildingCategory::Production;
 					Buildings::Smelter->PowerUsed = 4;
 					Buildings::Smelter->Width = 6;
@@ -399,6 +400,7 @@ namespace Satisfactory {
 
 				}
 			}
+			
 
 			{
 
@@ -420,25 +422,25 @@ namespace Satisfactory {
 					Recipes::IronIngot->AddInput(Items::IronOre, 30., 1);
 					Recipes::IronIngot->AddOutput(Items::IronIngot, 30., 1);
 					Satisfactory::RecipeList.push_back(Recipes::IronIngot);
-				} {
-					Recipes::IronAlloyIngot = new Recipe;
-					Recipes::IronAlloyIngot->Name = "Iron Alloy Ingot";
-					Recipes::IronAlloyIngot->Building = Buildings::Foundry;
-					Recipes::IronAlloyIngot->IsAlt = true;
-					Recipes::IronAlloyIngot->AddInput(Items::IronOre, 20., 2);
-					Recipes::IronAlloyIngot->AddInput(Items::CopperOre, 20., 2);
-					Recipes::IronAlloyIngot->AddOutput(Items::IronIngot, 50., 5);
-					Satisfactory::RecipeList.push_back(Recipes::IronAlloyIngot);
-				} {
-					Recipes::PureIronIngot = new Recipe;
-					Recipes::PureIronIngot->Name = "Pure Iron Ingot";
-					Recipes::PureIronIngot->Building = Buildings::Refinery;
-					Recipes::PureIronIngot->IsAlt = true;
-					Recipes::PureIronIngot->AddInput(Items::IronOre, 35., 7);
-					Recipes::PureIronIngot->AddInput(Items::Water, 20., 4);
-					Recipes::PureIronIngot->AddOutput(Items::IronIngot, 65., 13);
-					Satisfactory::RecipeList.push_back(Recipes::PureIronIngot);
-				}
+				} //{
+				//	Recipes::IronAlloyIngot = new Recipe;
+				//	Recipes::IronAlloyIngot->Name = "Iron Alloy Ingot";
+				//	Recipes::IronAlloyIngot->Building = Buildings::Foundry;
+				//	Recipes::IronAlloyIngot->IsAlt = true;
+				//	Recipes::IronAlloyIngot->AddInput(Items::IronOre, 20., 2);
+				//	Recipes::IronAlloyIngot->AddInput(Items::CopperOre, 20., 2);
+				//	Recipes::IronAlloyIngot->AddOutput(Items::IronIngot, 50., 5);
+				//	Satisfactory::RecipeList.push_back(Recipes::IronAlloyIngot);
+				//} //{
+				//	Recipes::PureIronIngot = new Recipe;
+				//	Recipes::PureIronIngot->Name = "Pure Iron Ingot";
+				//	Recipes::PureIronIngot->Building = Buildings::Refinery;
+				//	Recipes::PureIronIngot->IsAlt = true;
+				//	Recipes::PureIronIngot->AddInput(Items::IronOre, 35., 7);
+				//	Recipes::PureIronIngot->AddInput(Items::Water, 20., 4);
+				//	Recipes::PureIronIngot->AddOutput(Items::IronIngot, 65., 13);
+				//	Satisfactory::RecipeList.push_back(Recipes::PureIronIngot);
+				//}
 			}
 		}
 	}

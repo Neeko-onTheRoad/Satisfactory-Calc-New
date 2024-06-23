@@ -11,7 +11,7 @@
 #include "ISelectable.Hxx"
 #include "ConsoleObject.Hxx"
 
-constexpr unsigned CONSOLE_HEIGHT = 31u;
+constexpr unsigned CONSOLE_HEIGHT = 33u;
 constexpr unsigned CONSOLE_WIDTH = 122u;
 		  
 constexpr unsigned TITLE_BAR_HEIGHT = 3u;

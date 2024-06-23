@@ -198,25 +198,22 @@ void ItemWikiPage::Make(const Item* item, ISelectable* _before) {
 
 	// Recipes
 
-	unsigned recipeEndPoint = upperBarEndPoint + 4u;
+	unsigned recipeEndPoint = upperBarEndPoint + 5u;
 
 	std::string InputItem  = "Input Item";
 	std::string OutputItem = "Output Item";
-	std::string Building   = "Building";
+
+	int inputIndex = 6;
+	int outputIndex = 43;
 
 	for (unsigned x = 0; x < InputItem.size(); x++) {
-		Object[upperBarEndPoint + 2][x + infoBarRightPoint + 5] = InputItem[x];
-		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 5] = Color::HilightedForegroundColor;
+		Object[upperBarEndPoint + 2][x + infoBarRightPoint + inputIndex] = InputItem[x];
+		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + inputIndex] = Color::HilightedForegroundColor;
 	}
 
 	for (unsigned x = 0; x < OutputItem.size(); x++) {
-		Object[upperBarEndPoint + 2][x + infoBarRightPoint + 33] = OutputItem[x];
-		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 33] = Color::HilightedForegroundColor;
-	}
-
-	for (unsigned x = 0; x < Building.size(); x++) {
-		Object[upperBarEndPoint + 2][x + infoBarRightPoint + 61] = Building[x];
-		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + 61] = Color::HilightedForegroundColor;
+		Object[upperBarEndPoint + 2][x + infoBarRightPoint + outputIndex] = OutputItem[x];
+		ForegroundColor[upperBarEndPoint + 2][x + infoBarRightPoint + outputIndex] = Color::HilightedForegroundColor;
 	}
 
 	for (unsigned x = infoBarRightPoint + 4; x < CONSOLE_WIDTH - 4; x++) {
@@ -225,6 +222,87 @@ void ItemWikiPage::Make(const Item* item, ISelectable* _before) {
 	}
 
 	for (auto& recipe : item->Recipes) {
+		
+		bool inputIsBigger = false;
+		int maxHeight = 0;
+		int minHeight = 0;
+
+
+		if (recipe->Input.size() > recipe->Output.size()) {
+			inputIsBigger = true;
+			maxHeight = static_cast<int>(recipe->Input.size());
+			minHeight = static_cast<int>(recipe->Output.size());
+		}
+		else {
+			maxHeight = static_cast<int>(recipe->Output.size());
+			minHeight = static_cast<int>(recipe->Input.size());
+		}
+
+
+		for (unsigned x = 0; x < recipe->Name.size(); x++) {
+
+			Object[recipeEndPoint][x + infoBarRightPoint + inputIndex] = recipe->Name[x];
+			ForegroundColor[recipeEndPoint][x + infoBarRightPoint + inputIndex] = Color::HilightedForegroundColor;
+
+		}
+
+		std::string building = " (" + recipe->Building->Name + ")";
+		for (unsigned x = 0; x < building.size(); x++) {
+			Object[recipeEndPoint][x + infoBarRightPoint + inputIndex + recipe->Name.size()] = building[x];
+			ForegroundColor[recipeEndPoint][x + infoBarRightPoint + inputIndex + recipe->Name.size()] = Color::LightForegroundColor;
+		}
+
+		recipeEndPoint++;
+
+		for (int i = 0; i < minHeight; i++) {
+			std::string inputStr  = std::get<0>(recipe->Input [i])->Name + " x";
+			std::string outputStr = std::get<0>(recipe->Output[i])->Name + " x";
+			inputStr  += std::to_string(std::get<2>(recipe->Input [i])) + " (";
+			outputStr += std::to_string(std::get<2>(recipe->Output[i])) + " (";
+			inputStr  += std::format("{}", std::get<1>(recipe->Input [i])) + "/min)";
+			outputStr += std::format("{}", std::get<1>(recipe->Output[i])) + "/min)";
+
+			for (int x = 0; x < inputStr.size(); x++) {
+				Object[recipeEndPoint + i][x + infoBarRightPoint + inputIndex + 2] = inputStr[x];
+			}
+
+			for (int x = 0; x < outputStr.size(); x++) {
+				Object[recipeEndPoint + i][x + infoBarRightPoint + outputIndex + 2] = outputStr[x];
+			}
+		}
+
+		for (int i = minHeight; i < maxHeight; i++) {
+
+			std::string str = "";
+
+			if (inputIsBigger) {
+				
+				str += std::get<0>(recipe->Input[i])->Name + " x";
+				str += std::to_string(std::get<2>(recipe->Input[i])) + " (";
+				str += std::format("{}", std::get<1>(recipe->Input[i])) + "/min)";
+
+				for (int x = 0; x < str.size(); x++) {
+					Object[recipeEndPoint + i][x + infoBarRightPoint + inputIndex + 2] = str[x];
+				}
+
+			}
+			else {
+
+				str += std::get<0>(recipe->Output[i])->Name + " x";
+				str += std::to_string(std::get<2>(recipe->Output[i])) + " (";
+				str += std::format("{}", std::get<1>(recipe->Output[i])) + "/min)";
+
+				for (int x = 0; x < str.size(); x++) {
+					Object[recipeEndPoint + i][x + infoBarRightPoint + outputIndex + 2] = str[x];
+				}
+
+			}
+
+		}
+
+
+		recipeEndPoint += maxHeight + 1 ;
+
 	}
 
 	for (unsigned y = upperBarEndPoint + 1; y < recipeEndPoint; y++) {

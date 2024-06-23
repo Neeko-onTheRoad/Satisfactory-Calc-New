@@ -19,7 +19,7 @@ public:
 	static const ColorCode HilightedBackgroundColor = 235;
 	static const ColorCode DefaultBackgroundColor   = 236;
 	static const ColorCode DefaultForegroundColor   = 253;
-	static const ColorCode LightForegroundColor     = 248;
+	static const ColorCode LightForegroundColor     = 244;
 
 };
 

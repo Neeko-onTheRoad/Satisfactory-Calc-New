@@ -32,7 +32,7 @@ void ConsoleWindow::Initialize() {
 
 	// Make Console to UI
 	ConsoleManager::SetFont(L"D2Coding", 24);
-	ConsoleManager::SetSize(1300, 785);
+	ConsoleManager::SetSize(1250, 832);
 	ConsoleManager::DisableResize();
 	ConsoleManager::DisableUserSelection();
 	ConsoleManager::DisableScrollBar();
