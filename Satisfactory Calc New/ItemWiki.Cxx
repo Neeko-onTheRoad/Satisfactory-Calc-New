@@ -48,16 +48,13 @@ void ItemWiki::Initialize() {
 
 
 	// Make Item Buttons
-	int y = 3;
-	ItemCategory prevCategory = ItemCategory::Ores;
+	std::map<ItemCategory, int> categoryItemAmount;
 
 	for (auto& item : Satisfactory::ItemList) {
 
 		TextButton* buttonTemp = new TextButton;
-	
-		if (item.second->Category != prevCategory) y = 3;
 
-		buttonTemp->Make(CONSOLE_WIDTH / 5 + 3, y++, item.second->Name);
+		buttonTemp->Make(CONSOLE_WIDTH / 5 + 3, 3 + categoryItemAmount[item->Category]++, item->Name);
 		buttonTemp->Render = false;  
 		buttonTemp->AdditionalKeyGuides.push_back({ Keys::BACK, "Category Select"});
 		buttonTemp->SetBackCallBack([&]() {
@@ -72,15 +69,16 @@ void ItemWiki::Initialize() {
 			}
 
 			Selecting->UnSelect();
-			Selecting = categoryButtons[0];
+			Selecting = prevSelectedCategoryButton;
 			Selecting->Select();
 
 			NeedUpdate = true;
 
 		});
 		buttonTemp->SetCallBack([&]() {
+
 			nowPage->Render = true;
-			nowPage->Make(item.second, itemButtons[nowSelectedCategory][0], Objects, Selecting, 2);
+			nowPage->Make(item, Selecting, Objects, Selecting, 2);
 
 			Selecting->UnSelect();
 			Selecting = nowPage;
@@ -89,15 +87,13 @@ void ItemWiki::Initialize() {
 			NeedUpdate = true;
 		});
 
-		itemButtons[item.second->Category].push_back(buttonTemp);
+		itemButtons[item->Category].push_back(buttonTemp);
 		AddObject(buttonTemp);
-
-		prevCategory = item.second->Category;
 
 
 	}
 
-	y = 3;
+	int y = 3;
 	for (auto& category : itemButtons) {
 
 		// Make Category Buttons
@@ -114,6 +110,7 @@ void ItemWiki::Initialize() {
 			}
 
 			nowSelectedCategory = category.first;
+			prevSelectedCategoryButton = Selecting;
 
 			dynamic_cast<TextButton*>(Selecting)->SetSelectedBackgroundColor(Color::DefaultForegroundColor);
 			Selecting->Select();

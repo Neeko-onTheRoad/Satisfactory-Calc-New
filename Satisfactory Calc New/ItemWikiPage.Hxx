@@ -19,6 +19,7 @@ class ItemWikiPage :
 private:
 
 	bool isSelected = false;
+	Item* itemSelected;
 	ISelectable* before;
 	ISelectable* nowSelect;
 
@@ -26,8 +27,6 @@ private:
 	int infoBarRightPoint = 0;
 
 	SelectBox<Recipe*>* recipeSelect;
-	std::vector<TextButton*> inputItems;
-	std::vector<TextButton*> outputItems;
 
 	void rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _objects, int _layer);
 
@@ -42,7 +41,7 @@ public:
 	~ItemWikiPage();
 
 	void Make(
-		const Item* item, ISelectable* _before,
+		Item* _item, ISelectable* _before,
 		std::map<int, std::vector<ConsoleObject*>>& _objects,
 		ISelectable* _selecting,
 		int _layer

@@ -22,7 +22,10 @@ private:
 	TextBoxObject* nowTitle;
 	ItemWikiPage*  nowPage;
 
+
+	ISelectable* prevSelectedCategoryButton;
 	ItemCategory nowSelectedCategory = ItemCategory::Ores;
+
 	std::vector<TextButton*> categoryButtons;
 	std::map<ItemCategory, std::vector<TextButton*>> itemButtons;
 

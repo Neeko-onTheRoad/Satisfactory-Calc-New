@@ -1,13 +1,13 @@
-// \nme Name
-// \des Description
-// \cat Category
-// \stk Max Stack Size
-// \snk Sink Point
-// \ene Energy
-// \pmi Power Use Min
-// \pmx Power Use Max
-// \pav Power use Average
-// \rad Radeoactive
+// \nme Name              [str]
+// \des Add Description   [str]
+// \cat Category          [ItemCategory]
+// \stk Max Stack Size    [uint]
+// \snk Sink Point        [uint]
+// \eng Energy            [uint]
+// \pmi Power Use Min     [uint]
+// \pmx Power Use Max     [uint]
+// \pav Power use Average [uint]
+// \rad Radeoactive       [str]
 
 //=================================================================| Ores
 
@@ -18,4 +18,1199 @@ Limestone
     \cat Ores
     \stk 100
     \snk 2
+\end
+
+IronOre
+    \nme Iron Ore
+    \des Used for crafting.
+    \des The most essential basic resource.
+    \cat Ores
+    \stk 100
+    \snk 1
+\end
+
+CopperOre
+    \nme Copper Ore
+    \des Used for crafting.
+    \des Basic resource mainly used for electricity.
+    \cat Ores
+    \stk 100
+    \snk 3
+\end
+
+CateriumOre
+    \nme Caterium Ore
+    \des Caterium Ore is smelted into Caterium Ingots.
+    \des Caterium Ingots are mostly used for advanced electronics.
+    \cat Ores
+    \stk 100
+    \snk 7
+\end
+
+Coal
+    \nme Coal
+    \des Mainly used as fuel for vehicles & coal generators and for steel production.
+    \cat Ores
+    \stk 100
+    \snk 3
+    \eng 300
+\end
+
+RawQuartz
+    \nme Raw Quartz
+    \des Raw Quartz can be processed into Quartz Crystals and Silica,
+    \des which both offer a variety of applications.
+    \cat Ores
+    \stk 100
+    \snk 15
+\end
+
+Sulfur
+    \nme Sulfur
+    \des Sulfur is primarily used for Black Powder.
+    \cat Ores
+    \stk 100
+    \snk 11
+\end
+
+Bauxite
+    \nme Bauxite
+    \des Bauxite is used to produce Alumina,
+    \des which can be further refined into the Aluminum Scrap required to produce Aluminum Ingots.
+    \cat Ores
+    \stk 100
+    \snk 8
+\end
+
+SAMOre
+    \nme S.A.M. Ore
+    \des Strange Alien Metal that glistens with new possibilities.
+    \cat Ores
+    \stk 50
+\end
+
+Uranium
+    \nme Uranium
+    \des Uranium is a radioactive element.
+    \des Used to produce Encased Uranium Cells for Uranium Fuel Rods.
+    \cat Ores
+    \stk 100
+    \snk 35
+    \rad Moderately
+\end
+
+//=================================================================| Ingots
+
+IronIngot
+    \nme Iron Ingot
+    \des Used for crafting.
+    \des Crafted into the most basic parts.
+    \cat Ingots
+    \stk 100
+    \snk 2
+\end
+
+CopperIngot
+    \nme Copper Ingot
+    \des Used for crafting.
+    \des Crafted into the most basic parts.
+    \cat Ingots
+    \stk 100
+    \snk 6
+\end
+
+CateriumIngot
+    \nme Caterium Ingot
+    \des Caterium Ingots are smelted from Caterium Ore.
+    \des Caterium Ingots are mostly used for advanced electronics.
+    \cat Ingots
+    \stk 100
+    \snk 42
+\end
+
+SteelIngot
+    \nme Steel Ingot
+    \des Steel Ingots are made from Iron Ore that's been smelted with Coal.
+    \des They are made into several parts used in building construction.
+    \cat Ingots
+    \stk 100
+    \snk 8
+\end
+
+AluminumIngot
+    \nme Aluminum Ingot
+    \des Aluminum Ingots are made from Aluminum Scrap,
+    \des which is refined from Alumina Solution.
+    \des Used to produce specialized aluminum-based parts.
+    \cat Ingots
+    \stk 100
+    \snk 131
+\end
+
+//=================================================================| Minerals
+
+Concrete
+    \nme Concrete
+    \des Used for building.
+    \des Good for stable foundations.
+    \cat Minerals
+    \stk 500
+    \snk 12
+\end
+
+QuartzCrystal
+    \nme Quartz Crystal
+    \des Derived from Raw Quartz.
+    \des Used in the production of advanced radar technology
+    \des and high-quality display screens.
+    \cat Minerals
+    \stk 200
+    \snk 50
+\end
+
+Silica
+    \nme Silica 
+    \des Derived from Raw Quartz.
+    \des Commonly used to create glass structures, advanced refinement processes,
+    \des and alternative production of electronics.
+    \cat Minerals
+    \stk 200
+    \snk 20
+\end
+
+CopperPowder
+    \nme Copper Powder
+    \des Ground down Copper Ingots.
+    \des The high natural density of Copper, combined with the granularity of the powder, 
+    \des makes this part fit for producing Nuclear Pasta in the Particle Accelerator.
+    \cat Minerals
+    \stk 500
+    \snk 72
+\end
+
+PolymerResin
+    \nme Polymer Resin
+    \des Used for crafting.
+    \des A by-product of oil refinement into fuel. Commonly used to manufacture plastics.
+    \cat Minerals
+    \stk 200
+    \snk 12
+\end
+
+PetroieumCoke
+    \nme Petroieum Coke
+    \des Used for crafting.
+    \des A carbon-rich material distilled from Heavy Oil Residue.
+    \des Used as a less efficient coal replacement.
+    \cat Minerals
+    \stk 200
+    \snk 20
+    \eng 180
+\end
+
+AluminumScrap
+    \nme Aluminum Scrap
+    \des Aluminum Scrap is pure aluminum refined from Alumina.
+    \des Can be smelted down to Aluminum Ingots for industrial usage.
+    \cat Minerals
+    \stk 500
+    \snk 27
+\end
+
+//=================================================================| Aliens
+
+AlienProtein
+    \nme Alien Protein
+    \des Ground down Alien Remains in a neat little package.
+    \des Used for medical purposes and to research alien organisms.
+    \cat Aliens
+    \stk 100
+    \snk 0
+\end
+
+AlienDNACapsule
+    \nme Alien DNA Capsule
+    \des This data capsule translates organic chemicals into readable alien genetics information.
+    \des Used for researching alien organisms.
+    \des  
+    \des Go the extra kilometer! Knowledge is power, and power is just efficiency with fewer steps.
+    \des Depositing Alien DNA Capsules in the AWESOME Sink provides FICSIT with knowledge, 
+    \des and Pioneers with Coupons.
+    \cat Aliens
+    \snk 0
+\end
+
+//=================================================================| Liquids
+
+Water
+    \nme Water
+    \des It's water.
+    \cat Liquids
+    \snk 5
+\end
+
+CrudeOil
+    \nme Crude Oil
+    \des Crude Oil is refined into all kinds of Oil-based resources,
+    \des like Fuel and Plastic.
+    \cat Liquids
+    \snk 30
+    \eng 320
+\end
+
+HeavyOilResidue
+    \nme Heavy Oil Residue
+    \des A by-product of Plastic and Rubber production.
+    \des Can be further refined into Fuel and Petroleum Coke.
+    \cat Liquids
+    \snk 30
+    \eng 400
+\end
+
+Fuel
+    \nme Fuel
+    \des Fuel can be used to generate power
+    \des or packaged to be used as fuel for Vehicles or the Jetpack.
+    \cat Liquids
+    \snk 75
+    \eng 750
+\end
+
+LiquidBiofuel
+    \nme Liquid Biofuel
+    \des Liquid Biofuel can be used to generate power
+    \des or packaged to be used as fuel for Vehicles.
+    \cat Liquids
+    \snk 261
+    \eng 750
+\end
+
+Turbofuel
+    \nme Turbofuel
+    \des A more efficient alternative to Fuel.
+    \des Can be used to generate power or packaged to be used as fuel for Vehicles.
+    \cat Liquids
+    \snk 225
+    \eng 2000
+\end
+
+AluminaSolution
+    \nme Alumina Solution
+    \des Dissolved Alumina, extracted from Bauxite. 
+    \des Can be further refined into Aluminum Scrap for Aluminum Ingot production.
+    \cat Liquids
+    \snk 20
+\end
+
+SulfuricAcid
+    \nme Slufuric Acid
+    \des A mineral acid produced by combining Sulfur and Water in a complex reaction
+    \des Primarily used in refinement processes and Battery production.
+    \cat Liquids
+    \snk 16
+\end
+
+NitricAcid
+    \nme Nitric Acid
+    \des Produced by reaction of Nitrogen Gas with Water.
+    \des Its high corrosiveness and oxidizing properties make it an excellent choice
+    \des for refinement and fuel production processes.
+    \cat Liquids
+    \snk 94
+\end
+
+//=================================================================| Gas
+
+NitrogenGas
+    \nme Nitrogen Gas
+    \des Nitrogen can be used in a variety of ways,
+    \des uch as metallurgy, cooling, and Nitric Acid production.
+    \des On Massage-2(AB)b, it can be extracted from underground gas wells.
+    \cat Gas
+    \snk 10
+\end
+
+//=================================================================| Standard Parts
+
+IronRod
+    \nme Iron Rod
+    \des Used for crafting.
+    \des One of the most basic parts.
+    \cat StandardParts
+    \stk 200
+    \snk 4
+\end
+
+Screw
+    \nme Screw
+    \des Used for crafting.
+    \des One of the most basic parts.
+    \cat StandardParts
+    \stk 500
+    \snk 2
+\end
+
+IronPlate
+    \nme Iron Plate
+    \des Used for crafting.
+    \des One of the most basic parts.
+    \cat StandardParts
+    \stk 200
+    \snk 6
+\end
+
+ReinforcedIronPlate
+    \nme Reinforced Iron Plate
+    \des Used for crafting.
+    \des A sturdier and more durable Iron Plate.
+    \cat StandardParts
+    \stk 100
+    \snk 120
+\end
+
+CopperSheet
+    \nme Copper Sheet
+    \des Used for crafting.
+    \des Primarily used for pipelines due to its high corrosion resistance.
+    \cat StandardParts
+    \stk 200
+    \snk 24
+\end
+
+AlcladAluminumSheet
+    \nme Alclad Aluminum Sheet
+    \des Thin, lightweight, and highly durable sheets mainly used for products that require high heat
+    \des conduction or a high specific strength.
+    \cat StandardParts
+    \stk 200
+    \snk 266
+\end
+
+AluminumCasing
+    \nme Aluminum Casing
+    \des A versatile container cast from Aluminum Ingots.
+    \cat StandardParts
+    \stk 200
+    \snk 93
+\end
+
+SteelPipe
+    \nme Steel Pipe
+    \des teel Pipes are used most often when constructing a little more advanced buildings.
+    \cat StandardParts
+    \stk 200
+    \snk 24
+\end
+
+SteelBeam
+    \nme Steel Beam
+    \des Steel Beams are used most often when constructing a little more advanced buildings.
+    \cat StandardParts
+    \stk 200
+    \snk 64
+\end
+
+EncasedIndustrialBeam
+    \nme Encased Industrial Beam
+    \des Encased Industrial Beams utilizes the compressive strength
+    \des of concrete and tensile strength of steel simultaneously.
+    \des Mostly used as a stable basis for constructing buildings.
+    \cat StandardParts
+    \stk 100
+    \snk 632
+\end
+
+ModularFrame
+    \nme Modular Frame
+    \des Used for crafting.
+    \des Multi-purpose building block.
+    \cat StandardParts
+    \stk 50
+    \snk 408
+\end
+
+HeavyModularFrame
+    \nme Heavy Modular Frame
+    \des A more robust multi-purpose frame.
+    \cat StandardParts
+    \stk 59
+    \snk 11520
+\end
+
+FusedModularFrame
+    \nme Fused Modular Frame
+    \des A corrosion resistant, nitride hardened, highly robust,
+    \des yet lightweight modular frame.
+    \cat StandardParts
+    \stk 50
+    \snk 62840
+\end
+
+Fabric
+    \nme Fabric
+    \des Used for equipment crafting.
+    \des Flexible but durable fabric.
+    \cat StandardParts
+    \stk 100
+    \snk 140
+    \eng 15
+\end
+
+Plastic
+    \nme Plastic
+    \des A versatile and easy to manufacture material
+    \des that can be used for a lot of things.
+    \cat StandardParts
+    \stk 200
+    \snk 75
+\end
+
+Rubber
+    \nme Rubber
+    \des Rubber is a material that is very flexible and has a lot of friction.
+    \cat StandardParts
+    \stk 200
+    \snk 60
+\end
+
+//=================================================================| Industrial Parts
+
+Rotor
+    \nme Rotor
+    \des Used for crafting.
+    \des The moving parts of a motor.
+    \cat IndustrialParts
+    \stk 100
+    \snk 140
+\end
+
+Stator
+    \nme Stator
+    \des Used for crafting.
+    \des The static parts of a motor.
+    \cat IndustrialParts
+    \stk 100
+    \snk 240
+\end
+
+Battery
+    \nme Battery
+    \des Primarily used as fuel for Drones and Vehicles.
+    \cat IndustrialParts
+    \stk 200
+    \snk 465
+    \eng 6000
+\end
+
+Motor
+    \nme Motor 
+    \des The Motor creates a mechanical force
+    \des that is used to move things from machines to vehicles.
+    \cat IndustrialParts
+    \stk 50
+    \snk 1520
+\end
+
+HeatSink
+    \nme Heat Sink 
+    \des Used to dissipate heat faster.
+    \cat IndustrialParts
+    \stk 100
+    \snk 2804
+\end
+
+CoolingSystem
+    \nme Cooling System
+    \des Used to keep temperatures of advanced parts and buildings from exceeding to inefficient levels.
+    \cat IndustrialParts
+    \stk 100
+    \snk 12006
+\end
+
+TurboMotor
+    \nme Turbo Motor
+    \des he Turbo Motor is a more complex and more powerful version of the regular Motor.
+    \cat IndustrialParts
+    \stk 50
+    \snk 242720
+\end
+
+//=================================================================| Electronics
+
+Wire
+    \nme Wire
+    \des Used for crafting.
+    \des One of the most basic parts.
+    \cat Electronics
+    \stk 500
+    \snk 6
+\end
+
+Cable
+    \nme Cable
+    \des Used for crafting.
+    \des Primarily used to build power lines.
+    \cat Electronics
+    \stk 200
+    \snk 24
+\end
+
+Quickwire
+    \nme Quickwire
+    \des Caterium's high conductivity and resistance to corrosion makes it ideal for small,
+    \des advanced electronics.
+    \cat Electronics
+    \stk 500
+    \snk 17
+\end
+
+CircuitBoard
+    \nme Circuit Board
+    \des Circuit Boards are advanced electronics that are used in a plethora of different ways.
+    \cat Electronics
+    \stk 200
+    \snk 696
+\end
+
+AILimiter
+    \nme AI Limiter
+    \des AI Limiters are super advanced electronics that are used to control AIs
+    \des and keep them from evolving in malicious ways.
+    \cat Electronics
+    \stk 100
+    \snk 920
+\end
+
+HighSpeedConnector
+    \nme High-Speed Connector
+    \des The high-speed connector connects several cables and wires in a very efficient way.
+    \des Uses a standard pattern so its applications are many and varied.
+    \cat Electronics
+    \stk 100
+    \snk 3776
+\end
+
+//=================================================================| Communications
+
+Computer
+    \nme Computer
+    \des A Computer is a complex logic machine that is used to control advanced behavior in machines.
+    \cat Communications
+    \stk 50
+    \snk 17260
+\end
+
+SuperComputer
+    \nme Super Computer
+    \des The supercomputer is the next-gen version of the computer.
+    \cat Communications
+    \stk 50
+    \snk 99576
+\end
+
+QuantumComputer
+    \nme Quantum Computer
+    \des Uses Quantum bits instead of normal bits which makes it much faster than a treaditional computer.
+    \cat Communications
+    \stk 200
+\end
+
+RadioControlUnit
+    \nme Radio Control Unit
+    \des Enhances and directs radio signals.
+    \cat Communications
+    \stk 50
+    \snk 19600
+\end
+
+CrystalOscillator
+    \nme Crystal CrystalOscillator
+    \des A crystal oscillator is an electronic oscillator circuit that uses the mechanical resonance
+    \des of a vibrating crystal to create an electrical signal with a precise frequency.
+    \cat Communications
+    \stk 100
+    \snk 3072
+\end
+
+SuperpositionOscillator
+    \nme Superposition Oscillator
+    \des A superposition oscillator is an oscillator circuit that uses the mechanical resonance
+    \des of a vibrating crystal to create a string vibration with a precise frequancy.
+    \des Often used in teleportation technology and dimensional manipulation.
+    \cat Communications
+    \stk 200
+\end
+
+//=================================================================| Containers
+
+EmptyContainer
+    \nme Empty Container
+    \des Used to package fluids for transportation.
+    \cat Containers
+    \stk 100
+    \snk 60
+\end
+
+EmptyFluidTank
+    \nme Empty Fluid Tank
+    \des Used to package gases and volatile liquids for transportation.
+    \cat Containers
+    \stk 100
+    \snk 225
+\end
+
+PressureConversionCube
+    \nme Pressure Conversion Cube
+    \des Converts outgoing force into internal pressure.
+    \des Required to contain unstable, high-energy matter.
+    \cat Containers
+    \stk 50
+    \snk 257312
+\end
+
+PackagedWater
+    \nme PackagedWater
+    \des Water, packaged for alternative transport.
+    \cat Containers
+    \stk 100
+    \snk 130
+\end
+
+PackagedAluminaSolution
+    \nme Packaged Alumina Solution
+    \des Alumina Solution, packaged for alternative transport.
+    \cat Containers
+    \stk 100
+    \snk 160
+\end
+
+PackagedSulfuricAcid
+    \nme Packaged Sulfuric Acid
+    \des Sulfuric Acid, packaged for alternative transport.
+    \cat Containers
+    \stk 100
+    \snk 152
+\end
+
+PackagedNitricAcid
+    \nme Packaged Nitric Acid
+    \des Nitric Acid, packaged for alternative transport.
+    \cat Containers
+    \stk 100
+    \snk 412
+\end
+
+PackagedNitrogenGas
+    \nme Packaged Nitrogen Gas
+    \des Nitrogen Gas, packaged for alternative transport.
+    \cat Containers
+    \stk 100
+    \snk 312
+\end
+
+//=================================================================| Fuels
+
+Leaves
+    \nme Leaves
+    \des Primarily used as fuel.
+    \des Biomass Burners and vehicles can use it for power.
+    \cat Fuels
+    \stk 500
+    \snk 3
+    \eng 15
+\end
+
+Mycelia
+    \nme Mycelia
+    \des Used for crafting.
+    \des Biomass Burners and vehicles can use it for power.
+    \cat Fuels
+    \stk 200
+    \snk 10
+    \eng 20
+\end
+
+FlowerPetals
+    \nme FlowerPetals
+    \des Used for crafting.
+    \des Colorful native flower petals.
+    \cat Fuels
+    \stk 500
+    \snk 10
+    \eng 100
+\end
+
+Wood
+    \nme Wood
+    \des Primarily used as fuel.
+    \des Biomass Burners and vehicles can use it for power.
+    \cat Fuels
+    \stk 200
+    \snk 30
+    \eng 100
+\end
+
+Biomass
+    \nme BioMass
+    \des Primarily used as fuel.
+    \des Biomass Burners and vehicles can use it for power.
+    \des Biomass is much more energy-efficient than raw biological matter.
+    \cat Fuels
+    \stk 200
+    \snk 12
+    \eng 180
+\end
+
+CompactedCoal
+    \nme Compacted Coal
+    \des A much more efficient alternative to Coal.
+    \des Used as fuel for vehicles and coal generators.
+    \cat Fuels
+    \stk 100
+    \snk 28
+    \eng 630
+\end
+
+PackagedOil
+    \nme Packaged Oil
+    \des Crude Oil, packaged for alternative transport.
+    \des Can be used as fuel for Vehicles.
+    \cat Fuels
+    \stk 100
+    \snk 180
+    \eng 320
+\end
+
+PackagedHeavyOilResidue
+    \nme Packaged Heavy Oil Residue
+    \des Heavy Oil Residue, packaged for alternative transport.
+    \des Can be used as fuel for Vehicles.
+    \cat Fuels
+    \stk 100
+    \snk 180
+    \eng 400
+\end
+
+SolidBiofuel
+    \nme Solid Biofuel
+    \des The most energy-efficient form of solid biomass. 
+    \des Can be used as fuel for the Chainsaw.
+    \cat Fuels
+    \stk 200
+    \snk 48
+    \eng 450
+\end
+
+PackagedFuel
+    \nme Packaged Fuel
+    \des Fuel, packaged for alternative transport. 
+    \des Can be used as fuel for Vehicles and the Jetpack.
+    \cat Fuels
+    \stk 100
+    \snk 270
+    \eng 750
+\end
+
+PackagedLiquidBiofuel
+    \nme Packaged Liquid Biofuel
+    \des Liquid Biofuel, packaged for alternative transport.
+    \des Can be used as fuel for Vehicles and the Jetpack.
+    \cat Fuels
+    \stk 100
+    \snk 370
+    \eng 750
+\end
+
+PackagedTurbofuel
+    \nme Packaged Turbofuel
+    \des Turbofuel, packaged for alternative transport.
+    \des Can be used as fuel for Vehicles and the Jetpack.
+    \cat Fuels
+    \stk 100
+    \snk 570
+    \eng 2000
+\end
+
+UraniumFuelRod
+    \nme Uranium Fuel Rod
+    \des Used as fuel for the Nuclear Power Plant.
+    \des Caution: Produces radioactive Uranium Waste when consumed.
+    \cat Fuels
+    \stk 50
+    \snk 44092
+    \eng 750000
+\end
+
+PlutoniumFuelRod
+    \nme Plutonium Fuel Rod
+    \des Used as fuel for the Nuclear Power Plant.
+    \des Caution: Produces radioactive Plutonium Waste when consumed.
+    \cat Fuels
+    \stk 50
+    \snk 153184
+    \eng 1500000
+\end
+
+//=================================================================| Consumed
+
+BlackPowder
+    \nme Black Powder
+    \des An explosive powder that is commonly used to produce simple explosives.
+    \cat Consumed
+    \stk 200
+    \snk 14
+\end
+
+SmokelessPowder
+    \nme Smokeless Powder
+    \des An explosive powder that is commonly used to produce modern firearms.
+    \cat Consumed
+    \stk 100
+    \snk 58
+\end
+
+GasFilter
+    \nme Gas Filter
+    \des Used in the Gas Mask to filter out toxins and pollutants from the air.
+    \cat Consumed
+    \stk 50
+    \snk 830
+\end
+
+ColorCatridge
+    \nme Color Catridge
+    \des Used for applying Patterns to structures with the Customizer.
+    \des (Patterns can be purchased in the AWESOME Shop.)
+    \cat Consumed
+    \stk 200
+    \snk 10
+    \eng 900
+\end
+
+Beacon
+    \nme Beacon
+    \des PENDING REMOVAL
+    \cat Consumed
+    \stk 100
+    \snk 320
+\end
+
+IodineInfusedFilter
+    \nme Iodine Infused Filter
+    \des Used in the Hazmat Suit to absorb radioactive particles.
+    \cat Consumed
+    \stk 50
+    \snk 2718
+\end
+
+//=================================================================| Ammos
+
+IronRebar
+    \nme Iron Rebar
+    \des A simple iron rebar that can be shot using the Rebar Gun,
+    \des for self-defense purposes.
+    \cat Ammos
+    \stk 100
+    \snk 1
+\end
+
+StunRebar
+    \nme Stun Rebar
+    \des Electrocutes the target on impact, stunning it for a short time.
+    \des Stun duration: 5 seconds
+    \cat Ammos
+    \stk 100
+    \snk 186
+\end
+
+ShatterRebar
+    \nme Shatter Rebar
+    \des This rebar fractures when shot,
+    \des launching deadly debris in a wide spread but with limited range.
+    \cat Ammos
+    \stk 100
+    \snk 332
+\end
+
+ExplosiveRebar
+    \nme explosive Rebars
+    \des Explodes on impact, dealing heavy damage.
+    \cat Ammos
+    \stk 100
+    \snk 360
+\end
+
+RifleAmmo
+    \nme Rifle Ammo
+    \des Standard issue Rifle ammunition, useful for establishing dominance.
+    \cat Ammos
+    \stk 500
+    \snk 25
+\end
+
+HomingRifleAmmo
+    \nme Homing Rifle Ammo
+    \des The bullet guidance system built into this ammunition allows it 
+    \des to accurately hit any target within the reticle area.
+    \des Especially useful when dealing with agile threats, 
+    \des or for Pioneers who can't be bothered to aim properly.
+    \cat Ammos
+    \stk 500
+    \snk 855
+\end
+
+TurboRifleAmmo
+    \nme Turbo Rifle Ammo
+    \des Lightweight, compact, and volatile. 
+    \des These rounds provide extreme capacity and fire rates,
+    \des at the cost of accuracy.
+    \cat Ammos
+    \stk 500
+    \snk 120
+\end
+
+Nobelisk
+    \nme Nobelisk 
+    \des A simple explosive, useful for clearing boulders, 
+    \des vegetation, and other obstacles.
+    \cat Ammos
+    \stk 50
+    \snk 152
+\end
+
+GasNobelisk
+    \nme Gas Nobelisk
+    \des Instead of a regular explosion, this Nobelisk creates a deadly gas cloud.
+    \cat Ammos
+    \stk 50
+    \snk 544
+\end
+
+PulseNobelisk
+    \nme Pulse Nobelisk
+    \des Instead of a regular explosion, this Nobelisk generates a powerful shockwave.
+    \cat Ammos
+    \stk 50
+    \snk 1533
+\end
+
+ClusterNobelisk
+    \nme Cluster Nobelisk
+    \des A Nobelisk that detonates into multiple smaller explosions. 
+    \des Practical when clearing out large areas of vegetation and other inconveniences.
+    \cat Ammos
+    \stk 40
+    \snk 1376
+\end
+
+NukeNobelisk
+    \nme Nuke Nobelisk
+    \des This Nobelisk uses a nuclear fission reaction to generate a massive explosion.
+    \des WARNING: Ensure all FICSIT property is clear of the blast zone before detonation.
+    \cat Ammos
+    \stk 50
+    \snk 19600
+\end
+
+//=================================================================| Nuclear
+
+ElectromagneticControlRod
+    \nme Electromagnetic Control Rod
+    \des Control Rods regulate power output via electromagnetism.
+    \cat Nuclear
+    \stk 100
+    \snk 2560
+\end
+
+EncasedUraniumCell
+    \nme Encased Uranium Cell
+    \des Uranium Cells are produced from Uranium Ore.
+    \des Used to produce Uranium Fuel Rods for Nuclear Power production.
+    \cat Nuclear
+    \stk 200
+    \snk 147
+    \rad Mildly
+\end
+
+NonFissileUranium
+    \nme Non-fissile Uranium
+    \des The isotope Uranium-238 is non-fissile, meaning it cannot be used for nuclear fission.
+    \des t can, however, be converted into fissile Plutonium in the Particle Accelerator.
+    \cat Nuclear
+    \stk 500
+    \snk 0
+    \rad Mildly
+\end
+
+PlutoniumPellet
+    \nme Plutonium Pellet
+    \des Produced in the Particle Accelerator through conversion of Non-fissile Uranium.
+    \des Used to produce Encased Plutonium Cells for Plutonium Fuel Rods.
+    \cat Nuclear
+    \stk 100
+    \snk 0
+    \pmi 250
+    \pmx 750
+    \pav 500
+    \rad Moderately
+\end
+
+EncasedPlutoniumCell
+    \nme Encased Plutonium Cell
+    \des Plutonium Cells are concrete encased Plutonium Pellets.
+    \des Used to produce Plutonium Fuel Rods for Nuclear Power production.
+    \cat Nuclear
+    \stk 200
+    \snk 0
+    \rad Moderately
+\end
+
+//=================================================================| Waste
+
+UraniumWates
+    \nme Uranium Waste
+    \des The by-product of consuming Uranium Fuel Rods in the Nuclear Power Plant.
+    \des Non-fissile Uranium can be extracted. Handle with caution.
+    \cat Waste
+    \stk 500
+    \snk 0
+    \rad HIGHLY
+\end
+
+PlutoniumWaste
+    \nme PlutoniumWaste
+    \des The by-product of consuming Plutonium Fuel Rods in the Nuclear Power Plant.
+    \des Needs to be stored in a safe location. Handle with caution.
+    \cat Waste
+    \stk 500
+    \snk 0
+    \rad EXTREAMELY
+\end
+
+//=================================================================| Special
+
+BluePowerSlug
+    \nme Blue Power Slug
+    \des A strange slug radiating a weak strange power.
+    \cat Special
+    \stk 50
+    \snk 0
+\end
+
+YellowPowerSlug
+    \nme Yellow Power Slug
+    \des A strange slug radiating a strange power.
+    \cat Special
+    \stk 50
+    \snk 0
+\end
+
+PurplePowerSlug
+    \nme Purple Power Slug
+    \des A strange slug radiating a powerful strange power.
+    \cat Special
+    \stk 50
+    \snk 0
+\end
+
+PowerShard
+    \nme Power Shard
+    \des Mucus from the power slugs compressed into a solid crystal-like shard.
+    \des It radiates a strange power.
+    \cat Special
+    \stk 100
+    \snk 0
+\end
+
+FICSITCoupon
+    \nme FICSIT Coupon
+    \des A special FICSIT bonus program Coupon, obtained through the AWESOME Sink.
+    \des Can be redeemed in the AWESOME Shop for bonus milestones and rewards.
+    \cat Special
+    \stk 500
+    \snk 1
+\end
+
+SmartPlating
+    \nme Smart Plating
+    \des Project Part #1. Ship with the Space Elevator to complete phases of Project Assembly.
+    \cat Special
+    \stk 50
+    \snk 520
+\end
+
+VersatileFramework
+    \nme Versatile Framework
+    \des Project Part #2. Ship with the Space Elevator to complete phases of Project Assembly.
+    \cat Special
+    \stk 50
+    \snk 1176
+\end
+
+AutomatedWiring
+    \nme Automated Wiring
+    \des Project Part #3. Ship with the Space Elevator to complete phases of Project Assembly.
+    \cat Special
+    \stk 50
+    \snk 1440
+\end
+
+ModularEngine
+    \nme Modular Engine
+    \des Project Part #4. Ship with the Space Elevator to complete phases of Project Assembly.
+    \cat Special
+    \stk 50
+    \snk 9960
+\end
+
+AdaptiveControlUnit
+    \nme Adaptive Control Unit
+    \des Project Part #5. Ship with the Space Elevator to complete phases of Project Assembly.
+    \cat Special
+    \stk 50
+    \snk 86120
+\end
+
+AssemblyDirectorSystem
+    \nme Assembly Director System
+    \des Project Part #6. Ship with the Space Elevator to complete phases of Project Assembly.
+    \des This extremely fast and precise computing system is specifically designed 
+    \des to direct the Project Assembly: Assembly Phase.
+    \cat Special
+    \stk 50
+    \snk 543632
+\end
+
+MagneticFieldGenerator
+    \nme Magnetic Field Generator
+    \des Project Part #7. Ship with the Space Elevator to complete phases of Project Assembly.
+    \des These modular generators use superconducting magnets and vast amounts of electricity
+    \des to produce an easily expandable and powerful magnetic field.
+    \cat Special
+    \stk 50
+    \snk 15650
+\end
+
+ThermalPropulsionRocket
+    \nme Thermal Propulsion Rocket
+    \des roject Part #8. Ship with the Space Elevator to complete phases of Project Assembly.
+    \des Uses extreme heat to produce the high-pressure plasma
+    \des required to get Project Assembly into motion.
+    \cat Special
+    \stk 50
+    \snk 732956
+\end
+
+NuclearPasta
+    \nme Nuclear Pasta
+    \des Project Part #9. Ship with the Space Elevator to complete phases of Project Assembly.
+    \des Nuclear Pasta is extremely dense degenerate matter, 
+    \des formed when extreme pressure forces protons and electrons together into neutrons.
+    \des It is theorized to exist naturally within the crust of neutron stars.
+    \cat Special
+    \stk 50
+    \snk 543424
+    \pmi 500
+    \pmx 1500
+    \pav 1000
 \end

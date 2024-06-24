@@ -75,6 +75,10 @@ void TextButton::Make(int _posX, int _posY, const std::string& _element, bool _b
 
 }
 
+std::string TextButton::GetName() {
+	return stringElement;
+}
+
 void TextButton::SetForegroundColor(ColorCode _color) {
 	foregroundColor = _color;
 	NeedUpdate = true;

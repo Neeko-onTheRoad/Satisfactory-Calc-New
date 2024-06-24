@@ -2,7 +2,7 @@
 
 void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _objects, int _layer) {
 
-	for (int y = upperBarEndPoint + 5; y < SCENE_HEIGHT - 2; y++) {
+	for (int y = upperBarEndPoint + 4; y < SCENE_HEIGHT - 2; y++) {
 		for (int x = infoBarRightPoint + 2; x < CONSOLE_WIDTH - 3; x++) {
 			Object[y][x] = ' ';
 			ForegroundColor[y][x] = Color::DefaultForegroundColor;
@@ -10,22 +10,11 @@ void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _o
 		}
 	}
 
-	for (auto& layer : _objects) {
-		auto iterator = std::find_if(layer.second.begin(), layer.second.end(), [&](auto& it) {
-			for (auto& button : inputItems ) if (it == button) return true;
-			for (auto& button : outputItems) if (it == button) return true;
-
-			return false;
-		});
-		if (iterator != layer.second.end()) layer.second.erase(iterator);
+	if (recipeSelect->GetElement() == Satisfactory::NullRecipe) {
+		return;
 	}
 
-	for (auto& button : inputItems ) delete button;
-	for (auto& button : outputItems) delete button;
-	inputItems .clear();
-	outputItems.clear();
-
-	std::string inputItemStr  = "Input Item";
+	std::string inputItemStr = "Input Item";
 	std::string outputItemStr = "Output Item";
 
 	int indexY = upperBarEndPoint + 5;
@@ -37,28 +26,146 @@ void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _o
 
 	indexY++;
 
-	for (auto& input : recipeSelect->GetElement()->Input) {
-		TextButton* tempButton = new TextButton;
+	int maxItemStrLen = 20;
+	for (int i = 0; i < recipeSelect->GetElement()->Input.size(); i++) {
+		
+		std::string strBuffer = "";
+		strBuffer += std::get<0>(recipeSelect->GetElement()->Input[i])->Name + " x";
+		strBuffer += std::to_string(std::get<2>(recipeSelect->GetElement()->Input[i])) + " (";
+		strBuffer += std::format("{}", std::get<1>(recipeSelect->GetElement()->Input[i])) + "/min)";
 
-		tempButton->SetBackgroundColor(Color::HilightedBackgroundColor);
-		tempButton->SetSelectedForegroundColor(Color::HilightedBackgroundColor);
-		tempButton->SetSelectedBackgroundColor(Color::HilightedForegroundColor);
-		tempButton->Render = true;
-		tempButton->Make(infoBarRightPoint + 8, indexY++, std::get<0>(input)->Name, false); 
-		_objects[_layer].push_back(tempButton);
-		inputItems.push_back(tempButton);
-	}
+		if (strBuffer.size() > maxItemStrLen) maxItemStrLen = static_cast<int>(strBuffer.size());
 
-	for (auto& button : inputItems) {
-		// TODO: fuck
-		//_objects[_layer].push_back(button);
-	}
+		for (int x = 0; x < strBuffer.size(); x++) {
+			Object[indexY][x + infoBarRightPoint + 8] = strBuffer[x];
+			ForegroundColor[indexY][x + infoBarRightPoint + 8] = Color::LightForegroundColor;
+		}
+		for (int x = 0; x < std::get<0>(recipeSelect->GetElement()->Input[i])->Name.size(); x++) {
+			ForegroundColor[indexY][x + infoBarRightPoint + 8] = Color::DefaultForegroundColor;
+		}
+
+		indexY++;
+		}
 
 	indexY++;
 
 	for (int x = 0; x < outputItemStr.size(); x++) {
 		Object[indexY][x + infoBarRightPoint + 6] = outputItemStr[x];
 		ForegroundColor[indexY][x + infoBarRightPoint + 6] = Color::HilightedForegroundColor;
+	}
+
+	indexY++;
+
+
+	for (int i = 0; i < recipeSelect->GetElement()->Output.size(); i++) {
+
+		std::string strBuffer = "";
+		strBuffer += std::get<0>(recipeSelect->GetElement()->Output[i])->Name + " x";
+		strBuffer += std::to_string(std::get<2>(recipeSelect->GetElement()->Output[i])) + " (";
+		strBuffer += std::format("{}", std::get<1>(recipeSelect->GetElement()->Output[i])) + "/min)";
+
+		if (strBuffer.size() > maxItemStrLen) maxItemStrLen = static_cast<int>(strBuffer.size());
+
+		for (int x = 0; x < strBuffer.size(); x++) {
+			Object[indexY][x + infoBarRightPoint + 8] = strBuffer[x];
+			ForegroundColor[indexY][x + infoBarRightPoint + 8] = Color::LightForegroundColor;
+		}
+		for (int x = 0; x < std::get<0>(recipeSelect->GetElement()->Output[i])->Name.size(); x++) {
+			ForegroundColor[indexY][x + infoBarRightPoint + 8] = Color::DefaultForegroundColor;
+		}
+
+		indexY++;
+	}
+
+	indexY = upperBarEndPoint + 5;
+	int indexX = maxItemStrLen + infoBarRightPoint + 15;
+
+	for (int y = indexY - 1; y < SCENE_HEIGHT - 2; y++) {
+		Object[y][indexX - 4] = Ascii::VT_BAR;
+		ForegroundColor[y][indexX - 4] = Color::LightForegroundColor;
+	}
+	for (int x = infoBarRightPoint + 8; x < CONSOLE_WIDTH - 8; x++) {
+		Object[indexY - 2][x] = Ascii::HZ_BAR;
+	}
+	Object[indexY - 2][indexX - 4] = Ascii::BT_BAR;
+
+	{
+		std::string productTimeStrOrg = "Product Time: ";
+		std::string energyUseStrOrg = "";
+		std::string productTimeStr = productTimeStrOrg;
+		std::string energyUseStr;
+
+		{
+			
+			auto target = (
+				recipeSelect->GetElement()->Input.size() != 0 ?
+				recipeSelect->GetElement()->Output[0] :
+				recipeSelect->GetElement()->Input [0]
+			);
+
+			lDouble productTime = 0.;
+
+			productTime  = std::get<1>(target);
+			productTime /= std::get<2>(target);
+			productTime  = 60.L / productTime;
+
+			int floor = static_cast<int>(productTime * 100000);
+			productTime = floor / 100000.L;
+
+			productTimeStr += std::format("{} sec", productTime);
+
+			for (int x = 0; x < productTimeStr.size(); x++) {
+				Object[indexY][x + indexX] = productTimeStr[x];
+			}
+
+			for (int x = 0; x < productTimeStrOrg.size(); x++) {
+				ForegroundColor[indexY][x + indexX] = Color::HilightedForegroundColor;
+			} 
+
+			lDouble energyUse = 0.;
+			energyUse = (
+				recipeSelect->GetElement()->Building->PowerUsed -
+				recipeSelect->GetElement()->Building->PowerGeneration
+				);
+
+			if (energyUse > 0) {
+				energyUseStrOrg = "Energy Usage: ";
+				energyUseStr = energyUseStrOrg;
+
+				energyUse *= productTime;
+
+				energyUse /= std::get<1>(recipeSelect->GetElement()->Input[0]);
+
+				int floor = static_cast<int>(energyUse * 100000);
+				energyUse = floor / 100000.L;
+				energyUseStr += std::format("{} MJ", energyUse);
+				indexY++;
+
+				for (int x = 0; x < energyUseStr.size(); x++) {
+					Object[indexY][x + indexX] = energyUseStr[x];
+				}
+
+				for (int x = 0; x < energyUseStrOrg.size(); x++) {
+					ForegroundColor[indexY][x + indexX] = Color::HilightedForegroundColor;
+				}
+			}
+		}
+	}
+
+
+	indexY++;
+	{
+		std::string productAtStrOrg = "Product At: ";
+		std::string productAtStr = productAtStrOrg + recipeSelect->GetElement()->Building->Name;
+
+		for (int x = 0; x < productAtStr.size(); x++) {
+			Object[indexY][x + indexX] = productAtStr[x];
+		}
+
+		for (int x = 0; x < productAtStrOrg.size(); x++) {
+			ForegroundColor[indexY][x + indexX] = Color::HilightedForegroundColor;
+		}
+
 	}
 
 }
@@ -107,7 +214,7 @@ void ItemWikiPage::Update(ISelectable*& _selecting) {
 }
 
 void ItemWikiPage::Make(
-	const Item* item, 
+	Item* _item, 
 	ISelectable* _before,
 	std::map<int, std::vector<ConsoleObject*>>& _objects,
 	ISelectable* _selecting,
@@ -115,6 +222,7 @@ void ItemWikiPage::Make(
 ) {
 
 	before = _before;
+	itemSelected = _item;
 
 	for (auto& layer : _objects) {
 		auto iterator = std::find(layer.second.begin(), layer.second.end(), recipeSelect);
@@ -129,7 +237,7 @@ void ItemWikiPage::Make(
 		}
 	}
 
-	unsigned upperBarEndPoint = static_cast<unsigned>(item->Description.size()) + 4u;
+	unsigned upperBarEndPoint = static_cast<unsigned>(_item->Description.size()) + 4u;
 
 	// Name and Description
 	for (unsigned y = 1; y < upperBarEndPoint; y++) {
@@ -138,14 +246,14 @@ void ItemWikiPage::Make(
 		}
 	}
 
-	for (unsigned x = 0; x < item->Name.size(); x++) {
-		Object[2][x + 5] = item->Name[x];
+	for (unsigned x = 0; x < _item->Name.size(); x++) {
+		Object[2][x + 5] = _item->Name[x];
 		ForegroundColor[2][x + 5] = Color::HilightedForegroundColor;
 	}
 
-	for (unsigned y = 0; y < item->Description.size(); y++) {
-		for (unsigned x = 0; x < item->Description[y].size(); x++) {
-			Object[y + 3][x + 6] = item->Description[y][x];
+	for (unsigned y = 0; y < _item->Description.size(); y++) {
+		for (unsigned x = 0; x < _item->Description[y].size(); x++) {
+			Object[y + 3][x + 6] = _item->Description[y][x];
 		}
 	}
 
@@ -159,10 +267,10 @@ void ItemWikiPage::Make(
 	std::string Radioactive = "Radioactive";
 
 	unsigned maxStrLength      = static_cast<unsigned>(SinkPoints.size());
-	unsigned infoBarEndPoint   = upperBarEndPoint + 6;
+	unsigned infoBarEndPoint   = upperBarEndPoint + 4;
 	unsigned infoBarRightPoint = 0;
 
-	if (!item->Radioactive.compare("")) {
+	if (!_item->Radioactive.compare("")) {
 		maxStrLength = static_cast<unsigned>(Radioactive.size());
 	}
 
@@ -174,7 +282,7 @@ void ItemWikiPage::Make(
 			ForegroundColor[upperBarEndPoint + informationY][x + 5] = Color::HilightedForegroundColor;
 		}
 
-		std::string CategoryElement = ItemNameOfCategory[item->Category];
+		std::string CategoryElement = ItemNameOfCategory[_item->Category];
 		if (CategoryElement.size() > infoBarRightPoint) infoBarRightPoint = static_cast<unsigned>(CategoryElement.size());
 
 		for (int x = 0; x < CategoryElement.size(); x++) {
@@ -184,13 +292,13 @@ void ItemWikiPage::Make(
 		informationY++;
 	}
 
-	{
+	if (_item->MaxStackSize) {
 		for (int x = 0; x < StackSize.size(); x++) {
 			Object[upperBarEndPoint + informationY][x + 5] = StackSize[x];
 			ForegroundColor[upperBarEndPoint + informationY][x + 5] = Color::HilightedForegroundColor;
 		}
 
-		std::string StackSizeElement = std::to_string(item->MaxStackSize) + " Unit";
+		std::string StackSizeElement = std::to_string(_item->MaxStackSize) + " Unit";
 		if (StackSizeElement.size() > infoBarRightPoint) infoBarRightPoint = static_cast<unsigned>(StackSizeElement.size());
 
 		for (int x = 0; x < StackSizeElement.size(); x++) {;
@@ -198,6 +306,7 @@ void ItemWikiPage::Make(
 		}
 
 		informationY++;
+		infoBarEndPoint++;
 	}
 
 	{
@@ -206,7 +315,15 @@ void ItemWikiPage::Make(
 			ForegroundColor[upperBarEndPoint + informationY][x + 5] = Color::HilightedForegroundColor;
 		}
 
-		std::string SinkPointElement = std::to_string(item->SinkPoint) + " Point";
+		std::string SinkPointElement = "";
+		
+		if (_item->SinkPoint) {
+			SinkPointElement = std::to_string(_item->SinkPoint) + " Point";
+		}
+		else {
+			SinkPointElement = "Refusal";
+		}
+
 		if (SinkPointElement.size() > infoBarRightPoint) infoBarRightPoint = static_cast<unsigned>(SinkPointElement.size());
 
 		for (int x = 0; x < SinkPointElement.size(); x++) {
@@ -216,7 +333,7 @@ void ItemWikiPage::Make(
 		informationY++;
 	}
 
-	if (item->Energy != 0) {
+	if (_item->Energy != 0) {
 		infoBarEndPoint++;
 
 		for (int x = 0; x < Energy.size(); x++) {
@@ -224,7 +341,7 @@ void ItemWikiPage::Make(
 			ForegroundColor[upperBarEndPoint + informationY][x + 5] = Color::HilightedForegroundColor;
 		}
 
-		std::string EnergyElement = std::to_string(item->Energy) + " MJ";
+		std::string EnergyElement = std::to_string(_item->Energy) + " MJ";
 		if (EnergyElement.size() > infoBarRightPoint) infoBarRightPoint = static_cast<unsigned>(EnergyElement.size());
 		for (int x = 0; x < EnergyElement.size(); x++) {
 			Object[upperBarEndPoint + informationY][maxStrLength + x + 7] = EnergyElement[x];
@@ -233,7 +350,7 @@ void ItemWikiPage::Make(
 		informationY++;
 	}
 
-	if (item->PowerUseAvrg) {
+	if (_item->PowerUseAvrg) {
 		infoBarEndPoint++;
 
 		for (int x = 0; x < PowerUse.size(); x++) {
@@ -242,8 +359,8 @@ void ItemWikiPage::Make(
 		}
 
 		std::string EnergyElement = "";
-		EnergyElement += std::to_string(item->PowerUseMin) + " ~ " + std::to_string(item->PowerUseMin) + "MV";
-		EnergyElement += " (" + std::to_string(item->PowerUseAvrg) + "MV)";
+		EnergyElement += std::to_string(_item->PowerUseMin) + " ~ " + std::to_string(_item->PowerUseMin) + "MV";
+		EnergyElement += " (" + std::to_string(_item->PowerUseAvrg) + "MV)";
 
 		if (EnergyElement.size() > infoBarRightPoint) infoBarRightPoint = static_cast<unsigned>(EnergyElement.size());
 		for (int x = 0; x < EnergyElement.size(); x++) {
@@ -253,7 +370,7 @@ void ItemWikiPage::Make(
 		informationY++;
 	}
 
-	if (item->Radioactive.compare("")) {
+	if (_item->Radioactive.compare("")) {
 		infoBarEndPoint++;
 
 		for (int x = 0; x < Radioactive.size(); x++) {
@@ -261,7 +378,7 @@ void ItemWikiPage::Make(
 			ForegroundColor[upperBarEndPoint + informationY][x + 5] = Color::HilightedForegroundColor;
 		}
 
-		std::string RadioactiveElement = item->Radioactive;
+		std::string RadioactiveElement = _item->Radioactive;
 		if (RadioactiveElement.size() > infoBarRightPoint) infoBarRightPoint = static_cast<unsigned>(RadioactiveElement.size());
 		for (int x = 0; x < RadioactiveElement.size(); x++) {
 			Object[upperBarEndPoint + informationY][maxStrLength + x + 7] = RadioactiveElement[x];
@@ -272,7 +389,7 @@ void ItemWikiPage::Make(
 
 	infoBarRightPoint += 11 + maxStrLength;
 
-	for (unsigned y = upperBarEndPoint + 1; y < infoBarEndPoint; y++) {
+	for (unsigned y = upperBarEndPoint + 1; y < infoBarEndPoint + 1; y++) {
 		for (unsigned x = 2; x < infoBarRightPoint; x++) {
 			BackgroundColor[y][x] = Color::HilightedBackgroundColor;
 		}
@@ -296,7 +413,7 @@ void ItemWikiPage::Make(
 
 		std::vector<std::pair<Recipe*, std::string>> rsOptions;
 
-		for (auto& recipe : item->Recipes) {
+		for (auto& recipe : _item->Recipes) {
 			rsOptions.emplace_back(recipe, recipe->Name);
 		}
 
@@ -328,6 +445,7 @@ void ItemWikiPage::Make(
 
 	nowSelect = recipeSelect;
 	nowSelect->Select();
+
 	rerenderRecipe(_objects, _layer);
 }
 
@@ -354,9 +472,6 @@ KeyGuides ItemWikiPage::GetKeyGuides() const {
 void ItemWikiPage::Select() {
 	recipeSelect->Render = true;
 
-	for (auto& button : inputItems ) button->Render = true;
-	for (auto& button : outputItems) button->Render = true;
-
 	isSelected = true;
 	Render = true;
 	NeedUpdate = true;
@@ -364,9 +479,6 @@ void ItemWikiPage::Select() {
 
 void ItemWikiPage::UnSelect() {
 	recipeSelect->Render = false;
-
-	for (auto& button : inputItems ) button->Render = false;
-	for (auto& button : outputItems) button->Render = false;
 
 	isSelected = false;
 	Render = false;	

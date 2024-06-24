@@ -10,7 +10,7 @@
 enum class ItemCategory {
 	Ores, Ingots, Minerals, Aliens, Liquids, Gas,
 	StandardParts, IndustrialParts, Electronics, Communications,
-	Containers, Fuels, Consumed, Ammos, Nuclear, Waste, Spectial
+	Containers, Fuels, Consumed, Ammos, Nuclear, Waste, Special
 };
 
 

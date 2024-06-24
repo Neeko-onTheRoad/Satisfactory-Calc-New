@@ -12,10 +12,6 @@ void ConsoleWindow::Initialize() {
 	Satisfactory::Initialize();
 	Resources::Initialize();
 
-	// Faster I/O
-	std::ios_base::sync_with_stdio(0);
-	std::cout.tie(0);
-	std::cin.tie(0);
 
 	// Make and Push All Scenes
 	scenes.push_back(new MainScreen);
@@ -32,7 +28,7 @@ void ConsoleWindow::Initialize() {
 
 	// Make Console to UI
 	ConsoleManager::SetFont(L"D2Coding", 24);
-	ConsoleManager::SetSize(1280, 832);
+	ConsoleManager::SetSize(1300, 832);
 	ConsoleManager::DisableResize();
 	ConsoleManager::DisableUserSelection();
 	ConsoleManager::DisableScrollBar();
@@ -54,7 +50,6 @@ void ConsoleWindow::Run() {
 	std::function<void()> mainLoop = [&]() {
 
 		while (true) {
-
 			KeyManager::Update();
 
 			// User Input : Move Left Page
@@ -79,11 +74,12 @@ void ConsoleWindow::Run() {
 
 			nowScene->UpdateBase();
 
-			// Change Scene if now Scene's state is need to chage scene
+			// Change Scene if Need
 			if (nowScene->NeedToChangeScene) {
 
 				int sceneChangeTemp = nowScene->NeedToChangeScene;
 				nowScene->NeedToChangeScene = 0;
+				nowScene->NeedUpdate = true;
 
 				if (sceneChangeTemp > 0) {
 					for (int i = 0; i < sceneChangeTemp; i++) {
@@ -103,6 +99,9 @@ void ConsoleWindow::Run() {
 				}
 			}
 
+			if (PotatoMode) std::this_thread::sleep_for(std::chrono::milliseconds(5));
+
+
 		}
 	};
 
@@ -114,6 +113,8 @@ void ConsoleWindow::Run() {
 				Display();
 				nowScene->NeedUpdate = false;
 			}
+
+			if (PotatoMode) std::this_thread::sleep_for(std::chrono::milliseconds(50));
 		}
 	};
 

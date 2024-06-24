@@ -1,9 +1,163 @@
-Smelter
-Smelter
-Smelts ore into ingots.
+// \nme Name            [str]
+// \des Add Description [str]
+// \cat Category        [BuildingCategory]
+// \ing Add Ingredient  [Item i, uint a]
+// \siz Size            [uint w, uint l, uint h]
+// \ios Input, Outputs  [int i, int o]
+// \pwu Power Usage     [uint | "CBC"]
+// \pwg Power Generate  [uint | "INF"]
 
-Can be automated by feeding ore into it with a conveyor belt connected to the input.
-The produced ingots can be automatically extracted by connecting a conveyor belt to the output.
-\desEnd
-Production
-4
+//=================================================================| Extraction
+
+MinerMk1
+    \nme Miner Mk.1
+    \pwu 5
+\end
+
+MinerMk2
+    \nme Miner Mk.2
+    \pwu 12
+\end
+
+MinerMk3
+    \nme Miner Mk.3
+    \pwu 30
+\end
+
+OilExtractor
+    \nme Oil Extractor
+    \pwu 40
+\end
+
+WaterExtractor
+    \nme Water Extractor
+    \pwu 20
+\end
+
+ResourceWellPressurizer
+    \nme Resource Well Pressurizer
+    \pwu 150
+\end
+
+ResourceWellExtractor
+    \nme Resource Well Extractor
+    \pwu 0
+\end
+
+//=================================================================| Production
+
+Smelter
+    \nme Smelter
+    \pwu 4
+\end
+
+Foundry
+    \nme Foundry
+    \pwu 16
+\end
+
+Constructor
+    \nme Constructor
+    \pwu 4
+\end
+
+Assembler
+    \nme Assembler
+    \pwu 15
+\end
+
+Manufacturer
+    \nme Manufacturer
+    \pwu 55
+\end
+
+Refinery
+    \nme Refinery
+    \pwu 30
+\end
+
+Packager
+    \nme Packager
+    \pwu 10
+\end
+
+Blender
+    \nme Blender
+    \pwu 75
+\end
+
+ParticleAccelerator
+    \nme Particle Accelerator
+    \pwu CBC
+\end
+
+//=================================================================| Generators
+
+BiomassBurner
+    \nme Biomass Burner
+    \pwg 30
+\end
+
+CoalGenerator
+    \nme Coal Generator
+    \pwg 75
+\end
+
+FuelGenerator
+    \nme Fuel Generator
+    \pwg 150
+\end
+
+GeothermalGenerator
+    \nme Geothermal Generator
+\end
+
+NuclearPowerPlant
+    \nme Nuclear Power Plant
+    \pwg 2500
+\end
+
+PowerStorage
+    \nme Power Storage
+    \pwg INF
+\end
+
+//=================================================================| Special
+
+TheHUB
+    \nme The HUB
+\end
+
+MAM
+    \nme MAM
+\end
+
+SpaceElevator
+    \nme Space Elevator
+\end
+
+BlueprintDesigner
+    \nme Blueprint Designer
+\end
+
+AWESOMESink
+    \nme AWESOME Sink
+\end
+
+AWESOMEShop
+    \nme AWESOME Shop
+\end
+
+//=================================================================| Workstations
+
+CraftBench
+    \nme Craft Bench
+\end
+
+EquipmentWorkshop
+    \nme Equipment Workshop
+\end
+
+//=================================================================| Storage
+//=================================================================| DockingStations
+//=================================================================| Towers

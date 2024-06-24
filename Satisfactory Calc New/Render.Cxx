@@ -89,6 +89,6 @@ void ConsoleWindow::Display() {
 	}
 
 	// print Rendered Elements and Clear Buffer
-	std::cout << displayBuffer.substr(0, displayBuffer.size() - 1);
+	printf("%s", displayBuffer.substr(0, displayBuffer.size() - 1).c_str());
 
 }

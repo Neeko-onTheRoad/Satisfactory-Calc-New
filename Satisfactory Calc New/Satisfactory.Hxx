@@ -3,8 +3,10 @@
 #ifndef _SATISFACTORY_HXX_
 #define _SATISFACTORY_HXX_
 
-#include <map>
+#include <sstream>
 #include <fstream>
+#include <iostream>
+#include <unordered_map>
 #include "Item.Hxx"
 #include "Recipe.Hxx"
 #include "Building.Hxx"
@@ -16,10 +18,14 @@
 
 namespace Satisfactory {
 
-	extern std::map<std::string, Item*>     ItemList;
-	extern std::map<std::string, Recipe*>   RecipeList;
-	extern std::map<std::string, Building*> BuildingList;
+	extern std::vector<Item*>     ItemList; 
+	extern std::vector<Building*> BuildingList;
+	extern std::vector<Recipe*>   RecipeList;
 
+	extern std::unordered_map<std::string, Item*>     ItemTable;
+	extern std::unordered_map<std::string, Building*> BuildingTable;
+	extern std::unordered_map<std::string, Recipe*>   RecipeTable;
+	
 	extern std::vector<Item*> PowerSources;
 	
 	extern Recipe* NullRecipe;

@@ -4,7 +4,7 @@
 #define _CONSOLE_WINDOW_HXX_
 
 #include <thread>
-#include <iostream>
+#include <cstdio>
 #include <functional>
 
 #include "Color.Hxx"
@@ -51,6 +51,8 @@ private:
 
 
 public:
+
+	bool PotatoMode = false;
 
 	void ChangeScene(unsigned index);
 	void Initialize();

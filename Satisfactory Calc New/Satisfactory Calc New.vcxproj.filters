@@ -114,6 +114,12 @@
     <ClCompile Include="Satisfactory.Cxx">
       <Filter>소스 파일\Satisfactory</Filter>
     </ClCompile>
+    <ClCompile Include="Building.Cxx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.Cxx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleManager.Hxx">
@@ -187,9 +193,6 @@
     <None Include="Recipe.Hxx">
       <Filter>헤더 파일\Satisfactory\Structures</Filter>
     </None>
-    <None Include="ItemInit.txt">
-      <Filter>리소스 파일\Initialize</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\ConsoleTitle.txt">
@@ -198,10 +201,13 @@
     <Text Include="res\Credit.txt">
       <Filter>리소스 파일</Filter>
     </Text>
-    <Text Include="BuildingInit.txt">
+    <Text Include="res\Initialize\BuildingInit.nkdt">
       <Filter>리소스 파일\Initialize</Filter>
     </Text>
-    <Text Include="RecipeInit.txt">
+    <Text Include="res\Initialize\ItemInit.nkdt">
+      <Filter>리소스 파일\Initialize</Filter>
+    </Text>
+    <Text Include="res\Initialize\RecipeInit.nkdt">
       <Filter>리소스 파일\Initialize</Filter>
     </Text>
   </ItemGroup>

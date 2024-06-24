@@ -1,0 +1,30 @@
+// \alt IsAlt      
+// \nme Name       [str]
+// \bdg Building   [Building]
+// \inn Add Input  [Item i, double p, uint a]
+// \out Add Output [Item i, double p, uint a]
+
+IronIngot
+    \nme Iron Ingot
+    \bdg Smelter
+    \inn IronOre 30 1
+    \out IronIngot 30 1
+\end
+
+IronAlloyIngot
+    \alt
+    \nme Iron Alloy Ingot
+    \bdg Foundry
+    \inn IronOre 20 2
+    \inn CopperOre 20 2
+    \out IronIngot 50 5
+\end
+
+PureIronIngot
+    \alt
+    \nme Pure Iron Ingot
+    \bdg Refinery
+    \inn IronOre 35 7
+    \inn Water 20 4
+    \out IronIngot 65 13
+\end

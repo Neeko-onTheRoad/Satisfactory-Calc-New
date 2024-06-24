@@ -1,11 +1,14 @@
 #include "Satisfactory.Hxx"
-#include <iostream>
 
 namespace Satisfactory {
 
-	std::map<std::string, Item*>     ItemList;
-	std::map<std::string, Building*> BuildingList;
-	std::map<std::string, Recipe*>   RecipeList;
+	std::vector<Item*>     ItemList;
+	std::vector<Building*> BuildingList;
+	std::vector<Recipe*>   RecipeList;
+
+	std::unordered_map<std::string, Item*> ItemTable;
+	std::unordered_map<std::string, Building*> BuildingTable;
+	std::unordered_map<std::string, Recipe*> RecipeTable;
 
 	std::vector<Item*> PowerSources;
 
@@ -45,9 +48,7 @@ namespace Satisfactory {
 					if (!input.compare("\\end")) break;
 
 					int inputOffset = 0;
-					for (int i = 0; input[i] == ' ' || input[i] == '\t'; i++) {
-						inputOffset++;
-					}
+					for (int i = 0; input[i] == ' ' || input[i] == '\t'; i++) inputOffset++;
 					std::string slicedInput = input.substr(inputOffset);
 					std::string sliced = input.substr(inputOffset + 5);
 
@@ -66,7 +67,7 @@ namespace Satisfactory {
 					else if (slicedInput.starts_with("\\snk")) {
 						targetItem->SinkPoint = std::stoi(sliced);
 					}
-					else if (slicedInput.starts_with("\\ene")) {
+					else if (slicedInput.starts_with("\\eng")) {
 						targetItem->Energy = std::stoi(sliced);
 					}
 					else if (slicedInput.starts_with("\\pmi")) {
@@ -84,33 +85,173 @@ namespace Satisfactory {
 
 				}
 
-				ItemList[target] = targetItem;
+				ItemList.push_back(targetItem);
+				ItemTable[target] = targetItem;
 
 			}
 			itemDataFile.close();
 		}
 
-		Building* t = new Building;
-		t->Name = "AS";
-		BuildingList["Assembler"] = t;
+		{
+			buildingDataFile.open(".\\res\\Initialize\\BuildingInit.nkdt");
 
-		Recipe* test = new Recipe;
-		test->Name = "Text One";
-		test->Building = BuildingList["Assembler"];
-		test->AddInput(ItemList["Limestone"], 30., 1);
-		test->AddOutput(ItemList["Limestone"], 60., 2);
+			while (!buildingDataFile.eof()) {
 
-		Satisfactory::RecipeList["F"] = test;
+				std::getline(buildingDataFile, input);
 
-		Recipe* tes2 = new Recipe;
-		tes2->Name = "Text Onsfeae";
-		tes2->IsAlt = true;
-		tes2->Building = BuildingList["Assembler"];
-		tes2->AddInput(ItemList["Limestone"], 30., 1);
-		tes2->AddInput(ItemList["Limestone"], 30., 1);
-		tes2->AddInput(ItemList["Limestone"], 30., 1);
-		tes2->AddOutput(ItemList["Limestone"], 60., 2);
+				if (!input.compare("")) continue;
+				if (input.starts_with("//")) continue;
 
-		Satisfactory::RecipeList["F2"] = test;
+				std::string target = input;
+				Building* targetBuilding = new Building;
+
+				while (true) {
+
+					std::getline(buildingDataFile, input);
+
+					if (!input.compare("")) continue;
+					if (input.starts_with("//")) continue;
+
+					if (!input.compare("\\end")) break;
+
+
+					int inputOffset = 0;
+					for (int i = 0; input[i] == ' ' || input[i] == '\t'; i++) inputOffset++;
+
+					std::string slicedInput = input.substr(inputOffset);
+					std::string sliced = input.substr(inputOffset + 5);
+
+					if (slicedInput.starts_with("\\nme")) {
+						targetBuilding->Name = sliced;
+					}
+					else if (slicedInput.starts_with("\\des")) {
+						targetBuilding->Description.push_back(sliced);
+					}
+					else if (slicedInput.starts_with("\\cat")) {
+						targetBuilding->Category = BuildingCategoryByName[sliced];
+					}
+					else if (slicedInput.starts_with("\\ing")) {
+						std::istringstream iss(sliced);
+						std::string tempItemName;
+						unsigned    tempItemCount;
+
+						iss >> tempItemName >> tempItemCount;
+						targetBuilding->Ingredients.emplace_back(ItemTable[tempItemName], tempItemCount);
+					}
+					else if (slicedInput.starts_with("\\siz")) {
+						std::istringstream iss(sliced);
+						unsigned tempWidth;
+						unsigned tempLength;
+						unsigned tempHeight;
+
+						iss >> tempWidth >> tempLength >> tempHeight;
+						targetBuilding->Width  = tempWidth;
+						targetBuilding->Length = tempLength;
+						targetBuilding->Height = tempHeight;
+
+					}
+					else if (slicedInput.starts_with("\\ios")) {
+						std::istringstream iss(sliced);
+						unsigned tempInput;
+						unsigned tempOutput;
+
+						iss >> tempInput >> tempOutput;
+						targetBuilding->Input  = tempInput;
+						targetBuilding->Output = tempOutput;
+					}
+					else if (slicedInput.starts_with("\\pwu")) {
+						if (!sliced.compare("CBC")) {
+							targetBuilding->PowerUsed = CASE_BY_CASE;
+						}
+						else targetBuilding->PowerUsed = std::stoi(sliced);
+					}
+					else if (slicedInput.starts_with("\\pwg")) {
+						if (!sliced.compare("INF")) {
+							targetBuilding->PowerUsed = INFINE;
+						}
+						else targetBuilding->PowerGeneration = std::stoi(sliced);
+					}
+
+				}
+
+				BuildingList.push_back(targetBuilding);
+				BuildingTable[target] = targetBuilding;
+			}
+
+			buildingDataFile.close();
+		}
+
+		{
+			recipeDataFile.open(".\\res\\Initialize\\RecipeInit.nkdt");
+
+			while (!recipeDataFile.eof()) {
+
+				std::getline(recipeDataFile, input);
+
+				if (!input.compare("")) continue;
+				if (input.starts_with("//")) continue;
+
+				std::string target = input;
+				Recipe* targetRecipe = new Recipe;
+
+				while (true) {
+
+					std::getline(recipeDataFile, input);
+
+					if (!input.compare("")) continue;
+					if (input.starts_with("//")) continue;
+
+					if (!input.compare("\\end")) break;
+
+					int inputOffset = 0;
+					for (int i = 0; input[i] == ' ' || input[i] == '\t'; i++) inputOffset++;
+
+					std::string slicedInput = input.substr(inputOffset);
+
+					if (slicedInput.starts_with("\\alt")) {
+						targetRecipe->IsAlt = true;
+						continue;
+					}
+
+					std::string sliced = input.substr(inputOffset + 5);
+
+					if (slicedInput.starts_with("\\nme")) {
+						targetRecipe->Name = (targetRecipe->IsAlt ? "Alternate: " : "") + sliced;
+					}
+					else if (slicedInput.starts_with("\\bdg")) {
+						targetRecipe->Building = BuildingTable[sliced];
+					}
+					else if (slicedInput.starts_with("\\inn")) {
+						std::istringstream iss(sliced);
+
+						std::string tempItem;
+						lDouble     tempPerMin;
+						unsigned    tempAmount;
+
+						iss >> tempItem >> tempPerMin >> tempAmount;
+						targetRecipe->AddInput(ItemTable[tempItem], tempPerMin, tempAmount);
+
+					}
+					else if (slicedInput.starts_with("\\out")) {
+						std::istringstream iss(sliced);
+
+						std::string tempItem;
+						lDouble     tempPerMin;
+						unsigned    tempAmount;
+
+						iss >> tempItem >> tempPerMin >> tempAmount;
+						targetRecipe->AddOutput(ItemTable[tempItem], tempPerMin, tempAmount);
+					}
+
+				}
+
+				RecipeList.push_back(targetRecipe);
+				RecipeTable[target] = targetRecipe;
+
+			}
+
+			recipeDataFile.close();
+		}
+
 	}
 }

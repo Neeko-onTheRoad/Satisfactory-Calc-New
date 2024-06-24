@@ -54,6 +54,7 @@ public:
 	virtual ~TextButton() {};
 
 	void Make(int _posX, int _posY, const std::string& _element, bool _bar = true);
+	std::string GetName();
 
 	void ISelectable::Select();
 	void ISelectable::UnSelect();
