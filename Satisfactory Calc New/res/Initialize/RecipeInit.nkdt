@@ -28,3 +28,243 @@ PureIronIngot
     \inn Water 20 4
     \out IronIngot 65 13
 \end
+
+CopperIngot
+    \nme Copper Ingot
+    \bdg Smelter
+    \inn CopperOre 30 1
+    \out CopperIngot 30 1
+\end
+
+CopperAlloyIngot
+    \alt
+    \nme Copper Alloy Ingot
+    \bdg Foundry
+    \inn CopperOre 50 10
+    \inn IronOre 25 5
+    \out CopperIngot 100 20
+\end
+
+PureCopperIngot
+    \alt
+    \nme Pure Copper Ingot
+    \bdg Refinery
+    \inn CopperOre 15 6
+    \inn Water 10 4
+    \out CopperIngot 37.5 15
+\end
+
+CateriumIngot
+    \nme Caterium Ingot
+    \bdg Smelter
+    \inn CateriumOre 45 3
+    \out CateriumIngot 15 1
+\end
+
+PureCateriumIngot
+    \alt
+    \nme Pure Caterium Ingot
+    \bdg Refinery
+    \inn CateriumOre 24 2
+    \inn Water 24 2
+    \out CateriumIngot 12 1
+\end
+
+SteelIngot
+    \nme Steel Ingot
+    \bdg Foundry
+    \inn IronOre 45 3
+    \inn Coal 45 3
+    \out SteelIngot 45 3
+\end
+
+CokeSteelIngot
+    \alt
+    \nme Coke Steel Ingot
+    \bdg Foundry
+    \inn IronOre 75 15
+    \inn PetroleumCoke 75 15
+    \out SteelIngot 100 20
+\end
+
+CompactedSteelIngot
+    \alt
+    \nme Compacted Steel Ingot
+    \bdg Foundry
+    \inn IronOre 22.5 6
+    \inn CompactedCoal 11.25 3
+    \out SteelIngot 37.5 10
+\end
+
+SolidSteelIngot
+    \alt
+    \nme Solid Steel Ingot
+    \bdg Foundry
+    \inn IronIngot 40 2
+    \inn Coal 40 2
+    \out SteelIngot 60 3
+\end
+
+AluminumIngot
+    \nme Aluminum Ingot
+    \bdg Foundry
+    \inn AluminumScrap 90 6
+    \inn Silica 75 5
+    \out AluminumIngot 60 4
+\end
+
+PureAluminumIngot
+    \alt
+    \nme Pure Aluminum Ingot
+    \bdg Smelter
+    \inn AluminumScrap 60 2
+    \out AluminumIngot 30 1
+\end
+
+Concrete
+    \nme Concrete
+    \bdg Constructor
+    \inn Limestone 45 3
+    \out Concrete 15 1
+\end
+
+FineConcrete
+    \alt
+    \nme Fine Concrete
+    \bdg Assembler
+    \inn Silica 7.5 3
+    \inn Limestone 30 12
+    \out Concrete 25 10
+\end
+
+RubberConcrete
+    \alt
+    \nme Rubber Concrete
+    \bdg Assembler
+    \inn Limestone 50 10
+    \inn Rubber 10 2
+    \out Concrete 45 9
+\end
+
+WetConcrete
+    \alt
+    \nme Wet Concrete
+    \bdg Refinery
+    \inn Limestone 120 6
+    \inn Water 100 5
+    \out Concrete 80 4
+\end
+
+QuartzCrystal
+    \nme Quartz Crystal
+    \bdg Constructor
+    \inn RawQuartz 37.5 5
+    \out QuartzCrystal 22.5 3
+\end
+
+PureQuartzCrystal
+    \alt
+    \nme Pure Quartz Crystal
+    \bdg Refinery
+    \inn RawQuartz 67.5 9
+    \inn Water 37.5 5
+    \out QuartzCrystal 52.5 7
+\end
+
+Silica
+    \nme Silica
+    \bdg Constructor
+    \inn RawQuartz 22.5 3
+    \out Silica 37.5 5
+\end
+
+CheapSilica
+    \alt
+    \nme Cheap Silica
+    \bdg Assembler
+    \inn RawQuartz 11.25 3
+    \inn Limestone 18.75 5
+    \out Silica 26.25 7
+\end
+
+CopperPowder
+    \nme Copper Powder
+    \bdg Constructor
+    \inn CopperIngot 300 30
+    \out CopperPowder 50 5
+\end
+
+PolymerResin
+    \alt
+    \nme Polymer Resin
+    \bdg Refinery
+    \inn CrudeOil 60 6
+    \out PolymerResin 130 13
+    \out HeavyOilResidue 20 2
+\end
+
+PetroleumCoke
+    \nme Petroleum Coke
+    \bdg Refinery
+    \inn HeavyOilResidue 40 4
+    \out PetroleumCoke 120 12
+\end
+
+AluminumScrap
+    \nme Aluminum Scrap
+    \bdg Refinery
+    \inn AluminaSolution 240 4
+    \inn Coal 120 2
+    \out AluminumScrap 360 6
+    \out Water 120 2
+\end
+
+ElectrodeAluminumScrap
+    \alt
+    \nme Electrode Aluminum Scrap
+    \bdg Refinery
+    \inn AluminaSolution 180 12
+    \inn PetroleumCoke 60 4
+    \out AluminumScrap 300 20
+    \out Water 105 7
+\end
+
+InstantScrap
+    \alt
+    \nme Instant Scrap
+    \bdg Blender
+    \inn Bauxite 150 15
+    \inn Coal 100 10
+    \inn SulfuricAcid 50 5
+    \inn Water 60 6
+    \out AluminumScrap 300 30
+    \out Water 50 5
+\end
+
+HatcherProtein
+    \nme Hatcher Protein
+    \bdg Constructor
+    \inn HatcherRemains 20 1
+    \out AlienProtein 20 1
+\end
+
+HogProtein
+    \nme Hog Protein
+    \bdg Constructor
+    \inn HogRemains 20 1
+    \out AlienProtein 20 1
+\end
+
+SpitterProtein
+    \nme Spitter Protein
+    \bdg Constructor
+    \inn PlasmaSpitterRemains 20 1
+    \out AlienProtein 20 1
+\end
+
+StingerProtein
+    \nme Stinger Protein
+    \bdg Constructor
+    \inn StingerRemains 20 1
+    \out AlienProtein 20 1
+\end

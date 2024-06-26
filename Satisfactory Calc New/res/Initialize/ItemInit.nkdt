@@ -197,8 +197,8 @@ PolymerResin
     \snk 12
 \end
 
-PetroieumCoke
-    \nme Petroieum Coke
+PetroleumCoke
+    \nme Petroleum Coke
     \des Used for crafting.
     \des A carbon-rich material distilled from Heavy Oil Residue.
     \des Used as a less efficient coal replacement.
@@ -238,6 +238,46 @@ AlienDNACapsule
     \des and Pioneers with Coupons.
     \cat Aliens
     \snk 0
+\end
+
+HatcherRemains
+    \nme Hatcher Remains
+    \des The shell-like remains of an alien... thing.
+    \des Used for MAM research.
+    \cat Aliens
+    \stk 50
+    \snk 0
+    \eng 250
+\end
+
+HogRemains
+    \nme Hog Remains
+    \des The shell-like remains of an alien... thing.
+    \des The carapace of the alien Hog creature.
+    \cat Aliens
+    \stk 50
+    \snk 0
+    \eng 250
+\end
+
+PlasmaSpitterRemains
+    \nme Plasma Spitter Remains
+    \des The remains of a plasma spitting alien creature.
+    \des Used for MAM research.
+    \cat Aliens
+    \stk 50
+    \snk 0
+    \eng 250
+\end
+
+StingerRemains
+    \nme Stinger Remains
+    \des The remains of whatever that creepy thing was.
+    \des Used for MAM research.
+    \cat Aliens
+    \stk 50
+    \snk 0
+    \eng 250
 \end
 
 //=================================================================| Liquids

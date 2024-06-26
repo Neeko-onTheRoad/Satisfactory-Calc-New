@@ -126,7 +126,7 @@ void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _o
 			energyUse = (
 				recipeSelect->GetElement()->Building->PowerUsed -
 				recipeSelect->GetElement()->Building->PowerGeneration
-				);
+			);
 
 			if (energyUse > 0) {
 				energyUseStrOrg = "Energy Usage: ";
@@ -138,7 +138,7 @@ void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _o
 
 				int floor = static_cast<int>(energyUse * 100000);
 				energyUse = floor / 100000.L;
-				energyUseStr += std::format("{} MJ", energyUse);
+				energyUseStr += std::format("{} MJ/Unit", energyUse);
 				indexY++;
 
 				for (int x = 0; x < energyUseStr.size(); x++) {
@@ -155,7 +155,7 @@ void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _o
 
 	indexY++;
 	{
-		std::string productAtStrOrg = "Product At: ";
+		std::string productAtStrOrg = "Producing At: ";
 		std::string productAtStr = productAtStrOrg + recipeSelect->GetElement()->Building->Name;
 
 		for (int x = 0; x < productAtStr.size(); x++) {
@@ -171,6 +171,7 @@ void ItemWikiPage::rerenderRecipe(std::map<int, std::vector<ConsoleObject*>>& _o
 }
 
 ItemWikiPage::ItemWikiPage() {
+	itemSelected = Satisfactory::ItemList[0];
 	recipeSelect = new SelectBox<Recipe*>;
 	nowSelect = recipeSelect;
 

@@ -19,7 +19,7 @@ class ItemWikiPage :
 private:
 
 	bool isSelected = false;
-	Item* itemSelected;
+	Item* itemSelected = nullptr;
 	ISelectable* before;
 	ISelectable* nowSelect;
 
